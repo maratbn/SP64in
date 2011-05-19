@@ -6,28 +6,38 @@
   </head>
   <body>
     <p>
-      Letters entered: <?=$_POST['validate']?>
-    </p>
-    <p>
-      <?php
-          //  Based on example at:
-          //  http://www.ejeliot.com/pages/php-captcha
-
-          require('php-captcha.inc.php');
-          if (PhpCaptcha::Validate($_POST['validate'])) {
-              echo 'Valid code entered';
-          } else {
-              echo 'Invalid code entered';
-          }
-      ?>
-    </p>
-    <p>
       <img src='captcha.php'>
     </p>
-    <form method='POST'>
+    <p>
       Enter letters above:<br>
-      <input type='text' name='validate'>
-      <button>Submit</button>
-    </form>
+      <input type='text' name='validate' id='inputValidate'>
+      <button id='buttonSubmit'>Submit</button>
+    </p>
   </body>
+  <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
+  </script>
+  <script type='text/javascript'>
+      $(document).ready(function($) {
+          $('#buttonSubmit').click(function() {
+                  $.ajax({
+                          url: 'captcha_validator.php',
+                          type: 'POST',
+                          data: {'validate': $('#inputValidate').val()},
+                          dataType: 'json',
+                          error: function() {
+                                  alert("Encountered error making XHR request"
+                                          + " to server.");
+                              },
+                          success: function(data) {
+                                  var isValid = data && data.is_valid;
+                                  if (isValid) {
+                                      alert("Valid");
+                                  } else {
+                                      alert("Invalid");
+                                  }
+                              }
+                      })
+              });
+      });
+  </script>
 </html>
