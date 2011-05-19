@@ -5,6 +5,7 @@
     <title>CAPTCHA test</title>
   </head>
   <body>
+    <a id='aSendEmail' href='#'>Send Email</a>
     <div id='divCEntry'>
       <div id='divCAPTCHA' style='position:relative;width:250px;height:70px'>
       </div>
@@ -32,6 +33,16 @@
               $('#inputValidate').val("");
           }
 
+          function updateEmailAddress(data) {
+              var strEmail = data && data.email;
+              $('#aSendEmail')
+                  .attr(
+                      'href',
+                      strEmail ? 'mailto://' + strEmail : "#")
+                  .text(
+                      strEmail || "Unable to determine email.");
+          }
+
           refreshCAPTCHA();
 
           $('#buttonSubmit').click(function() {
@@ -48,6 +59,7 @@
                                   var isValid = data && data.is_valid;
                                   if (isValid) {
                                       $('#divCEntry').css('display', 'none');
+                                      updateEmailAddress(data);
                                   } else {
                                       totalInvalid++;
                                       refreshInput();
