@@ -9,6 +9,9 @@
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
+  <script type='text/javascript'
+      src='/toolkits/jquery/jquery.qtip-1.0.0-rc3.custom/jquery.qtip-1.0.0-rc3.js'>
+  </script>
   <script type='text/javascript'>
       $(document).ready(function($) {
           function insertCAPTCHA(aSendEmail) {
@@ -78,6 +81,15 @@
           }
 
           function attachCAPTCHA(aSendEmail) {
+              aSendEmail.qtip({
+                      style: {
+                              name: 'cream',
+                              tip: true
+                          },
+                      content: "Click to show email address.",
+                      hide: 'mouseout click'
+                  });
+
               aSendEmail.click(function() {
                       insertCAPTCHA(aSendEmail);
                   });
