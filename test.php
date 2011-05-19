@@ -10,7 +10,7 @@
       </div>
       <p>
         Enter letters above:<br>
-        <input type='text' name='validate' id='inputValidate'>
+        <input type='text' id='inputValidate'>
         <button id='buttonSubmit'>Submit</button>
       </p>
     </div>
