@@ -11,7 +11,7 @@
   </script>
   <script type='text/javascript'>
       $(document).ready(function($) {
-          function insertCAPTCHA() {
+          function insertCAPTCHA(aSendEmail) {
               var divCEntry = $("<div />");
               var divCAPTCHA = $("<div style='"
                           + "position:relative;width:250px;height:70px' />");
@@ -43,7 +43,7 @@
 
               function updateEmailAddress(data) {
                   var strEmail = data && data.email;
-                  $('#aSendEmail')
+                  aSendEmail
                       .attr(
                           'href',
                           strEmail ? 'mailto://' + strEmail : "#")
@@ -77,7 +77,7 @@
                   });
           }
 
-          insertCAPTCHA();
+          insertCAPTCHA($('#aSendEmail'));
       });
   </script>
 </html>
