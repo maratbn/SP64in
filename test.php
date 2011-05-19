@@ -77,7 +77,13 @@
                   });
           }
 
-          insertCAPTCHA($('#aSendEmail'));
+          function attachCAPTCHA(aSendEmail) {
+              aSendEmail.click(function() {
+                      insertCAPTCHA(aSendEmail);
+                  });
+          }
+
+          attachCAPTCHA($('#aSendEmail'));
       });
   </script>
 </html>
