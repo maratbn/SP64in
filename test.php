@@ -5,7 +5,7 @@
     <title>CAPTCHA test</title>
   </head>
   <body>
-    <div>
+    <div id='divCEntry'>
       <div id='divCAPTCHA' style='position:relative;width:250px;height:70px'>
       </div>
       <p>
@@ -47,10 +47,9 @@
                           success: function(data) {
                                   var isValid = data && data.is_valid;
                                   if (isValid) {
-                                      alert("Valid");
+                                      $('#divCEntry').css('display', 'none');
                                   } else {
                                       totalInvalid++;
-                                      alert("Invalid");
                                       refreshInput();
                                   }
                               }
