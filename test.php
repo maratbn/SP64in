@@ -5,9 +5,8 @@
     <title>CAPTCHA test</title>
   </head>
   <body>
-    <p>
-      <img src='captcha.php'>
-    </p>
+    <div id='divCAPTCHA' style='position:relative;width:250px;height:70px'>
+    </div>
     <p>
       Enter letters above:<br>
       <input type='text' name='validate' id='inputValidate'>
@@ -18,6 +17,21 @@
   </script>
   <script type='text/javascript'>
       $(document).ready(function($) {
+          var totalInvalid = 0;
+          function refreshCAPTCHA() {
+              $('#divCAPTCHA').css(
+                  'background-image',
+                  "url('captcha.php?" + (new Date()).getTime() + "_" +
+                                                        totalInvalid + "')");
+          }
+
+          function refreshInput() {
+              refreshCAPTCHA();
+              $('#inputValidate').val("");
+          }
+
+          refreshCAPTCHA();
+
           $('#buttonSubmit').click(function() {
                   $.ajax({
                           url: 'captcha_validator.php',
@@ -33,7 +47,9 @@
                                   if (isValid) {
                                       alert("Valid");
                                   } else {
+                                      totalInvalid++;
                                       alert("Invalid");
+                                      refreshInput();
                                   }
                               }
                       })
