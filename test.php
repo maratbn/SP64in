@@ -5,13 +5,15 @@
     <title>CAPTCHA test</title>
   </head>
   <body>
-    <div id='divCAPTCHA' style='position:relative;width:250px;height:70px'>
+    <div>
+      <div id='divCAPTCHA' style='position:relative;width:250px;height:70px'>
+      </div>
+      <p>
+        Enter letters above:<br>
+        <input type='text' name='validate' id='inputValidate'>
+        <button id='buttonSubmit'>Submit</button>
+      </p>
     </div>
-    <p>
-      Enter letters above:<br>
-      <input type='text' name='validate' id='inputValidate'>
-      <button id='buttonSubmit'>Submit</button>
-    </p>
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
