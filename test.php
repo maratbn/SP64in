@@ -14,7 +14,7 @@
   </script>
   <script type='text/javascript'>
       $(document).ready(function($) {
-          function insertCAPTCHA(aSendEmail) {
+          function createCAPTCHA(aSendEmail) {
               var divCEntry = $("<div />");
               var divCAPTCHA = $("<div style='"
                           + "position:relative;width:250px;height:70px' />");
@@ -27,9 +27,6 @@
                       $("<p>Enter letters above:<br></p>")
                           .append(inputValidate)
                           .append(buttonSubmit));
-
-              $('body').append(divCEntry);
-
 
               var totalInvalid = 0;
               function refreshCAPTCHA() {
@@ -78,6 +75,8 @@
                                   }
                           })
                   });
+
+              return divCEntry;
           }
 
           function attachCAPTCHA(aSendEmail) {
@@ -91,7 +90,7 @@
                   });
 
               aSendEmail.click(function() {
-                      insertCAPTCHA(aSendEmail);
+                      $('body').append(createCAPTCHA(aSendEmail));
                   });
           }
 
