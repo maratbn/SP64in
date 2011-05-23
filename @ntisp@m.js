@@ -61,8 +61,8 @@ $(document).ready(function($) {
         function refreshCAPTCHA() {
             divCAPTCHA.css(
                 'background-image',
-                "url('captcha.php?" + (new Date()).getTime() + "_" +
-                                                   totalInvalid + "')");
+                "url('/components/@ntisp@m/./captcha.php?" +
+                          (new Date()).getTime() + "_" + totalInvalid + "')");
         }
 
         function refreshInput() {
