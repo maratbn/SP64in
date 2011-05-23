@@ -57,7 +57,7 @@
                       .text(
                           strEmail || "Unable to determine email.");
 
-                  $(document).trigger('got_@nti_sp@m_email', data);
+                  $(document).trigger('got_@ntisp@m_email', data);
               }
 
               refreshInput();
@@ -157,7 +157,7 @@
                       }
                   });
 
-              $(document).bind('got_@nti_sp@m_email', function(data) {
+              $(document).bind('got_@ntisp@m_email', function(data) {
                       strEmail = data && data.email;
                       aSendEmail.qtip('api').hide();
                   });
