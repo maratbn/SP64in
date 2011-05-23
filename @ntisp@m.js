@@ -110,6 +110,10 @@ $(document).ready(function($) {
                 })
         }
 
+        inputValidate.bind('keydown', function(e) {
+                if (e && e.which == 13) validateCAPTCHA();
+            });
+
         buttonSubmit.click(function() {
                 validateCAPTCHA();
             });
