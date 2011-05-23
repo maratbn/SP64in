@@ -7,7 +7,7 @@
         href='./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
   </head>
   <body>
-    <a id='aSendEmail' href='#'>Send Email</a>
+    <a data-antispam href='#'>Send Email</a>
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
@@ -163,7 +163,7 @@
                   });
           }
 
-          attachCAPTCHA($('#aSendEmail'));
+          attachCAPTCHA($('a[data-antispam]'));
       });
   </script>
 </html>
