@@ -87,7 +87,21 @@
                               name: 'cream',
                               tip: true
                           },
-                      content: "Click to show email address."
+                      content: "Click to show email address.",
+                      show: {
+                              effect: {
+                                  effect: 'fade',
+                                  length: 500
+                              },
+                              event: ""
+                          },
+                      hide: {
+                              effect: {
+                                  effect: 'fade',
+                                  length: 500
+                              },
+                              event: ""
+                          }
                   });
 
               aSendEmail.click(function() {
