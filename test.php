@@ -91,7 +91,6 @@
                   });
 
               aSendEmail.click(function() {
-                      $('body').append(createCAPTCHA(aSendEmail));
                   });
           }
 
