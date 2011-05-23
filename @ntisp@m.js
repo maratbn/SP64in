@@ -43,8 +43,6 @@ $(document).ready(function($) {
             $(document).trigger('got_@ntisp@m_email', data);
         }
 
-        refreshInput();
-
         buttonSubmit.click(function() {
                 $.ajax({
                         url: '/components/@ntisp@m/./captcha_validator.php',
@@ -68,6 +66,8 @@ $(document).ready(function($) {
                             }
                     })
             });
+
+        refreshInput();
 
         return divParentContainer;
     }
