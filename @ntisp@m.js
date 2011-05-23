@@ -47,7 +47,7 @@
 
               buttonSubmit.click(function() {
                       $.ajax({
-                              url: 'captcha_validator.php',
+                              url: '/components/@ntisp@m/./captcha_validator.php',
                               type: 'POST',
                               data: {'validate': inputValidate.val()},
                               dataType: 'json',
