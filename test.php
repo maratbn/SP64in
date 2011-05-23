@@ -87,8 +87,7 @@
                               name: 'cream',
                               tip: true
                           },
-                      content: "Click to show email address.",
-                      hide: 'mouseout click'
+                      content: "Click to show email address."
                   });
 
               aSendEmail.click(function() {
