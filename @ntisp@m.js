@@ -136,6 +136,9 @@ $(document).ready(function($) {
                     },
                 content: $("<div />").append(divClickToShow)
                                                     .append(divCAPTCHA),
+                position: {
+                    viewport: $(window),
+                },
                 show: {
                         effect: {
                             effect: 'fade',
