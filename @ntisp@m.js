@@ -189,6 +189,11 @@ $(document).ready(function($) {
                     aSendEmail.qtip('api')
                                      .elements.tooltip.css('width', "");
 
+                    //  2011-05-23
+                    //  The following call to reposition() was necessary to
+                    //  make this work on IE8 in "compatibility" mode.
+                    aSendEmail.qtip('api').reposition();
+
                     aSendEmail.qtip('api').show();
                     aSendEmail.qtip('api').reposition();
                     isCShown = true;
