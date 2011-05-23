@@ -190,6 +190,7 @@ $(document).ready(function($) {
                                      .elements.tooltip.css('width', "");
 
                     aSendEmail.qtip('api').show();
+                    aSendEmail.qtip('api').reposition();
                     isCShown = true;
                 }
             });
