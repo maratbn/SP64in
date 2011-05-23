@@ -9,7 +9,7 @@
               var divCAPTCHA = $("<div style='"
                           + "position:relative;width:250px;height:70px' />");
               var inputValidate = $("<input type='text'>");
-              var buttonSubmit = $("<button>Submit</button>");
+              var buttonSubmit = $("<button>Reveal Email</button>");
               
               divCEntry
                   .append(divCAPTCHA)
