@@ -3,6 +3,8 @@
 <html>
   <head>
     <title>CAPTCHA test</title>
+    <link rel='stylesheet'
+        href='/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
   </head>
   <body>
     <a id='aSendEmail' href='#'>Send Email</a>
@@ -10,7 +12,7 @@
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
   <script type='text/javascript'
-      src='/toolkits/jquery/jquery.qtip-1.0.0-rc3.custom/jquery.qtip-1.0.0-rc3.js'>
+      src='/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.js'>
   </script>
   <script type='text/javascript'>
       $(document).ready(function($) {
