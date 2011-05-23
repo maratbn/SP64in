@@ -82,12 +82,18 @@
           }
 
           function attachCAPTCHA(aSendEmail) {
+              var divClickToShow =
+                                 $("<div>Click to reveal email address.</div>");
+              var divCAPTCHA = createCAPTCHA(aSendEmail)
+                                  .css('display', 'none');
+
               aSendEmail.qtip({
                       style: {
                               name: 'cream',
                               tip: true
                           },
-                      content: "Click to show email address.",
+                      content: $("<div />").append(divClickToShow)
+                                                          .append(divCAPTCHA),
                       show: {
                               effect: {
                                   effect: 'fade',
