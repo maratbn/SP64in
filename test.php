@@ -18,6 +18,11 @@
       $(document).ready(function($) {
           function createCAPTCHA(aSendEmail) {
               var divCEntry = $("<div />");
+              var divCSolved =
+                          $("<div style='display:none'>CAPTCHA solved</div>");
+              var divParentContainer = $("<div />").append(divCEntry)
+                                                          .append(divCSolved);
+
               var divCAPTCHA = $("<div style='"
                           + "position:relative;width:250px;height:70px' />");
               var inputValidate = $("<input type='text'>");
@@ -69,6 +74,7 @@
                                       var isValid = data && data.is_valid;
                                       if (isValid) {
                                           divCEntry.css('display', 'none');
+                                          divCSolved.css('display', "");
                                           updateEmailAddress(data);
                                       } else {
                                           totalInvalid++;
@@ -78,7 +84,7 @@
                           })
                   });
 
-              return divCEntry;
+              return divParentContainer;
           }
 
           function attachCAPTCHA(aSendEmail) {
