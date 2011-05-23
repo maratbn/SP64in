@@ -82,28 +82,36 @@ $(document).ready(function($) {
             $(document).trigger('got_@ntisp@m_email', data);
         }
 
-        buttonSubmit.click(function() {
-                $.ajax({
-                        url: '/components/@ntisp@m/./captcha_validator.php',
-                        type: 'POST',
-                        data: {'validate': inputValidate.val()},
-                        dataType: 'json',
-                        error: function() {
-                                alert("Encountered error making XHR"
-                                               + " request to server.");
-                            },
-                        success: function(data) {
-                                var isValid = data && data.is_valid;
-                                if (isValid) {
-                                    divCEntry.css('display', 'none');
-                                    divCSolved.css('display', "");
-                                    updateEmailAddress(data);
-                                } else {
-                                    totalInvalid++;
-                                    refreshInput();
-                                }
+        /**
+         *  Does the XHR request to the server with the user response to
+         *  validate the CAPTCHA.
+         */
+        function validateCAPTCHA() {
+            $.ajax({
+                    url: '/components/@ntisp@m/./captcha_validator.php',
+                    type: 'POST',
+                    data: {'validate': inputValidate.val()},
+                    dataType: 'json',
+                    error: function() {
+                            alert("Encountered error making XHR"
+                                           + " request to server.");
+                        },
+                    success: function(data) {
+                            var isValid = data && data.is_valid;
+                            if (isValid) {
+                                divCEntry.css('display', 'none');
+                                divCSolved.css('display', "");
+                                updateEmailAddress(data);
+                            } else {
+                                totalInvalid++;
+                                refreshInput();
                             }
-                    })
+                        }
+                })
+        }
+
+        buttonSubmit.click(function() {
+                validateCAPTCHA();
             });
 
         refreshInput();
