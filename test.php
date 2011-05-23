@@ -130,6 +130,13 @@
                       } else {
                           divClickToShow.css('display', 'none');
                           divCAPTCHA.css('display', "");
+
+                          //  2011-05-22
+                          //  Removing the 'width' CSS style that otherwise
+                          //  clips the contents.
+                          aSendEmail.qtip('api')
+                                           .elements.tooltip.css('width', "");
+
                           aSendEmail.qtip('api').show();
                           isCShown = true;
                       }
