@@ -195,7 +195,7 @@ $(document).ready(function($) {
                 }
             });
 
-        $(document).bind('got_@ntisp@m_email', function(data) {
+        $(document).bind('got_@ntisp@m_email', function(e, data) {
                 strEmail = data && data.email;
                 aSendEmail.qtip('api').hide();
             });
