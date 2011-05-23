@@ -56,6 +56,8 @@
                           strEmail ? 'mailto://' + strEmail : "#")
                       .text(
                           strEmail || "Unable to determine email.");
+
+                  $(document).trigger('got_@nti_sp@m_email', data);
               }
 
               refreshInput();
@@ -117,18 +119,25 @@
                   });
 
               var isCShown = false;
+              var strEmail = "";
 
               aSendEmail.bind('mouseover', function() {
+                      if (strEmail) return;
+
                       if (!isCShown) {
                           aSendEmail.qtip('api').show();
                       }
                   });
               aSendEmail.bind('mouseout', function() {
+                      if (strEmail) return;
+
                       if (!isCShown) {
                           aSendEmail.qtip('api').hide();
                       }
                   });
               aSendEmail.bind('click', function() {
+                      if (strEmail) return;
+
                       if (isCShown) {
                           divClickToShow.css('display', "");
                           divCAPTCHA.css('display', 'none');
@@ -146,6 +155,11 @@
                           aSendEmail.qtip('api').show();
                           isCShown = true;
                       }
+                  });
+
+              $(document).bind('got_@nti_sp@m_email', function(data) {
+                      strEmail = data && data.email;
+                      aSendEmail.qtip('api').hide();
                   });
           }
 
