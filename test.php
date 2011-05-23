@@ -110,7 +110,29 @@
                           }
                   });
 
-              aSendEmail.click(function() {
+              var isCShown = false;
+
+              aSendEmail.bind('mouseover', function() {
+                      if (!isCShown) {
+                          aSendEmail.qtip('api').show();
+                      }
+                  });
+              aSendEmail.bind('mouseout', function() {
+                      if (!isCShown) {
+                          aSendEmail.qtip('api').hide();
+                      }
+                  });
+              aSendEmail.bind('click', function() {
+                      if (isCShown) {
+                          divClickToShow.css('display', "");
+                          divCAPTCHA.css('display', 'none');
+                          isCShown = false;
+                      } else {
+                          divClickToShow.css('display', 'none');
+                          divCAPTCHA.css('display', "");
+                          aSendEmail.qtip('api').show();
+                          isCShown = true;
+                      }
                   });
           }
 
