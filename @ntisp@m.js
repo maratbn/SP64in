@@ -49,7 +49,9 @@ $(document).ready(function($) {
                     + "position:relative;width:250px;height:70px' />");
         var inputValidate = $([
                     "<input type='text' style='",
-                        "font-size:2.1em;letter-spacing:0.1em;width:120px",
+                        "font-size:2.1em;",
+                        "letter-spacing:0.1em;",
+                        "width:120px;",
                       "'>"].join(""));
         var buttonSubmit = $("<button>Reveal Email</button>");
         
