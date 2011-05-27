@@ -51,6 +51,7 @@ $(document).ready(function($) {
                     "<input type='text' style='",
                         "font-size:2.1em;",
                         "letter-spacing:0.1em;",
+                        "text-align:center;",
                         "width:120px;",
                       "'>"].join(""));
         var buttonSubmit = $("<button>Reveal Email</button>");
