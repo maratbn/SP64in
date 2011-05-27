@@ -70,7 +70,7 @@ $(document).ready(function($) {
             .append(divCAPTCHA)
             .append($([
                     "<div style='margin:0 1.2em;'>",
-                      "<div style='text-align:center'>",
+                      "<div style='text-align:center;margin-top:0.4em'>",
                         "Enter letters above:",
                       "</div>",
                     "</div>"].join(""))
