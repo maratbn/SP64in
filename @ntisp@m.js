@@ -90,6 +90,7 @@ $(document).ready(function($) {
         function refreshInput() {
             refreshCAPTCHA();
             inputValidate.val("");
+            inputValidate.focus();
         }
 
         function updateEmailAddress(data) {
