@@ -54,7 +54,10 @@ $(document).ready(function($) {
                         "text-align:center;",
                         "width:120px;",
                       "'>"].join(""));
-        var buttonSubmit = $("<button>Reveal Email</button>");
+        var buttonSubmit = $([
+                    "<button style='",
+                        "float:right;margin-top:0.7em'>",
+                      "Reveal Email</button>"].join(""));
         
         divCEntry
             .append(divCAPTCHA)
