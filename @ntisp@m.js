@@ -41,7 +41,8 @@ $(document).ready(function($) {
     function createCAPTCHA(aSendEmail) {
         var divCEntry = $([
                     "<div style='",
-                        "background-color:#ffffff;padding:0.3em",
+                        "background-color:#ffffff;",
+                        "padding:0.3em",
                       "'/>"].join(""));
         var divCSolved =
                     $("<div style='display:none'>CAPTCHA solved</div>");
