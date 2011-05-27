@@ -42,6 +42,7 @@ $(document).ready(function($) {
         var divCEntry = $([
                     "<div style='",
                         "background-color:#ffffff;",
+                        "border:1px solid #F1D031;",
                         "padding:0.3em",
                       "'/>"].join(""));
         var divCSolved =
