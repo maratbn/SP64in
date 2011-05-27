@@ -60,7 +60,9 @@ $(document).ready(function($) {
             .append(divCAPTCHA)
             .append($([
                     "<div style='margin:0 1.2em;'>",
-                      "<div>Enter letters above:</div>",
+                      "<div style='text-align:center'>",
+                        "Enter letters above:",
+                      "</div>",
                     "</div>"].join(""))
                     .append(inputValidate)
                     .append(buttonSubmit));
