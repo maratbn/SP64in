@@ -123,14 +123,20 @@ $(document).ready(function($) {
 
         refreshInput();
 
-        return divParentContainer;
+        return {
+                parent: divParentContainer,
+                input: inputValidate
+            };
     }
 
     function attachCAPTCHA(aSendEmail) {
         var divClickToShow =
                            $("<div>Click to reveal email address.</div>");
-        var divCAPTCHA = createCAPTCHA(aSendEmail)
-                            .css('display', 'none');
+        var captcha = createCAPTCHA(aSendEmail);
+        var divCAPTCHA = captcha.parent;
+        var inputValidate = captcha.input;
+
+        divCAPTCHA.css('display', 'none');
 
         aSendEmail.qtip({
                 style: {
@@ -203,6 +209,7 @@ $(document).ready(function($) {
 
                     aSendEmail.qtip('api').show();
                     aSendEmail.qtip('api').reposition();
+                    inputValidate.focus();
                     isCShown = true;
                 }
             });
