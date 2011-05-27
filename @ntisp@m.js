@@ -63,7 +63,7 @@ $(document).ready(function($) {
                       "'>"].join(""));
         var buttonSubmit = $([
                     "<button style='",
-                        "float:right;margin-top:0.7em'>",
+                        "float:right;margin-top:0.5em'>",
                       "Reveal Email</button>"].join(""));
         
         divCEntry
