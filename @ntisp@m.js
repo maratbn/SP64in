@@ -54,6 +54,7 @@ $(document).ready(function($) {
                     + "position:relative;width:250px;height:70px' />");
         var inputValidate = $([
                     "<input type='text' style='",
+                        "float:left;",
                         "font-size:2.1em;",
                         "letter-spacing:0.1em;",
                         "text-align:center;",
@@ -75,7 +76,8 @@ $(document).ready(function($) {
                       "</div>",
                     "</div>"].join(""))
                     .append(inputValidate)
-                    .append(buttonSubmit));
+                    .append(buttonSubmit))
+                    .append($("<div style='clear:both' />"));
 
         var totalInvalid = 0;
         function refreshCAPTCHA() {
