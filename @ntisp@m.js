@@ -52,6 +52,8 @@ $(document).ready(function($) {
                         "font-size:2.1em;",
                         "letter-spacing:0.1em;",
                         "text-align:center;",
+                        "border:none;",
+                        "border-bottom:2px dashed #555555;",
                         "width:120px;",
                       "'>"].join(""));
         var buttonSubmit = $([
