@@ -47,7 +47,7 @@ $(document).ready(function($) {
 
         var divCAPTCHA = $("<div style='"
                     + "position:relative;width:250px;height:70px' />");
-        var inputValidate = $("<input type='text'>");
+        var inputValidate = $("<input type='text' style='width:120px'>");
         var buttonSubmit = $("<button>Reveal Email</button>");
         
         divCEntry
