@@ -13,8 +13,8 @@
 
     $isValid = isCaptchaValid();
     $output = array(
-                  'is_valid' => $isValid ? True : False,
-                  'email' => $isValid ? getEmail() : "");
+                'is_valid' => $isValid ? True : False,
+                'email' => $isValid ? getEmail() : "");
 
     echo json_encode($output);
 ?>
