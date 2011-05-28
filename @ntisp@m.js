@@ -189,18 +189,20 @@ $(document).ready(function($) {
         var isCShown = false;
         var strEmail = "";
 
+        var qapi = aSendEmail.qtip('api');
+
         aSendEmail.bind('mouseover', function() {
                 if (strEmail) return;
 
                 if (!isCShown) {
-                    aSendEmail.qtip('api').show();
+                    qapi.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
                 if (strEmail) return;
 
                 if (!isCShown) {
-                    aSendEmail.qtip('api').hide();
+                    qapi.hide();
                 }
             });
         aSendEmail.bind('click', function() {
@@ -209,7 +211,7 @@ $(document).ready(function($) {
                 if (isCShown) {
                     divClickToShow.css('display', "");
                     divCAPTCHA.css('display', 'none');
-                    aSendEmail.qtip('api').reposition();
+                    qapi.reposition();
                     isCShown = false;
                 } else {
                     divClickToShow.css('display', 'none');
@@ -218,17 +220,17 @@ $(document).ready(function($) {
                     //  2011-05-22
                     //  Removing the 'width' CSS style that otherwise
                     //  clips the contents.
-                    var elements = aSendEmail.qtip('api').elements;
+                    var elements = qapi.elements;
                     if (elements && elements.tooltip)
                         elements.tooltip.css('width', "");
 
                     //  2011-05-23
                     //  The following call to reposition() was necessary to
                     //  make this work on IE8 in "compatibility" mode.
-                    aSendEmail.qtip('api').reposition();
+                    qapi.reposition();
 
-                    aSendEmail.qtip('api').show();
-                    aSendEmail.qtip('api').reposition();
+                    qapi.show();
+                    qapi.reposition();
                     inputValidate.focus();
                     isCShown = true;
                 }
@@ -238,7 +240,7 @@ $(document).ready(function($) {
 
         $(document).bind('got_@ntisp@m_email', function(e, data) {
                 strEmail = data && data.email;
-                aSendEmail.qtip('api').hide();
+                qapi.hide();
             });
     }
 
