@@ -214,15 +214,15 @@ $(document).ready(function($) {
                     qapi.reposition();
                     isCShown = false;
                 } else {
-                    divClickToShow.css('display', 'none');
-                    divCAPTCHA.css('display', "");
-
                     //  2011-05-22
                     //  Removing the 'width' CSS style that otherwise
                     //  clips the contents.
                     var elements = qapi.elements;
                     if (elements && elements.tooltip)
                         elements.tooltip.css('width', "");
+
+                    divClickToShow.css('display', 'none');
+                    divCAPTCHA.css('display', "");
 
                     qapi.show();
                     qapi.reposition();
