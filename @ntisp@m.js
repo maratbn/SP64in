@@ -224,11 +224,6 @@ $(document).ready(function($) {
                     if (elements && elements.tooltip)
                         elements.tooltip.css('width', "");
 
-                    //  2011-05-23
-                    //  The following call to reposition() was necessary to
-                    //  make this work on IE8 in "compatibility" mode.
-                    qapi.reposition();
-
                     qapi.show();
                     qapi.reposition();
                     inputValidate.focus();
