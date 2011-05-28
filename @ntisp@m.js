@@ -60,6 +60,7 @@ $(document).ready(function($) {
                         "text-align:center;",
                         "border:none;",
                         "border-bottom:2px dashed #555555;",
+                        "padding-bottom:0.2em;",
                         "width:5em;",
                       "'>"].join(""));
         var buttonSubmit = $([
