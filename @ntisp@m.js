@@ -232,6 +232,8 @@ $(document).ready(function($) {
                     inputValidate.focus();
                     isCShown = true;
                 }
+
+                return false;
             });
 
         $(document).bind('got_@ntisp@m_email', function(e, data) {
