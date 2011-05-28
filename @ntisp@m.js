@@ -161,8 +161,7 @@ $(document).ready(function($) {
 
         aSendEmail.qtip({
                 style: {
-                        name: 'cream',
-                        tip: true
+                        classes: 'ui-tooltip-shadow'
                     },
                 content: $("<div />").append(divClickToShow)
                                                     .append(divCAPTCHA),
