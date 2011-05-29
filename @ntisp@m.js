@@ -186,8 +186,9 @@ $(document).ready(function($) {
                     //  2011-05-22
                     //  Removing the 'width' CSS style that otherwise
                     //  clips the contents.
-                    aSendEmail.qtip('api')
-                                     .elements.tooltip.css('width', "");
+                    var elements = aSendEmail.qtip('api').elements;
+                    if (elements && elements.tooltip)
+                        elements.tooltip.css('width', "");
 
                     //  2011-05-23
                     //  The following call to reposition() was necessary to
