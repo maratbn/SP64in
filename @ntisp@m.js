@@ -178,6 +178,7 @@ $(document).ready(function($) {
                 if (isCShown) {
                     divClickToShow.css('display', "");
                     divCAPTCHA.css('display', 'none');
+                    aSendEmail.qtip('api').reposition();
                     isCShown = false;
                 } else {
                     divClickToShow.css('display', 'none');
