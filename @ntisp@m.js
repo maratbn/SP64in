@@ -210,5 +210,11 @@ $(document).ready(function($) {
             });
     }
 
-    attachCAPTCHA($('a[data-antispam]'));
+    function insertSendEmailLink(spanParent) {
+        var aSendEmail = $("<a href='#'>Send Email</a>");
+        attachCAPTCHA(aSendEmail);
+        spanParent.append(aSendEmail);
+    }
+
+    insertSendEmailLink($('span[data-antispam]'));
 });
