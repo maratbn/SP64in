@@ -137,6 +137,8 @@ $(document).ready(function($) {
                 content: $("<div />").append(divClickToShow)
                                                     .append(divCAPTCHA),
                 position: {
+                    at: 'bottom middle',
+                    my: 'top middle',
                     viewport: $(window)
                 },
                 show: {
