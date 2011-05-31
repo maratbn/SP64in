@@ -183,16 +183,13 @@ $(document).ready(function($) {
                 }).qtip('api');
         }
 
+        var qapiClickToReveal = createQT($(
+                                "<div>Click to reveal email address.</div>"));
+
         var captcha = createCAPTCHA(aSendEmail);
-        var divCAPTCHA = captcha.parent;
-        var inputValidate = captcha.input;
 
-        divCAPTCHA.css('display', 'none');
+        var qapiCAPTCHA = createQT(captcha.parent);
 
-        var divClickToShow = $("<div>Click to reveal email address.</div>");
-
-        var qapi = createQT($("<div />").append(divClickToShow)
-                                                    .append(divCAPTCHA));
         var isCShown = false;
         var strEmail = "";
 
@@ -200,38 +197,27 @@ $(document).ready(function($) {
                 if (strEmail) return;
 
                 if (!isCShown) {
-                    qapi.show();
+                    qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
                 if (strEmail) return;
 
                 if (!isCShown) {
-                    qapi.hide();
+                    qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
                 if (strEmail) return;
 
                 if (isCShown) {
-                    divClickToShow.css('display', "");
-                    divCAPTCHA.css('display', 'none');
-                    qapi.reposition();
+                    qapiCAPTCHA.hide();
+                    qapiClickToReveal.show();
                     isCShown = false;
                 } else {
-                    //  2011-05-22
-                    //  Removing the 'width' CSS style that otherwise
-                    //  clips the contents.
-                    var elements = qapi.elements;
-                    if (elements && elements.tooltip)
-                        elements.tooltip.css('width', "");
-
-                    divClickToShow.css('display', 'none');
-                    divCAPTCHA.css('display', "");
-
-                    qapi.show();
-                    qapi.reposition();
-                    inputValidate.focus();
+                    qapiClickToReveal.hide();
+                    qapiCAPTCHA.show();
+                    captcha.input.focus();
                     isCShown = true;
                 }
 
@@ -240,7 +226,7 @@ $(document).ready(function($) {
 
         $(document).bind('got_@ntisp@m_email', function(e, data) {
                 strEmail = data && data.email;
-                qapi.hide();
+                qapiCAPTCHA.hide();
             });
     }
 
