@@ -99,7 +99,7 @@ $(document).ready(function($) {
             aSendEmail
                 .attr(
                     'href',
-                    strEmail ? 'mailto://' + strEmail : "#")
+                    strEmail ? 'mailto:' + strEmail : "#")
                 .text(
                     strEmail || "Unable to determine email.");
 
