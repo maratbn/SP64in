@@ -167,17 +167,15 @@ $(document).ready(function($) {
                         viewport: $(window)
                     },
                     show: {
-                            effect: {
-                                effect: 'fade',
-                                length: 500
-                            },
+                            effect: function () {
+                                    $(this).slideDown(200);
+                                },
                             event: ""
                         },
                     hide: {
-                            effect: {
-                                effect: 'fade',
-                                length: 500
-                            },
+                            effect: function () {
+                                    $(this).slideUp(200);
+                                },
                             event: ""
                         }
                 }).qtip('api');
