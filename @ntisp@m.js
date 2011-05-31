@@ -151,13 +151,13 @@ $(document).ready(function($) {
     }
 
     function attachCAPTCHA(aSendEmail) {
-        var divClickToShow =
-                           $("<div>Click to reveal email address.</div>");
         var captcha = createCAPTCHA(aSendEmail);
         var divCAPTCHA = captcha.parent;
         var inputValidate = captcha.input;
 
         divCAPTCHA.css('display', 'none');
+
+        var divClickToShow = $("<div>Click to reveal email address.</div>");
 
         aSendEmail.qtip({
                 style: {
