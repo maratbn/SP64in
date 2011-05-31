@@ -151,6 +151,38 @@ $(document).ready(function($) {
     }
 
     function attachCAPTCHA(aSendEmail) {
+        /**
+         *  Creates a new qTip and returns its API object.
+         */
+        function createQT(content) {
+            return $("<span />").qtip({
+                    style: {
+                            classes: 'ui-tooltip-shadow'
+                        },
+                    content: content,
+                    position: {
+                        at: 'bottom middle',
+                        my: 'top middle',
+                        target: aSendEmail,
+                        viewport: $(window)
+                    },
+                    show: {
+                            effect: {
+                                effect: 'fade',
+                                length: 500
+                            },
+                            event: ""
+                        },
+                    hide: {
+                            effect: {
+                                effect: 'fade',
+                                length: 500
+                            },
+                            event: ""
+                        }
+                }).qtip('api');
+        }
+
         var captcha = createCAPTCHA(aSendEmail);
         var divCAPTCHA = captcha.parent;
         var inputValidate = captcha.input;
@@ -159,34 +191,8 @@ $(document).ready(function($) {
 
         var divClickToShow = $("<div>Click to reveal email address.</div>");
 
-        var qapi = $("<span />").qtip({
-                style: {
-                        classes: 'ui-tooltip-shadow'
-                    },
-                content: $("<div />").append(divClickToShow)
-                                                    .append(divCAPTCHA),
-                position: {
-                    at: 'bottom middle',
-                    my: 'top middle',
-                    target: aSendEmail,
-                    viewport: $(window)
-                },
-                show: {
-                        effect: {
-                            effect: 'fade',
-                            length: 500
-                        },
-                        event: ""
-                    },
-                hide: {
-                        effect: {
-                            effect: 'fade',
-                            length: 500
-                        },
-                        event: ""
-                    }
-            }).qtip('api');
-
+        var qapi = createQT($("<div />").append(divClickToShow)
+                                                    .append(divCAPTCHA));
         var isCShown = false;
         var strEmail = "";
 
