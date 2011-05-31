@@ -159,7 +159,7 @@ $(document).ready(function($) {
 
         var divClickToShow = $("<div>Click to reveal email address.</div>");
 
-        aSendEmail.qtip({
+        var qapi = $("<span />").qtip({
                 style: {
                         classes: 'ui-tooltip-shadow'
                     },
@@ -168,6 +168,7 @@ $(document).ready(function($) {
                 position: {
                     at: 'bottom middle',
                     my: 'top middle',
+                    target: aSendEmail,
                     viewport: $(window)
                 },
                 show: {
@@ -184,12 +185,10 @@ $(document).ready(function($) {
                         },
                         event: ""
                     }
-            });
+            }).qtip('api');
 
         var isCShown = false;
         var strEmail = "";
-
-        var qapi = aSendEmail.qtip('api');
 
         aSendEmail.bind('mouseover', function() {
                 if (strEmail) return;
