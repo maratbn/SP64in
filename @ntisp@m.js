@@ -38,119 +38,120 @@
 
 
 $(document).ready(function($) {
-    function createCAPTCHA(aSendEmail) {
-        var divCEntry = $([
-                    "<div style='",
-                        "background-color:#ffffff;",
-                        "border:1px solid #F1D031;",
-                        "padding:0.3em",
-                      "'/>"].join(""));
-        var divCSolved =
-                    $("<div style='display:none'>CAPTCHA solved</div>");
-        var divParentContainer = $("<div />").append(divCEntry)
-                                                    .append(divCSolved);
-
-        var divCAPTCHA = $("<div style='"
-                    + "position:relative;width:250px;height:70px' />");
-        var inputValidate = $([
-                    "<input type='text' style='",
-                        "float:left;",
-                        "font-size:2.1em;",
-                        "letter-spacing:0.1em;",
-                        "text-align:center;",
-                        "border:none;",
-                        "border-bottom:2px dashed #555555;",
-                        "padding-bottom:0.2em;",
-                        "width:5em;",
-                      "'>"].join(""));
-        var buttonSubmit = $([
-                    "<button style='",
-                        "float:right;margin-top:0.5em'>",
-                      "Reveal Email</button>"].join(""));
-        
-        divCEntry
-            .append(divCAPTCHA)
-            .append($([
-                    "<div style='margin:0 1.2em;'>",
-                      "<div style='text-align:center;margin-top:0.4em'>",
-                        "Enter letters above:",
-                      "</div>",
-                    "</div>"].join(""))
-                    .append(inputValidate)
-                    .append(buttonSubmit))
-                    .append($("<div style='clear:both' />"));
-
-        var totalInvalid = 0;
-        function refreshCAPTCHA() {
-            divCAPTCHA.css(
-                'background-image',
-                "url('/components/@ntisp@m/./captcha.php?" +
-                          (new Date()).getTime() + "_" + totalInvalid + "')");
-        }
-
-        function refreshInput() {
-            refreshCAPTCHA();
-            inputValidate.val("");
-            inputValidate.focus();
-        }
-
-        function updateEmailAddress(data) {
-            var strEmail = data && data.email;
-            aSendEmail
-                .attr(
-                    'href',
-                    strEmail ? 'mailto:' + strEmail : "#")
-                .text(
-                    strEmail || "Unable to determine email.");
-
-            $(document).trigger('got_@ntisp@m_email', data);
-        }
-
-        /**
-         *  Does the XHR request to the server with the user response to
-         *  validate the CAPTCHA.
-         */
-        function validateCAPTCHA() {
-            $.ajax({
-                    url: '/components/@ntisp@m/./captcha_validator.php',
-                    type: 'POST',
-                    data: {'validate': inputValidate.val()},
-                    dataType: 'json',
-                    error: function() {
-                            alert("Encountered error making XHR"
-                                           + " request to server.");
-                        },
-                    success: function(data) {
-                            var isValid = data && data.is_valid;
-                            if (isValid) {
-                                divCEntry.css('display', 'none');
-                                divCSolved.css('display', "");
-                                updateEmailAddress(data);
-                            } else {
-                                totalInvalid++;
-                                refreshInput();
-                            }
-                        }
-                })
-        }
-
-        inputValidate.bind('keydown', function(e) {
-                if (e && e.which == 13) validateCAPTCHA();
-            });
-
-        buttonSubmit.click(function() {
-                validateCAPTCHA();
-            });
-
-        refreshInput();
-
-        return {
-                parent: divParentContainer,
-                input: inputValidate
-            };
-    }
 
     function attachCAPTCHA(aSendEmail) {
+        function createCAPTCHA() {
+            var divCEntry = $([
+                        "<div style='",
+                            "background-color:#ffffff;",
+                            "border:1px solid #F1D031;",
+                            "padding:0.3em",
+                          "'/>"].join(""));
+            var divCSolved =
+                        $("<div style='display:none'>CAPTCHA solved</div>");
+            var divParentContainer = $("<div />").append(divCEntry)
+                                                        .append(divCSolved);
+
+            var divCAPTCHA = $("<div style='"
+                        + "position:relative;width:250px;height:70px' />");
+            var inputValidate = $([
+                        "<input type='text' style='",
+                            "float:left;",
+                            "font-size:2.1em;",
+                            "letter-spacing:0.1em;",
+                            "text-align:center;",
+                            "border:none;",
+                            "border-bottom:2px dashed #555555;",
+                            "padding-bottom:0.2em;",
+                            "width:5em;",
+                          "'>"].join(""));
+            var buttonSubmit = $([
+                        "<button style='",
+                            "float:right;margin-top:0.5em'>",
+                          "Reveal Email</button>"].join(""));
+            
+            divCEntry
+                .append(divCAPTCHA)
+                .append($([
+                        "<div style='margin:0 1.2em;'>",
+                          "<div style='text-align:center;margin-top:0.4em'>",
+                            "Enter letters above:",
+                          "</div>",
+                        "</div>"].join(""))
+                        .append(inputValidate)
+                        .append(buttonSubmit))
+                        .append($("<div style='clear:both' />"));
+
+            var totalInvalid = 0;
+            function refreshCAPTCHA() {
+                divCAPTCHA.css(
+                    'background-image',
+                    "url('/components/@ntisp@m/./captcha.php?" +
+                          (new Date()).getTime() + "_" + totalInvalid + "')");
+            }
+
+            function refreshInput() {
+                refreshCAPTCHA();
+                inputValidate.val("");
+                inputValidate.focus();
+            }
+
+            function updateEmailAddress(data) {
+                var strEmail = data && data.email;
+                aSendEmail
+                    .attr(
+                        'href',
+                        strEmail ? 'mailto:' + strEmail : "#")
+                    .text(
+                        strEmail || "Unable to determine email.");
+
+                $(document).trigger('got_@ntisp@m_email', data);
+            }
+
+            /**
+             *  Does the XHR request to the server with the user response to
+             *  validate the CAPTCHA.
+             */
+            function validateCAPTCHA() {
+                $.ajax({
+                        url: '/components/@ntisp@m/./captcha_validator.php',
+                        type: 'POST',
+                        data: {'validate': inputValidate.val()},
+                        dataType: 'json',
+                        error: function() {
+                                alert("Encountered error making XHR"
+                                               + " request to server.");
+                            },
+                        success: function(data) {
+                                var isValid = data && data.is_valid;
+                                if (isValid) {
+                                    divCEntry.css('display', 'none');
+                                    divCSolved.css('display', "");
+                                    updateEmailAddress(data);
+                                } else {
+                                    totalInvalid++;
+                                    refreshInput();
+                                }
+                            }
+                    })
+            }
+
+            inputValidate.bind('keydown', function(e) {
+                    if (e && e.which == 13) validateCAPTCHA();
+                });
+
+            buttonSubmit.click(function() {
+                    validateCAPTCHA();
+                });
+
+            refreshInput();
+
+            return {
+                    parent: divParentContainer,
+                    input: inputValidate
+                };
+        }
+
         /**
          *  Creates a new qTip and returns its API object.
          */
