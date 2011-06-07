@@ -40,6 +40,9 @@
 $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
+        /**
+         *  Creates the CAPTCHA entering DOM.
+         */
         function createCAPTCHA() {
             var divCEntry = $([
                         "<div style='",
