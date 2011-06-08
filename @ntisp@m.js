@@ -102,15 +102,18 @@ $(document).ready(function($) {
                         "<button style='",
                             "float:right;margin-top:0.5em'>",
                           "Reveal Email</button>"].join(""));
-            
+
+            var divStatus = $([
+                        "<div style='text-align:center;margin-top:0.4em'>",
+                          "Enter letters above:",
+                        "</div>"].join(""));
+
             divCEntry
                 .append(divCAPTCHA)
                 .append($([
                         "<div style='margin:0 1.2em;'>",
-                          "<div style='text-align:center;margin-top:0.4em'>",
-                            "Enter letters above:",
-                          "</div>",
                         "</div>"].join(""))
+                        .append(divStatus)
                         .append(inputValidate)
                         .append(buttonSubmit))
                         .append($("<div style='clear:both' />"));
@@ -146,22 +149,26 @@ $(document).ready(function($) {
              *  validate the CAPTCHA.
              */
             function validateCAPTCHA() {
+                divStatus.text("Validating...  Please wait...");
                 $.ajax({
                         url: '/components/@ntisp@m/./captcha_validator.php',
                         type: 'POST',
                         data: {'validate': inputValidate.val()},
                         dataType: 'json',
                         error: function() {
-                                alert("Encountered error making XHR"
+                                divStatus.text("Encountered error making XHR"
                                                + " request to server.");
                             },
                         success: function(data) {
                                 var isValid = data && data.is_valid;
                                 if (isValid) {
+                                    divStatus.text("Validated successfully.");
                                     divCEntry.css('display', 'none');
                                     divCSolved.css('display', "");
                                     updateEmailAddress(data);
                                 } else {
+                                    divStatus.text("Incorrect letters " +
+                                               "entered.  Please try again.");
                                     totalInvalid++;
                                     refreshInput();
                                 }
