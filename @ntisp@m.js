@@ -39,6 +39,36 @@
 
 $(document).ready(function($) {
 
+    /**
+     *  Creates a new qTip and returns its API object.
+     */
+    function createQT(elTarget, content) {
+        return $("<span />").qtip({
+                style: {
+                        classes: 'ui-tooltip-shadow'
+                    },
+                content: content,
+                position: {
+                    at: 'bottom middle',
+                    my: 'top middle',
+                    target: elTarget,
+                    viewport: $(window)
+                },
+                show: {
+                        effect: function () {
+                                $(this).slideDown(200);
+                            },
+                        event: ""
+                    },
+                hide: {
+                        effect: function () {
+                                $(this).slideUp(200);
+                            },
+                        event: ""
+                    }
+            }).qtip('api');
+    }
+
     function attachCAPTCHA(aSendEmail) {
         /**
          *  Creates the CAPTCHA entering DOM.
@@ -155,42 +185,13 @@ $(document).ready(function($) {
                 };
         }
 
-        /**
-         *  Creates a new qTip and returns its API object.
-         */
-        function createQT(content) {
-            return $("<span />").qtip({
-                    style: {
-                            classes: 'ui-tooltip-shadow'
-                        },
-                    content: content,
-                    position: {
-                        at: 'bottom middle',
-                        my: 'top middle',
-                        target: aSendEmail,
-                        viewport: $(window)
-                    },
-                    show: {
-                            effect: function () {
-                                    $(this).slideDown(200);
-                                },
-                            event: ""
-                        },
-                    hide: {
-                            effect: function () {
-                                    $(this).slideUp(200);
-                                },
-                            event: ""
-                        }
-                }).qtip('api');
-        }
-
-        var qapiClickToReveal = createQT($(
-                                "<div>Click to reveal email address.</div>"));
+        var qapiClickToReveal = createQT(
+                            aSendEmail,
+                            $("<div>Click to reveal email address.</div>"));
 
         var captcha = createCAPTCHA(aSendEmail);
 
-        var qapiCAPTCHA = createQT(captcha.parent);
+        var qapiCAPTCHA = createQT(aSendEmail, captcha.parent);
 
         var isCShown = false;
         var strEmail = "";
