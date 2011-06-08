@@ -80,7 +80,6 @@ $(document).ready(function($) {
                             "border:1px solid #F1D031;",
                             "padding:0.3em",
                           "'/>"].join(""));
-            var divParentContainer = $("<div />").append(divCEntry);
 
             var divCAPTCHA = $("<div style='"
                         + "position:relative;width:250px;height:70px' />");
@@ -182,7 +181,7 @@ $(document).ready(function($) {
             refreshInput();
 
             return {
-                    parent: divParentContainer,
+                    parent: divCEntry,
                     input: inputValidate
                 };
         }
