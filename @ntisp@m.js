@@ -80,10 +80,7 @@ $(document).ready(function($) {
                             "border:1px solid #F1D031;",
                             "padding:0.3em",
                           "'/>"].join(""));
-            var divCSolved =
-                        $("<div style='display:none'>CAPTCHA solved</div>");
-            var divParentContainer = $("<div />").append(divCEntry)
-                                                        .append(divCSolved);
+            var divParentContainer = $("<div />").append(divCEntry);
 
             var divCAPTCHA = $("<div style='"
                         + "position:relative;width:250px;height:70px' />");
@@ -163,8 +160,6 @@ $(document).ready(function($) {
                                 var isValid = data && data.is_valid;
                                 if (isValid) {
                                     divStatus.text("Validated successfully.");
-                                    divCEntry.css('display', 'none');
-                                    divCSolved.css('display', "");
                                     updateEmailAddress(data);
                                 } else {
                                     divStatus.text("Incorrect letters " +
