@@ -146,11 +146,18 @@ $(document).ready(function($) {
              */
             function validateCAPTCHA() {
                 divStatus.text("Validating...  Please wait...");
+                inputValidate.attr('readonly', true);
+                buttonSubmit.attr('disabled', true);
                 $.ajax({
                         url: '/components/@ntisp@m/./captcha_validator.php',
                         type: 'POST',
                         data: {'validate': inputValidate.val()},
                         dataType: 'json',
+                        complete: function() {
+                                inputValidate.attr('readonly', false);
+                                buttonSubmit.attr('disabled', false);
+                                refreshInput();
+                            },
                         error: function() {
                                 divStatus.text("Encountered error making XHR"
                                                + " request to server.");
@@ -164,7 +171,6 @@ $(document).ready(function($) {
                                     divStatus.text("Incorrect letters " +
                                                "entered.  Please try again.");
                                     totalInvalid++;
-                                    refreshInput();
                                 }
                             }
                     })
