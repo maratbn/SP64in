@@ -70,6 +70,9 @@ $(document).ready(function($) {
     }
 
     function attachCAPTCHA(aSendEmail) {
+
+        var elEvents = $("<span />");
+
         /**
          *  Creates the CAPTCHA entering DOM.
          */
@@ -137,7 +140,7 @@ $(document).ready(function($) {
                     .text(
                         strEmail || "Unable to determine email.");
 
-                $(document).trigger('got_@ntisp@m_email', data);
+                $(elEvents).trigger('got_@ntisp@m_email', data);
             }
 
             /**
@@ -236,7 +239,7 @@ $(document).ready(function($) {
                 return false;
             });
 
-        $(document).bind('got_@ntisp@m_email', function(e, data) {
+        $(elEvents).bind('got_@ntisp@m_email', function(e, data) {
                 strEmail = data && data.email;
                 qapiCAPTCHA.hide();
             });
