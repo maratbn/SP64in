@@ -147,6 +147,7 @@ $(document).ready(function($) {
             function validateCAPTCHA() {
                 divStatus.text("Validating...  Please wait...");
                 inputValidate.attr('readonly', true);
+                buttonSubmit.css('display', 'none');
                 buttonSubmit.attr('disabled', true);
                 $.ajax({
                         url: '/components/@ntisp@m/./captcha_validator.php',
@@ -156,6 +157,7 @@ $(document).ready(function($) {
                         complete: function() {
                                 inputValidate.attr('readonly', false);
                                 buttonSubmit.attr('disabled', false);
+                                buttonSubmit.css('display', "");
                                 refreshInput();
                             },
                         error: function() {
