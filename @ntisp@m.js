@@ -3,7 +3,6 @@
  *  email address harvesting web crawlers.
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
- *  All rights reserved.
  *
  *  Module:         @ntisp@m.js
  *
