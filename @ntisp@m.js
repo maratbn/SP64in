@@ -386,5 +386,6 @@ $(document).ready(function($) {
         spanParent.append(aSendEmail);
     }
 
+    attachCAPTCHA($('a[data-antispam]'));
     insertSendEmailLink($('span[data-antispam]'));
 });

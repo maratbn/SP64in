@@ -8,6 +8,10 @@
   </head>
   <body>
     <span data-antispam='true'></span>
+
+    <br>
+
+    <a href='#' data-antispam='true'>Send Email to Somebody</a>
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
