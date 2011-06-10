@@ -347,6 +347,17 @@ $(document).ready(function($) {
 
         var isCShown = false;
 
+        function hideCAPTCHA() {
+            qapiCAPTCHA.hide();
+            isCShown = false;
+        }
+
+        function showCAPTCHA() {
+            qapiCAPTCHA.show();
+            captcha.input.focus();
+            isCShown = true;
+        }
+
         aSendEmail.bind('mouseover', function() {
                 if (getCachedEmail()) return;
 
@@ -365,14 +376,11 @@ $(document).ready(function($) {
                 if (getCachedEmail()) return;
 
                 if (isCShown) {
-                    qapiCAPTCHA.hide();
+                    hideCAPTCHA();
                     qapiClickToReveal.show();
-                    isCShown = false;
                 } else {
+                    showCAPTCHA();
                     qapiClickToReveal.hide();
-                    qapiCAPTCHA.show();
-                    captcha.input.focus();
-                    isCShown = true;
 
                     elEvents.trigger('@ntisp@m_opened', [qapiCAPTCHA]);
                 }
@@ -383,13 +391,11 @@ $(document).ready(function($) {
         elEvents.bind('@ntisp@m_opened', function(e, qapiOpened) {
                 if (!isCShown || qapiOpened === qapiCAPTCHA) return;
 
-                qapiCAPTCHA.hide();
-                isCShown = false;
+                hideCAPTCHA();
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
-                qapiCAPTCHA.hide();
-                isCShown = false;
+                hideCAPTCHA();
             });
     }
 
