@@ -1,3 +1,6 @@
+<?php
+    require_once('@ntisp@m.php');
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -13,6 +16,9 @@
       </li>
       <li>
         <a href='#' data-antispam='true'>Send Email to Somebody</a>
+      </li>
+      <li>
+        <?php asInjectEmailAnchorHere() ?>
       </li>
     </ul>
   </body>
