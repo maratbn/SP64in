@@ -187,15 +187,15 @@ $(document).ready(function($) {
      *  Returns cached email.
      */
     function getCachedEmail() {
-        return khartl_cookie('@ntosp@m_email');
+        return khartl_cookie('@ntisp@m_email');
     }
 
     /**
-     *  Returns value of session cookie '@ntosp@m_cvalid', which should be
+     *  Returns value of session cookie '@ntisp@m_cvalid', which should be
      *  "yes" if CAPTCHA has been solved.
      */
     function getCachedCSolved() {
-        return khartl_cookie('@ntosp@m_csolved');
+        return khartl_cookie('@ntisp@m_csolved');
     }
     
     function attachCAPTCHA(aSendEmail) {
@@ -302,9 +302,9 @@ $(document).ready(function($) {
                                 var isValid = data && data.is_valid;
                                 if (isValid) {
                                     khartl_cookie(
-                                        '@ntosp@m_email',
+                                        '@ntisp@m_email',
                                         data && data.email || "");
-                                    khartl_cookie('@ntosp@m_csolved', 'yes');
+                                    khartl_cookie('@ntisp@m_csolved', 'yes');
 
                                     divStatus.text("Validated successfully.");
                                     updateEmailAddress();
