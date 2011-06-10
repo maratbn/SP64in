@@ -197,10 +197,10 @@ $(document).ready(function($) {
     function getCachedCSolved() {
         return khartl_cookie('@ntisp@m_csolved');
     }
-    
-    function attachCAPTCHA(aSendEmail) {
 
-        var elEvents = $("<span />");
+    var elEvents = $("<span />");
+
+    function attachCAPTCHA(aSendEmail) {
 
         /**
          *  Creates the CAPTCHA entering DOM.
@@ -270,8 +270,6 @@ $(document).ready(function($) {
                         strEmail ? 'mailto:' + strEmail : "#")
                     .text(
                         strEmail || "Unable to determine email.");
-
-                $(elEvents).trigger('@ntisp@m_update');
             }
 
             /**
@@ -307,7 +305,8 @@ $(document).ready(function($) {
                                     khartl_cookie('@ntisp@m_csolved', 'yes');
 
                                     divStatus.text("Validated successfully.");
-                                    updateEmailAddress();
+
+                                    $(elEvents).trigger('@ntisp@m_update');
                                 } else {
                                     divStatus.text("Incorrect letters " +
                                                "entered.  Please try again.");
@@ -323,6 +322,10 @@ $(document).ready(function($) {
 
             buttonSubmit.click(function() {
                     validateCAPTCHA();
+                });
+
+            $(elEvents).bind('@ntisp@m_update', function(e) {
+                    updateEmailAddress();
                 });
 
             refreshInput();
