@@ -260,18 +260,6 @@ $(document).ready(function($) {
                 inputValidate.focus();
             }
 
-            function updateEmailAddress() {
-                if (getCachedCSolved() != 'yes') return;
-
-                var strEmail = getCachedEmail();
-                aSendEmail
-                    .attr(
-                        'href',
-                        strEmail ? 'mailto:' + strEmail : "#")
-                    .text(
-                        strEmail || "Unable to determine email.");
-            }
-
             /**
              *  Does the XHR request to the server with the user response to
              *  validate the CAPTCHA.
@@ -324,18 +312,27 @@ $(document).ready(function($) {
                     validateCAPTCHA();
                 });
 
-            elEvents.bind('@ntisp@m_update', function(e) {
-                    updateEmailAddress();
-                });
-
             refreshInput();
-            updateEmailAddress();
 
             return {
                     parent: divCEntry,
                     input: inputValidate
                 };
         }
+
+        function updateEmailAddress() {
+            if (getCachedCSolved() != 'yes') return;
+
+            var strEmail = getCachedEmail();
+            aSendEmail
+                .attr(
+                    'href',
+                    strEmail ? 'mailto:' + strEmail : "#")
+                .text(
+                    strEmail || "Unable to determine email.");
+        }
+
+        updateEmailAddress();
 
         var qapiClickToReveal = createQT(
                             aSendEmail,
@@ -395,6 +392,7 @@ $(document).ready(function($) {
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
+                updateEmailAddress();
                 hideCAPTCHA();
             });
     }
