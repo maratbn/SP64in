@@ -200,125 +200,125 @@ $(document).ready(function($) {
 
     var elEvents = $("<span />");
 
-    function attachCAPTCHA(aSendEmail) {
+    /**
+     *  Creates the CAPTCHA entering DOM.
+     */
+    function createCAPTCHA() {
+        var divCEntry = $([
+                    "<div style='",
+                        "background-color:#ffffff;",
+                        "border:1px solid #F1D031;",
+                        "padding:0.3em",
+                      "'/>"].join(""));
+
+        var divCAPTCHA = $("<div style='"
+                    + "position:relative;width:250px;height:70px' />");
+        var inputValidate = $([
+                    "<input type='text' style='",
+                        "float:left;",
+                        "font-size:2.1em;",
+                        "letter-spacing:0.1em;",
+                        "text-align:center;",
+                        "border:none;",
+                        "border-bottom:2px dashed #555555;",
+                        "padding-bottom:0.2em;",
+                        "width:5em;",
+                      "'>"].join(""));
+        var buttonSubmit = $([
+                    "<button style='",
+                        "float:right;margin-top:0.5em'>",
+                      "Reveal Email</button>"].join(""));
+
+        var divStatus = $([
+                    "<div style='text-align:center;margin-top:0.4em'>",
+                      "Enter letters above:",
+                    "</div>"].join(""));
+
+        divCEntry
+            .append(divCAPTCHA)
+            .append($([
+                    "<div style='margin:0 1.2em;'>",
+                    "</div>"].join(""))
+                    .append(divStatus)
+                    .append(inputValidate)
+                    .append(buttonSubmit))
+                    .append($("<div style='clear:both' />"));
+
+        var totalInvalid = 0;
+        function refreshCAPTCHA() {
+            divCAPTCHA.css(
+                'background-image',
+                "url('/components/@ntisp@m/./captcha.php?" +
+                      (new Date()).getTime() + "_" + totalInvalid + "')");
+        }
+
+        function refreshInput() {
+            refreshCAPTCHA();
+            inputValidate.val("");
+            inputValidate.focus();
+        }
 
         /**
-         *  Creates the CAPTCHA entering DOM.
+         *  Does the XHR request to the server with the user response to
+         *  validate the CAPTCHA.
          */
-        function createCAPTCHA() {
-            var divCEntry = $([
-                        "<div style='",
-                            "background-color:#ffffff;",
-                            "border:1px solid #F1D031;",
-                            "padding:0.3em",
-                          "'/>"].join(""));
+        function validateCAPTCHA() {
+            divStatus.text("Validating...  Please wait...");
+            inputValidate.attr('readonly', true);
+            buttonSubmit.css('display', 'none');
+            buttonSubmit.attr('disabled', true);
+            $.ajax({
+                    url: '/components/@ntisp@m/./captcha_validator.php',
+                    type: 'POST',
+                    data: {'validate': inputValidate.val()},
+                    dataType: 'json',
+                    complete: function() {
+                            inputValidate.attr('readonly', false);
+                            buttonSubmit.attr('disabled', false);
+                            buttonSubmit.css('display', "");
+                            refreshInput();
+                        },
+                    error: function() {
+                            divStatus.text("Encountered error making XHR"
+                                           + " request to server.");
+                        },
+                    success: function(data) {
+                            var isValid = data && data.is_valid;
+                            if (isValid) {
+                                khartl_cookie(
+                                    '@ntisp@m_email',
+                                    data && data.email || "");
+                                khartl_cookie('@ntisp@m_csolved', 'yes');
 
-            var divCAPTCHA = $("<div style='"
-                        + "position:relative;width:250px;height:70px' />");
-            var inputValidate = $([
-                        "<input type='text' style='",
-                            "float:left;",
-                            "font-size:2.1em;",
-                            "letter-spacing:0.1em;",
-                            "text-align:center;",
-                            "border:none;",
-                            "border-bottom:2px dashed #555555;",
-                            "padding-bottom:0.2em;",
-                            "width:5em;",
-                          "'>"].join(""));
-            var buttonSubmit = $([
-                        "<button style='",
-                            "float:right;margin-top:0.5em'>",
-                          "Reveal Email</button>"].join(""));
+                                divStatus.text("Validated successfully.");
 
-            var divStatus = $([
-                        "<div style='text-align:center;margin-top:0.4em'>",
-                          "Enter letters above:",
-                        "</div>"].join(""));
-
-            divCEntry
-                .append(divCAPTCHA)
-                .append($([
-                        "<div style='margin:0 1.2em;'>",
-                        "</div>"].join(""))
-                        .append(divStatus)
-                        .append(inputValidate)
-                        .append(buttonSubmit))
-                        .append($("<div style='clear:both' />"));
-
-            var totalInvalid = 0;
-            function refreshCAPTCHA() {
-                divCAPTCHA.css(
-                    'background-image',
-                    "url('/components/@ntisp@m/./captcha.php?" +
-                          (new Date()).getTime() + "_" + totalInvalid + "')");
-            }
-
-            function refreshInput() {
-                refreshCAPTCHA();
-                inputValidate.val("");
-                inputValidate.focus();
-            }
-
-            /**
-             *  Does the XHR request to the server with the user response to
-             *  validate the CAPTCHA.
-             */
-            function validateCAPTCHA() {
-                divStatus.text("Validating...  Please wait...");
-                inputValidate.attr('readonly', true);
-                buttonSubmit.css('display', 'none');
-                buttonSubmit.attr('disabled', true);
-                $.ajax({
-                        url: '/components/@ntisp@m/./captcha_validator.php',
-                        type: 'POST',
-                        data: {'validate': inputValidate.val()},
-                        dataType: 'json',
-                        complete: function() {
-                                inputValidate.attr('readonly', false);
-                                buttonSubmit.attr('disabled', false);
-                                buttonSubmit.css('display', "");
-                                refreshInput();
-                            },
-                        error: function() {
-                                divStatus.text("Encountered error making XHR"
-                                               + " request to server.");
-                            },
-                        success: function(data) {
-                                var isValid = data && data.is_valid;
-                                if (isValid) {
-                                    khartl_cookie(
-                                        '@ntisp@m_email',
-                                        data && data.email || "");
-                                    khartl_cookie('@ntisp@m_csolved', 'yes');
-
-                                    divStatus.text("Validated successfully.");
-
-                                    elEvents.trigger('@ntisp@m_update');
-                                } else {
-                                    divStatus.text("Incorrect letters " +
-                                               "entered.  Please try again.");
-                                    totalInvalid++;
-                                }
+                                elEvents.trigger('@ntisp@m_update');
+                            } else {
+                                divStatus.text("Incorrect letters " +
+                                           "entered.  Please try again.");
+                                totalInvalid++;
                             }
-                    })
-            }
-
-            inputValidate.bind('keydown', function(e) {
-                    if (e && e.which == 13) validateCAPTCHA();
-                });
-
-            buttonSubmit.click(function() {
-                    validateCAPTCHA();
-                });
-
-            refreshInput();
-
-            return {
-                    parent: divCEntry,
-                    input: inputValidate
-                };
+                        }
+                })
         }
+
+        inputValidate.bind('keydown', function(e) {
+                if (e && e.which == 13) validateCAPTCHA();
+            });
+
+        buttonSubmit.click(function() {
+                validateCAPTCHA();
+            });
+
+        refreshInput();
+
+        return {
+                parent: divCEntry,
+                input: inputValidate
+            };
+    }
+
+    function attachCAPTCHA(aSendEmail) {
 
         function updateEmailAddress() {
             if (getCachedCSolved() != 'yes') return;
