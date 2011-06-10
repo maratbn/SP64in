@@ -373,9 +373,18 @@ $(document).ready(function($) {
                     qapiCAPTCHA.show();
                     captcha.input.focus();
                     isCShown = true;
+
+                    elEvents.trigger('@ntisp@m_opened', [qapiCAPTCHA]);
                 }
 
                 return false;
+            });
+
+        elEvents.bind('@ntisp@m_opened', function(e, qapiOpened) {
+                if (!isCShown || qapiOpened === qapiCAPTCHA) return;
+
+                qapiCAPTCHA.hide();
+                isCShown = false;
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
