@@ -389,6 +389,7 @@ $(document).ready(function($) {
 
         elEvents.bind('@ntisp@m_update', function(e) {
                 qapiCAPTCHA.hide();
+                isCShown = false;
             });
     }
 
