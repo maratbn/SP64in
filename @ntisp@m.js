@@ -306,7 +306,7 @@ $(document).ready(function($) {
 
                                     divStatus.text("Validated successfully.");
 
-                                    $(elEvents).trigger('@ntisp@m_update');
+                                    elEvents.trigger('@ntisp@m_update');
                                 } else {
                                     divStatus.text("Incorrect letters " +
                                                "entered.  Please try again.");
@@ -324,7 +324,7 @@ $(document).ready(function($) {
                     validateCAPTCHA();
                 });
 
-            $(elEvents).bind('@ntisp@m_update', function(e) {
+            elEvents.bind('@ntisp@m_update', function(e) {
                     updateEmailAddress();
                 });
 
@@ -378,7 +378,7 @@ $(document).ready(function($) {
                 return false;
             });
 
-        $(elEvents).bind('@ntisp@m_update', function(e) {
+        elEvents.bind('@ntisp@m_update', function(e) {
                 qapiCAPTCHA.hide();
             });
     }
