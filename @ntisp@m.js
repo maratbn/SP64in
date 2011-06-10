@@ -156,8 +156,8 @@ $(document).ready(function($) {
     /**
      *  Creates a new qTip and returns its API object.
      */
-    function createQT(elTarget, content) {
-        return $("<span />").qtip({
+    function createQT(elTarget, content, configExtra) {
+        var config = {
                 style: {
                         classes: 'ui-tooltip-shadow'
                     },
@@ -180,7 +180,9 @@ $(document).ready(function($) {
                             },
                         event: ""
                     }
-            }).qtip('api');
+            };
+        $.extend(true, config, configExtra);
+        return $("<span />").qtip(config).qtip('api');
     }
 
     /**
@@ -256,7 +258,6 @@ $(document).ready(function($) {
             function refreshInput() {
                 refreshCAPTCHA();
                 inputValidate.val("");
-                inputValidate.focus();
             }
 
             /**
@@ -340,7 +341,15 @@ $(document).ready(function($) {
                             $("<div>Click to reveal email address.</div>"));
 
         var elContainerCAPTCHA = $("<div />");
-        var qapiCAPTCHA = createQT(aSendEmail, elContainerCAPTCHA);
+        var qapiCAPTCHA = createQT(aSendEmail, elContainerCAPTCHA, {
+                events: {
+                        show: function() {
+                                setTimeout(function() {
+                                        captcha.input.focus();
+                                    }, 0);
+                            }
+                    }
+            });
 
         var isCShown = false;
 
@@ -353,7 +362,6 @@ $(document).ready(function($) {
             elContainerCAPTCHA.append(captcha.parent);
 
             qapiCAPTCHA.show();
-            captcha.input.focus();
             isCShown = true;
         }
 
