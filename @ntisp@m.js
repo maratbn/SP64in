@@ -271,7 +271,7 @@ $(document).ready(function($) {
                     .text(
                         strEmail || "Unable to determine email.");
 
-                $(elEvents).trigger('@ntisp@m_captcha_validated');
+                $(elEvents).trigger('@ntisp@m_update');
             }
 
             /**
@@ -375,7 +375,7 @@ $(document).ready(function($) {
                 return false;
             });
 
-        $(elEvents).bind('@ntisp@m_captcha_validated', function(e) {
+        $(elEvents).bind('@ntisp@m_update', function(e) {
                 qapiCAPTCHA.hide();
             });
     }
