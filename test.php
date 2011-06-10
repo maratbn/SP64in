@@ -7,7 +7,7 @@
         href='/components/@ntisp@m/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
   </head>
   <body>
-    <span data-antispam></span>
+    <span data-antispam='true'></span>
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
   </script>
