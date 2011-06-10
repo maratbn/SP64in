@@ -338,7 +338,7 @@ $(document).ready(function($) {
                             aSendEmail,
                             $("<div>Click to reveal email address.</div>"));
 
-        var captcha = createCAPTCHA(aSendEmail);
+        var captcha = createCAPTCHA();
 
         var qapiCAPTCHA = createQT(aSendEmail, captcha.parent);
 
