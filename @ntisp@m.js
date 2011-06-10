@@ -251,7 +251,7 @@ $(document).ready(function($) {
             function refreshCAPTCHA() {
                 divCAPTCHA.css(
                     'background-image',
-                    "url('/components/@ntisp@m/./captcha.php?" +
+                    "url('/components/@ntisp@m/./captcha_img.php?" +
                           (new Date()).getTime() + "_" + totalInvalid + "')");
             }
 
