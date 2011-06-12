@@ -13,6 +13,22 @@
     <ul>
       <li>
         <p>
+          Anchor tag injected via PHP convenience function
+          'asInjectEmailAnchorHere(...)' with all default options:
+          <br>
+          <?php asInjectEmailAnchorHere() ?>
+        </p>
+      </li>
+      <li>
+        <p>
+          PHP-injected anchor tag with non-default caption:
+          <br>
+          <?php asInjectEmailAnchorHere(array(
+              'caption'=>"Send Email to Somebody")) ?>
+        </p>
+      </li>
+      <li>
+        <p>
           Hard-coded span tag:
           <br>
           <span data-antispam='true'></span>
@@ -30,22 +46,6 @@
           Hard-coded anchor tag originally with custom content:
           <br>
           <a href='#' data-antispam='true'>Send Email to Somebody</a>
-        </p>
-      </li>
-      <li>
-        <p>
-          Anchor tag injected via PHP convenience function
-          'asInjectEmailAnchorHere(...)' with all default options:
-          <br>
-          <?php asInjectEmailAnchorHere() ?>
-        </p>
-      </li>
-      <li>
-        <p>
-          PHP-injected anchor tag with non-default caption:
-          <br>
-          <?php asInjectEmailAnchorHere(array(
-              'caption'=>"Send Email to Somebody")) ?>
         </p>
       </li>
     </ul>
