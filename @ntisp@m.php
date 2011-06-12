@@ -44,8 +44,8 @@
  */
 
     function asInjectEmailAnchorHere() {
-      ?>
-        <a href='#' data-antispam='true'>Send Email</a>
-      <?php
+        ?><a href='#' data-antispam='true'><?php
+          ?>Send Email<?php
+        ?></a><?php
     }
 ?>
