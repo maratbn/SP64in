@@ -44,9 +44,9 @@
  */
 
     function asInjectEmailAnchorHere(
-        array $args = array('caption'=>"Send Email")) {
+        array $args = array('caption'=>"Send Email", 'class'=> "")) {
 
-        ?><a href='#' data-antispam='true'><?php
+        ?><a href='#' data-antispam='true' class='<?=$args['class']?>'><?php
           ?><?=$args['caption']?><?php
         ?></a><?php
     }
