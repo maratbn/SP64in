@@ -12,15 +12,20 @@
   <body>
     <ul>
       <li>
+        Hard-coded span tag:<br>
         <span data-antispam='true'></span>
       </li>
       <li>
+        Hard-coded anchor tag:<br>
         <a href='#' data-antispam='true'>Send Email to Somebody</a>
       </li>
       <li>
+        Anchor tag injected via PHP convenience function
+        'asInjectEmailAnchorHere(...)':<br>
         <?php asInjectEmailAnchorHere() ?>
       </li>
       <li>
+        PHP-injected anchor tag with non-default caption:<br>
         <?php asInjectEmailAnchorHere(array(
             'caption'=>"Send Email to Somebody")) ?>
       </li>
