@@ -26,7 +26,7 @@
       <li>
         <p>
           Anchor tag injected via PHP convenience function
-          'asInjectEmailAnchorHere(...)':<br>
+          'asInjectEmailAnchorHere(...)' with all default options:<br>
           <?php asInjectEmailAnchorHere() ?>
         </p>
       </li>
