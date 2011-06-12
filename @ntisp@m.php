@@ -43,6 +43,19 @@
  *
  */
 
+    /**
+     *  Injects @ntisp@m email anchor tag into the server-side-rendered page.
+     *
+     *  @param  $args                   Array with configuration parameters.
+     *
+     *  @param  $args['caption']        String to display inside the tag.
+     *
+     *  @param  $args['class']          String value of the tag attribute
+     *                                                                'class'.
+     *
+     *  @param  $args['style']          String value of the tag attribute
+     *                                                                'style'.
+     */
     function asInjectEmailAnchorHere(array $args = array(
             'caption'=>"Send Email",
             'class'=>"",
