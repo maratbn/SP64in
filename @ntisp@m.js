@@ -329,6 +329,8 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
 
+        if (!aSendEmail.text()) aSendEmail.text("Send Email");
+
         function updateEmailAddress() {
             if (getCachedCSolved() != 'yes') return;
 
@@ -419,7 +421,7 @@ $(document).ready(function($) {
     }
 
     function insertSendEmailLink(spanParent) {
-        var aSendEmail = $("<a href='#'>Send Email</a>");
+        var aSendEmail = $("<a href='#'></a>");
         attachCAPTCHA(aSendEmail);
         spanParent.append(aSendEmail);
     }

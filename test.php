@@ -19,7 +19,13 @@
       </li>
       <li>
         <p>
-          Hard-coded anchor tag:<br>
+          Hard-coded anchor tag originally empty:<br>
+          <a href='#' data-antispam='true'></a>
+        </p>
+      </li>
+      <li>
+        <p>
+          Hard-coded anchor tag originally with custom content:<br>
           <a href='#' data-antispam='true'>Send Email to Somebody</a>
         </p>
       </li>
