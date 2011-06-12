@@ -45,7 +45,8 @@
 
     function asInjectEmailAnchorHere(array $args = array(
             'caption'=>"Send Email",
-            'class'=>""
+            'class'=>"",
+            'style'=>""
         )) {
 
         ?><a href='#' data-antispam='true'<?php
@@ -53,6 +54,8 @@
         if ($args['class']) {
             ?> class='<?=$args['class']?>'<?php
         }
+
+            ?> style='<?=$args['style']?>'<?php
 
           ?>><?php
           ?><?=$args['caption']?><?php

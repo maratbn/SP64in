@@ -43,6 +43,21 @@
               'class'=>"as_bold as_italic")) ?>
         </p>
       </li>
+
+
+      <li>
+        <p>
+          PHP-injected anchor tag with non-default CSS style:
+          <br>
+          <?php asInjectEmailAnchorHere(array(
+                  'style'=> "display:block;width:8em;padding:0.4em;"
+                            . "margin:0.6em;border: 2px dashed red;"
+                            . "text-align:center"
+              )) ?>
+        </p>
+      </li>
+
+
       <li>
         <p>
           Hard-coded span tag:
