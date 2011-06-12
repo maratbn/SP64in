@@ -424,6 +424,6 @@ $(document).ready(function($) {
         spanParent.append(aSendEmail);
     }
 
-    attachCAPTCHA($('a[data-antispam]'));
-    insertSendEmailLink($('span[data-antispam]'));
+    $('a[data-antispam]').each(function() {attachCAPTCHA($(this))});
+    $('span[data-antispam]').each(function() {insertSendEmailLink($(this))});
 });
