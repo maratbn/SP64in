@@ -304,8 +304,15 @@ $(document).ready(function($) {
                     })
             }
 
-            inputValidate.bind('keydown', function(e) {
-                    if (e && e.which == 13) validateCAPTCHA();
+            divCEntry.bind('keydown', function(e) {
+                    switch (e && e.which) {
+                        case 13:
+                            validateCAPTCHA();
+                            break;
+                        case 27:
+                            elEvents.trigger('@ntisp@m_cancel');
+                            break;
+                    }
                 });
 
             buttonSubmit.click(function() {
@@ -393,6 +400,10 @@ $(document).ready(function($) {
                 }
 
                 return false;
+            });
+
+        elEvents.bind('@ntisp@m_cancel', function(e) {
+                hideCAPTCHA();
             });
 
         elEvents.bind('@ntisp@m_opened', function(e, qapiOpened) {
