@@ -68,7 +68,7 @@
             ?> class='<?=$args['class']?>'<?php
         }
 
-            ?> style='<?=$args['style']?>'<?php
+            ?> style='<?=$args['style']?>;visibility:hidden'<?php
 
           ?>><?php
           ?><?=$args['caption']?><?php

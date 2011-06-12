@@ -418,6 +418,12 @@ $(document).ready(function($) {
                 updateEmailAddress();
                 hideCAPTCHA();
             });
+
+
+        //  Clear-out the 'visibility:hidden' inline style initially applied
+        //  by the server-side rendering to prevent the appearance of a
+        //  non-functional anchor link.
+        aSendEmail.css('visibility', "");
     }
 
     function insertSendEmailLink(spanParent) {
