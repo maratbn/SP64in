@@ -4,7 +4,7 @@
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
  *
- *  Includes the following embedded 3-rd party code:
+ *  This module also includes the following embedded 3-rd party code:
  *
  *      jquery.cookie.js
  *      https://github.com/carhartl/jquery-cookie
