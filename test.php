@@ -20,6 +20,10 @@
       <li>
         <?php asInjectEmailAnchorHere() ?>
       </li>
+      <li>
+        <?php asInjectEmailAnchorHere(array(
+            'caption'=>"Send Email to Somebody")) ?>
+      </li>
     </ul>
   </body>
   <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
