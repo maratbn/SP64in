@@ -12,9 +12,12 @@
     header('Content-Type: application/json');
 
     $isValid = isCaptchaValid();
-    $output = array(
-                'is_valid' => $isValid,
-                'email' => $isValid ? $email_default : "");
+
+    $output = array('is_valid' => $isValid);
+
+    if ($isValid) {
+        $output['email'] = $email_default;
+    }
 
     echo json_encode($output);
 ?>
