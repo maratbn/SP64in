@@ -16,7 +16,14 @@
     $output = array('is_valid' => $isValid);
 
     if ($isValid) {
-        $output['email'] = $email_default;
+        $recall_id = uniqid(True);
+
+        session_name('@ntisp@m');
+        session_start();
+        $_SESSION['recall'][$recall_id] = True;
+
+        $output['email']        = $email_default;
+        $output['recall_id']    = $recall_id;
     }
 
     echo json_encode($output);
