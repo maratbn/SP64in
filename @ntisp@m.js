@@ -329,8 +329,6 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
 
-        if (!aSendEmail.text()) aSendEmail.text("Send Email");
-
         function updateEmailAddress() {
             if (getCachedCSolved() != 'yes') return;
 
@@ -419,6 +417,8 @@ $(document).ready(function($) {
                 hideCAPTCHA();
             });
 
+
+        if (!aSendEmail.text()) aSendEmail.text("Send Email");
 
         //  Clear-out the 'visibility:hidden' inline style initially applied
         //  by the server-side rendering to prevent the appearance of a
