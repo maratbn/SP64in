@@ -1,5 +1,5 @@
 <?php
     function getEmail() {
-        return "maratbn@gmail.com";
+        return "maratbn@example.com";
     }
 ?>
