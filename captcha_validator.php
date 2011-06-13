@@ -14,7 +14,7 @@
     $isValid = isCaptchaValid();
     $output = array(
                 'is_valid' => $isValid ? True : False,
-                'email' => $isValid ? getEmail() : "");
+                'email' => $isValid ? $email_default : "");
 
     echo json_encode($output);
 ?>

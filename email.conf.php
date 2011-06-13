@@ -1,5 +1,3 @@
 <?php
-    function getEmail() {
-        return "maratbn@example.com";
-    }
+    $email_default = "maratbn@example.com";
 ?>
