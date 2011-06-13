@@ -50,7 +50,7 @@
           PHP-injected anchor tag with non-default CSS style:
           <br>
           <?php asInjectEmailAnchorHere(array(
-                  'style'=> "display:block;width:8em;padding:0.4em;"
+                  'style'=> "display:block;width:15em;padding:0.4em;"
                             . "margin:0.6em;border: 2px dashed red;"
                             . "text-align:center"
               )) ?>
