@@ -196,8 +196,8 @@ $(document).ready(function($) {
      *  Returns value of session cookie '@ntisp@m_cvalid', which should be
      *  "yes" if CAPTCHA has been solved.
      */
-    function getCachedCSolved() {
-        return khartl_cookie('@ntisp@m_csolved');
+    function getCachedRecallID() {
+        return khartl_cookie('@ntisp@m_recall');
     }
 
     var elEvents = $("<span />");
@@ -285,12 +285,13 @@ $(document).ready(function($) {
                                                + " request to server.");
                             },
                         success: function(data) {
-                                var isValid = data && data.is_valid;
-                                if (isValid) {
+                                if (data && data.is_valid) {
                                     khartl_cookie(
                                         '@ntisp@m_email',
                                         data && data.email || "");
-                                    khartl_cookie('@ntisp@m_csolved', 'yes');
+                                    khartl_cookie(
+                                        '@ntisp@m_recall',
+                                        data && data.recall_id || "");
 
                                     divStatus.text("Validated successfully.");
 
@@ -330,7 +331,7 @@ $(document).ready(function($) {
     function attachCAPTCHA(aSendEmail) {
 
         function updateEmailAddress() {
-            if (getCachedCSolved() != 'yes') return;
+            if (!getCachedRecallID()) return;
 
             var strEmail = getCachedEmail();
             aSendEmail
