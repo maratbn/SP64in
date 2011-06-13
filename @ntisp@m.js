@@ -418,6 +418,7 @@ $(document).ready(function($) {
             });
 
 
+        //  Set email anchor link text caption if there isn't one already:
         if (!aSendEmail.text()) aSendEmail.text("Send Email");
 
         //  Clear-out the 'visibility:hidden' inline style initially applied
