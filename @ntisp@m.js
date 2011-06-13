@@ -261,19 +261,55 @@ $(document).ready(function($) {
             }
 
             /**
-             *  Does the XHR request to the server with the user response to
-             *  validate the CAPTCHA.
+             *  Does the XHR request to the server with the request parameters
+             *  specified to retrieve the email data.
+             *
+             *  @param  params              Object with parameters.
+             *  @param  params.request      Object with the HTTP request
+             *                                                     parameters.
+             *  @param  params.complete     The 'complete' callback.
+             *  @param  params.error        The 'error' callback.
+             *  @param  params.success      The 'success' callback.
+             */
+            function retrieveEmailData(params) {
+                $.ajax({
+                        url: '/components/@ntisp@m/./captcha_validator.php',
+                        type: 'POST',
+                        data: params.request,
+                        dataType: 'json',
+                        complete: function() {
+                                if (params.complete) params.complete();
+                            },
+                        error: function() {
+                                if (params.error) params.error();
+                            },
+                        success: function(data) {
+                                khartl_cookie(
+                                    '@ntisp@m_email',
+                                    data && data.email || "");
+                                khartl_cookie(
+                                    '@ntisp@m_recall',
+                                    data && data.recall_id || "");
+
+                                if (params.success) params.success(data);
+
+                                elEvents.trigger('@ntisp@m_update');
+                            }
+                    })
+            }
+
+            /**
+             *  Retrieves user's CAPTCHA entry from the DOM, and sends it to
+             *  the server.
              */
             function validateCAPTCHA() {
                 divStatus.text("Validating...  Please wait...");
                 inputValidate.attr('readonly', true);
                 buttonSubmit.css('display', 'none');
                 buttonSubmit.attr('disabled', true);
-                $.ajax({
-                        url: '/components/@ntisp@m/./captcha_validator.php',
-                        type: 'POST',
-                        data: {'validate': inputValidate.val()},
-                        dataType: 'json',
+
+                retrieveEmailData({
+                        request: {'validate': inputValidate.val()},
                         complete: function() {
                                 inputValidate.attr('readonly', false);
                                 buttonSubmit.attr('disabled', false);
@@ -286,23 +322,14 @@ $(document).ready(function($) {
                             },
                         success: function(data) {
                                 if (data && data.is_valid) {
-                                    khartl_cookie(
-                                        '@ntisp@m_email',
-                                        data && data.email || "");
-                                    khartl_cookie(
-                                        '@ntisp@m_recall',
-                                        data && data.recall_id || "");
-
                                     divStatus.text("Validated successfully.");
-
-                                    elEvents.trigger('@ntisp@m_update');
                                 } else {
                                     divStatus.text("Incorrect letters " +
                                                "entered.  Please try again.");
                                     totalInvalid++;
                                 }
                             }
-                    })
+                    });
             }
 
             divCEntry.bind('keydown', function(e) {
@@ -414,6 +441,8 @@ $(document).ready(function($) {
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
+                if (!getCachedEmail()) return;
+
                 updateEmailAddress();
                 hideCAPTCHA();
             });
