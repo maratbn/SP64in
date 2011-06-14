@@ -26,11 +26,21 @@
 
     $flagOKtoOutputData = False;
 
-    $arg_validate = $_POST['validate'];
-    if ($arg_validate) {
-        $isValid = isCaptchaValid($arg_validate);
-        $output['is_valid'] = $isValid;
-        if ($isValid) $flagOKtoOutputData = True;
+    $arg_recall = $_POST['recall'];
+    if ($arg_recall) {
+        session_name('@ntisp@m');
+        session_start();
+        if ($_SESSION['recall'][$arg_recall]) {
+            $_SESSION['recall'][$arg_recall] = False;
+            $flagOKtoOutputData = True;
+        }
+    } else {
+        $arg_validate = $_POST['validate'];
+        if ($arg_validate) {
+            $isValid = isCaptchaValid($arg_validate);
+            $output['is_valid'] = $isValid;
+            if ($isValid) $flagOKtoOutputData = True;
+        }
     }
 
     if ($flagOKtoOutputData) {
