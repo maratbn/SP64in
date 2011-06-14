@@ -1,10 +1,8 @@
 <?php
-    require('php-captcha.inc.php');
-
     function isCaptchaValid() {
         //  Based on example at:
         //  http://www.ejeliot.com/pages/php-captcha
-
+        require('php-captcha.inc.php');
         return PhpCaptcha::Validate($_POST['validate']) ? True : False;
     }
 
