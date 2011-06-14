@@ -273,7 +273,7 @@ $(document).ready(function($) {
              */
             function retrieveEmailData(params) {
                 $.ajax({
-                        url: '/components/@ntisp@m/./captcha_validator.php',
+                        url: '/components/@ntisp@m/./validator.php',
                         type: 'POST',
                         data: params.request,
                         dataType: 'json',
