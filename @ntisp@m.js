@@ -202,6 +202,44 @@ $(document).ready(function($) {
 
     var elEvents = $("<span />");
 
+    /**
+     *  Does the XHR request to the server with the request parameters
+     *  specified to retrieve the email data.
+     *
+     *  @param  params              Object with parameters.
+     *  @param  params.request      Object with the HTTP request
+     *                                                     parameters.
+     *  @param  params.complete     The 'complete' callback.
+     *  @param  params.error        The 'error' callback.
+     *  @param  params.success      The 'success' callback.
+     */
+    function retrieveEmailData(params) {
+        $.ajax({
+                url: '/components/@ntisp@m/./validator.php',
+                type: 'POST',
+                data: params.request,
+                dataType: 'json',
+                complete: function() {
+                        if (params.complete) params.complete();
+                    },
+                error: function() {
+                        if (params.error) params.error();
+                    },
+                success: function(data) {
+                        khartl_cookie(
+                            '@ntisp@m_email',
+                            data && data.email || "");
+                        khartl_cookie(
+                            '@ntisp@m_recall',
+                            data && data.recall_id || "");
+
+                        if (params.success) params.success(data);
+
+                        elEvents.trigger('@ntisp@m_update');
+                    }
+            })
+    }
+
     var captcha = (
         /**
          *  Creates the CAPTCHA entering DOM.
@@ -258,44 +296,6 @@ $(document).ready(function($) {
             function refreshInput() {
                 refreshCAPTCHA();
                 inputValidate.val("");
-            }
-
-            /**
-             *  Does the XHR request to the server with the request parameters
-             *  specified to retrieve the email data.
-             *
-             *  @param  params              Object with parameters.
-             *  @param  params.request      Object with the HTTP request
-             *                                                     parameters.
-             *  @param  params.complete     The 'complete' callback.
-             *  @param  params.error        The 'error' callback.
-             *  @param  params.success      The 'success' callback.
-             */
-            function retrieveEmailData(params) {
-                $.ajax({
-                        url: '/components/@ntisp@m/./validator.php',
-                        type: 'POST',
-                        data: params.request,
-                        dataType: 'json',
-                        complete: function() {
-                                if (params.complete) params.complete();
-                            },
-                        error: function() {
-                                if (params.error) params.error();
-                            },
-                        success: function(data) {
-                                khartl_cookie(
-                                    '@ntisp@m_email',
-                                    data && data.email || "");
-                                khartl_cookie(
-                                    '@ntisp@m_recall',
-                                    data && data.recall_id || "");
-
-                                if (params.success) params.success(data);
-
-                                elEvents.trigger('@ntisp@m_update');
-                            }
-                    })
             }
 
             /**
