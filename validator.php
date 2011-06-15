@@ -57,8 +57,9 @@
 
         require('email.conf.php');
 
-        $output['email']        = $email_default;
-        $output['recall_id']    = $recall_id;
+        $output['email']                = $email_default;
+        $output['recall_id']            = $recall_id;
+        $output['is_req_validated']     = True;
     }
 
     header('Content-Type: application/json');
