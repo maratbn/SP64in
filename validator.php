@@ -52,6 +52,9 @@
 
         session_name('@ntisp@m');
         session_start();
+        if (!array_key_exists('recall', $_SESSION))
+            $_SESSION['recall'] = array();
+
         $_SESSION['recall'][$recall_id] = True;
 
         require('email.conf.php');
