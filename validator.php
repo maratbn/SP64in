@@ -69,7 +69,7 @@
 
     $flagOKtoOutputData = False;
 
-    $arg_recall = $_POST['recall'];
+    $arg_recall = array_key_exists('recall', $_POST) ? $_POST['recall'] : "";
     if ($arg_recall) {
         session_name('@ntisp@m');
         session_start();
@@ -80,7 +80,8 @@
             $flagOKtoOutputData = True;
         }
     } else {
-        $arg_validate = $_POST['validate'];
+        $arg_validate = array_key_exists('validate', $_POST)
+                                                    ? $_POST['validate'] : "";
         if ($arg_validate) {
             $isValid = isCaptchaValid($arg_validate);
             $output['is_valid'] = $isValid;
