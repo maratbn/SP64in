@@ -70,7 +70,9 @@
     if ($arg_recall) {
         session_name('@ntisp@m');
         session_start();
-        if ($_SESSION['recall'][$arg_recall]) {
+        if (array_key_exists('recall', $_SESSION) &&
+            array_key_exists($arg_recall, $_SESSION['recall']) &&
+                                           $_SESSION['recall'][$arg_recall]) {
             $_SESSION['recall'][$arg_recall] = False;
             $flagOKtoOutputData = True;
         }
