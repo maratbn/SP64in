@@ -186,13 +186,6 @@ $(document).ready(function($) {
     }
 
     /**
-     *  Returns cached email.
-     */
-    function getCachedEmail() {
-        return khartl_cookie('@ntisp@m_email');
-    }
-
-    /**
      *  Returns value of session cookie '@ntisp@m_cvalid', which should be
      *  "yes" if CAPTCHA has been solved.
      */
@@ -201,6 +194,9 @@ $(document).ready(function($) {
     }
 
     var elEvents = $("<span />");
+
+    var isReqValidated = false;
+    var strEmail = "";
 
     /**
      *  Does the XHR request to the server with the request parameters
@@ -226,9 +222,9 @@ $(document).ready(function($) {
                         if (params.error) params.error();
                     },
                 success: function(data) {
-                        khartl_cookie(
-                            '@ntisp@m_email',
-                            data && data.email || "");
+                        strEmail = data && data.email || "";
+                        isReqValidated = data && data.is_req_validated;
+
                         khartl_cookie(
                             '@ntisp@m_recall',
                             data && data.recall_id || "");
@@ -239,6 +235,16 @@ $(document).ready(function($) {
                     }
             })
     }
+
+    function recallEmailData() {
+        var recall_id = khartl_cookie('@ntisp@m_recall');
+        if (!recall_id) return;
+
+        retrieveEmailData({
+                request: {'recall': recall_id}
+            });
+    }
+    recallEmailData();
 
     var captcha = (
         /**
@@ -358,9 +364,8 @@ $(document).ready(function($) {
     function attachCAPTCHA(aSendEmail) {
 
         function updateEmailAddress() {
-            if (!getCachedRecallID()) return;
+            if (!isReqValidated) return;
 
-            var strEmail = getCachedEmail();
             aSendEmail
                 .attr(
                     'href',
@@ -401,21 +406,21 @@ $(document).ready(function($) {
         }
 
         aSendEmail.bind('mouseover', function() {
-                if (getCachedEmail()) return;
+                if (strEmail) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
-                if (getCachedEmail()) return;
+                if (strEmail) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
-                if (getCachedEmail()) return;
+                if (strEmail) return;
 
                 if (isCShown) {
                     hideCAPTCHA();
@@ -441,7 +446,7 @@ $(document).ready(function($) {
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
-                if (!getCachedEmail()) return;
+                if (!strEmail) return;
 
                 updateEmailAddress();
                 hideCAPTCHA();
