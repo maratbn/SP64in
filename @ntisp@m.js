@@ -196,7 +196,7 @@ $(document).ready(function($) {
     var elEvents = $("<span />");
 
     var isReqValidated = false;
-    var strEmail = "";
+    var dataEmail = null;
 
     /**
      *  Does the XHR request to the server with the request parameters
@@ -222,7 +222,7 @@ $(document).ready(function($) {
                         if (params.error) params.error();
                     },
                 success: function(data) {
-                        strEmail = data && data.email || "";
+                        dataEmail = data && data.email || null;
                         isReqValidated = data && data.is_req_validated;
 
                         khartl_cookie(
@@ -363,8 +363,14 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
 
+        function getEmail() {
+            return dataEmail && dataEmail.def || "";
+        }
+
         function updateEmailAddress() {
             if (!isReqValidated) return;
+
+            var strEmail = getEmail();
 
             aSendEmail
                 .attr(
@@ -406,21 +412,21 @@ $(document).ready(function($) {
         }
 
         aSendEmail.bind('mouseover', function() {
-                if (strEmail) return;
+                if (getEmail()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
-                if (strEmail) return;
+                if (getEmail()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
-                if (strEmail) return;
+                if (getEmail()) return;
 
                 if (isCShown) {
                     hideCAPTCHA();
@@ -446,7 +452,7 @@ $(document).ready(function($) {
             });
 
         elEvents.bind('@ntisp@m_update', function(e) {
-                if (!strEmail) return;
+                if (!getEmail()) return;
 
                 updateEmailAddress();
                 hideCAPTCHA();

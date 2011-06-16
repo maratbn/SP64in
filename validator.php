@@ -57,7 +57,8 @@
 
         require('email.conf.php');
 
-        $output['email']                = $email_default;
+        $output['email']                = array();
+        $output['email']['def']         = $email_default;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }
