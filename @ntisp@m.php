@@ -56,22 +56,24 @@
      *  @param  $args['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function asInjectEmailAnchorHere(array $args = array(
-            'caption'=>"Send Email",
-            'class'=>"",
-            'style'=>""
-        )) {
+    function asInjectEmailAnchorHere(array $args = array()) {
+
+        $argsUse = array_merge(array(
+                'caption'=>"Send Email",
+                'class'=>"",
+                'style'=>""
+            ), $args);
 
         ?><a href='#' data-antispam='true'<?php
 
-        if ($args['class']) {
-            ?> class='<?=$args['class']?>'<?php
+        if ($argsUse['class']) {
+            ?> class='<?=$argsUse['class']?>'<?php
         }
 
-            ?> style='<?=$args['style']?>;visibility:hidden'<?php
+            ?> style='<?=$argsUse['style']?>;visibility:hidden'<?php
 
           ?>><?php
-          ?><?=$args['caption']?><?php
+          ?><?=$argsUse['caption']?><?php
         ?></a><?php
     }
 ?>
