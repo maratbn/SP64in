@@ -5,7 +5,7 @@
 
 <html>
   <head>
-    <title>CAPTCHA test</title>
+    <title>CAPTCHA example</title>
     <link rel='stylesheet'
         href='/components/@ntisp@m/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
     <style>
