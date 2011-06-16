@@ -364,7 +364,16 @@ $(document).ready(function($) {
     function attachCAPTCHA(aSendEmail) {
 
         function getEmail() {
-            return dataEmail && dataEmail.def || "";
+            if (!dataEmail) return "";
+
+            var strKey = aSendEmail.attr('data-antispam');
+            if (strKey && strKey.toLowerCase() == 'true') strKey = null;
+
+            if (strKey) {
+                return dataEmail.keyed && dataEmail.keyed[strKey] || "";
+            } else {
+                return dataEmail.def || "";
+            }
         }
 
         function updateEmailAddress() {

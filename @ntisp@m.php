@@ -61,10 +61,19 @@
         $argsUse = array_merge(array(
                 'caption'=>"Send Email",
                 'class'=>"",
+                'key'=>"",
                 'style'=>""
             ), $args);
 
-        ?><a href='#' data-antispam='true'<?php
+        ?><a href='#' data-antispam='<?php
+
+        if ($argsUse['key']) {
+            ?><?=$argsUse['key']?><?php
+        } else {
+            ?>true<?php
+        }
+
+        ?>'<?php
 
         if ($argsUse['class']) {
             ?> class='<?=$argsUse['class']?>'<?php

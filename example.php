@@ -57,6 +57,22 @@
         </p>
       </li>
 
+      <li>
+        <p>
+          PHP-injected anchor tag with key 'webmaster':
+          <br>
+          <?php asInjectEmailAnchorHere(array(
+              'key'=>'webmaster')) ?>
+        </p>
+      </li>
+      <li>
+        <p>
+          PHP-injected anchor tag with key 'admin':
+          <br>
+          <?php asInjectEmailAnchorHere(array(
+              'key'=>'admin')) ?>
+        </p>
+      </li>
 
       <li>
         <p>
