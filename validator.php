@@ -42,7 +42,7 @@
     function isCaptchaValid($arg_validate) {
         //  Based on example at:
         //  http://www.ejeliot.com/pages/php-captcha
-        require('php-captcha.inc.php');
+        require('./php-captcha/php-captcha.inc.php');
         return PhpCaptcha::Validate($arg_validate) ? True : False;
     }
 

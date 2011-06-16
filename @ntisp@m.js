@@ -295,8 +295,8 @@ $(document).ready(function($) {
             function refreshCAPTCHA() {
                 divCAPTCHA.css(
                     'background-image',
-                    "url('/components/@ntisp@m/./captcha_img.php?" +
-                          (new Date()).getTime() + "_" + totalInvalid + "')");
+                    "url('/components/@ntisp@m/./php-captcha/captcha_img.php?"
+                        + (new Date()).getTime() + "_" + totalInvalid + "')");
             }
 
             function refreshInput() {
