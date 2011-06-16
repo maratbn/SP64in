@@ -258,8 +258,19 @@ $(document).ready(function($) {
                             "padding:0.3em",
                           "'/>"].join(""));
 
-            var divCAPTCHA = $("<div style='"
-                        + "position:relative;width:250px;height:70px' />");
+            var divCAPTCHA = $([
+                        "<div style='",
+                            "position:relative;width:250px;height:70px'>",
+                            "<div style='",
+                                  "position:absolute;",
+                                  "top:-10px;",
+                                  "width:250px;",
+                                  "text-align:center;",
+                                  "font-family:arial sans-serif;",
+                                  "font-size:10px;",
+                                  "font-weight:bold;",
+                                "'>@ntisp@m</div>",
+                        "</div>"].join(""));
             var inputValidate = $([
                         "<input type='text' style='",
                             "float:left;",
