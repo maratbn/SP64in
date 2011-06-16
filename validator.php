@@ -59,6 +59,7 @@
 
         $output['email']                = array();
         $output['email']['def']         = $email_default;
+        $output['email']['keyed']       = $emails_keyed;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }
