@@ -487,8 +487,8 @@ $(document).ready(function($) {
     }
 
     function attachCAPTCHA(aSendEmail) {
-        var strKey = aSendEmail.attr('data-antispam');
-        if (strKey && strKey.toLowerCase() == 'true') strKey = null;
+        var strAS = aSendEmail.attr('data-antispam');
+        var strKey = (strAS && strAS.toLowerCase() == 'true') ? null : strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }
