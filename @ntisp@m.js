@@ -490,7 +490,8 @@ $(document).ready(function($) {
     }
 
     function insertSendEmailLink(spanParent) {
-        var aSendEmail = $("<a href='#'></a>");
+        var aSendEmail = $("<a href='#' data-antispam='" +
+                                 spanParent.attr('data-antispam') + "'></a>");
         attachCAPTCHA(aSendEmail);
         spanParent.append(aSendEmail);
     }
