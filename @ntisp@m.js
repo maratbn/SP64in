@@ -487,8 +487,16 @@ $(document).ready(function($) {
     }
 
     function attachCAPTCHA(aSendEmail) {
+        var strHref = aSendEmail.attr('href');
+        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S)*@ntisp@m$/i);
+        var strMailto = arrMailto && arrMailto.length >= 1 && arrMailto[0];
+
         var strAS = aSendEmail.attr('data-antispam');
-        var strKey = (strAS && strAS.toLowerCase() == 'true') ? null : strAS;
+        if (!strMailto && strAS === undefined) return;
+
+        var strKey = arrMailto && arrMailto.length == 2 && arrMailto[1];
+
+        if (strAS && strAS.toLowerCase() != 'true') strKey = strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }
@@ -500,6 +508,6 @@ $(document).ready(function($) {
         spanParent.append(aSendEmail);
     }
 
-    $('a[data-antispam]').each(function() {attachCAPTCHA($(this))});
     $('span[data-antispam]').each(function() {insertSendEmailLink($(this))});
+    $('a').each(function() {attachCAPTCHA($(this))});
 });

@@ -58,6 +58,10 @@
      */
     function asInjectEmailAnchorHere(array $args = array()) {
 
+        //  This utility needs to access the configuration file to determine
+        //  how to render the email anchor tags.
+        require('./email.conf.php');
+
         $argsUse = array_merge(array(
                 'caption'=>"Send Email",
                 'class'=>"",
@@ -65,12 +69,18 @@
                 'style'=>""
             ), $args);
 
-        ?><a href='#' data-antispam='<?php
+        ?><a href='<?php
 
-        if ($argsUse['key']) {
-              ?><?=$argsUse['key']?><?php
+        if ($flagUseMailto) {
+              ?>mailto:<?=$argsUse['key']?>@ntisp@m<?php
         } else {
+              ?>#' data-antispam='<?php
+
+            if ($argsUse['key']) {
+              ?><?=$argsUse['key']?><?php
+            } else {
               ?>true<?php
+            }
         }
 
               ?>'<?php
