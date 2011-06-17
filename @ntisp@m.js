@@ -392,12 +392,13 @@ $(document).ready(function($) {
 
             var strEmail = getEmail();
 
-            aSendEmail
-                .attr(
-                    'href',
-                    strEmail ? 'mailto:' + strEmail : "#")
-                .text(
-                    strEmail || "Unable to determine email.");
+            if (strEmail) {
+                aSendEmail
+                    .attr('href', 'mailto:' + strEmail)
+                    .text(strEmail);
+            } else {
+                aSendEmail.text("Unable to determine email.");
+            }
         }
 
         updateEmailAddress();
