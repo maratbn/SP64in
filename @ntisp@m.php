@@ -68,12 +68,12 @@
         ?><a href='#' data-antispam='<?php
 
         if ($argsUse['key']) {
-            ?><?=$argsUse['key']?><?php
+              ?><?=$argsUse['key']?><?php
         } else {
-            ?>true<?php
+              ?>true<?php
         }
 
-        ?>'<?php
+              ?>'<?php
 
         if ($argsUse['class']) {
             ?> class='<?=$argsUse['class']?>'<?php
