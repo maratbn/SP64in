@@ -372,13 +372,10 @@ $(document).ready(function($) {
                 };
         })();
 
-    function attachCAPTCHA(aSendEmail) {
+    function attachCAPTCHAForKey(aSendEmail, strKey) {
 
         function getEmail() {
             if (!dataEmail) return "";
-
-            var strKey = aSendEmail.attr('data-antispam');
-            if (strKey && strKey.toLowerCase() == 'true') strKey = null;
 
             if (strKey) {
                 return dataEmail.keyed && dataEmail.keyed[strKey] || "";
@@ -487,6 +484,13 @@ $(document).ready(function($) {
         //  by the server-side rendering to prevent the appearance of a
         //  non-functional anchor link.
         aSendEmail.css('visibility', "");
+    }
+
+    function attachCAPTCHA(aSendEmail) {
+        var strKey = aSendEmail.attr('data-antispam');
+        if (strKey && strKey.toLowerCase() == 'true') strKey = null;
+
+        attachCAPTCHAForKey(aSendEmail, strKey);
     }
 
     function insertSendEmailLink(spanParent) {
