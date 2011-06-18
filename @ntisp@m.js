@@ -186,8 +186,9 @@ $(document).ready(function($) {
     }
 
     /**
-     *  Returns value of session cookie '@ntisp@m_cvalid', which should be
-     *  "yes" if CAPTCHA has been solved.
+     *  Returns the value of session cookie '@ntisp@m_recall', which is the
+     *  recall ID to retrieve the emails from the server if the user already
+     *  solved the CAPTCHAs on his last visit to the page.
      */
     function getCachedRecallID() {
         return khartl_cookie('@ntisp@m_recall');
