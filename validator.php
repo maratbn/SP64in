@@ -5,7 +5,7 @@
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
  *
- *  Module:         @ntisp@m.php
+ *  Module:         validator.php
  *
  *  Description:    @ntisp@m server-side component for validating CAPTCHAs
  *                  entered by the user, and responding with email address
