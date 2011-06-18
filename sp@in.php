@@ -1,18 +1,18 @@
 <?php
 /**
- *  @ntisp@m website component for CAPTCHA-protecting email addresses from
+ *  SP@in website component for CAPTCHA-protecting email addresses from
  *  email address harvesting web crawlers.
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
  *
- *  Module:         @ntisp@m.php
+ *  Module:         sp@in.php
  *
  *  Description:    Server-side PHP logic that provides convenience functions
- *                  for rendering @ntisp@m achor tags / links into
+ *                  for rendering SP@in achor tags / links into
  *                  server-generated PHP pages.
  *
  *                  It is not absolutely necessary to utilize the convenience
- *                  functions in this module in order to render @ntisp@m
+ *                  functions in this module in order to render SP@in
  *                  anchor tags on the page.
  *
  *                  For example how to 'require' this file into a PHP page,
@@ -44,7 +44,7 @@
  */
 
     /**
-     *  Injects @ntisp@m email anchor tag into the server-side-rendered page.
+     *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
      *  @param  $args                   Array with configuration parameters.
      *
@@ -72,9 +72,9 @@
         ?><a href='<?php
 
         if ($flagUseMailto) {
-              ?>mailto:<?=$argsUse['key']?>@ntisp@m<?php
+              ?>mailto:<?=$argsUse['key']?>sp@in<?php
         } else {
-              ?>#' data-antispam='<?php
+              ?>#' data-spain='<?php
 
             if ($argsUse['key']) {
               ?><?=$argsUse['key']?><?php

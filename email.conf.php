@@ -15,7 +15,7 @@
             'engineering'   => 'brad@example.com'
         );
 
-    //  If this flag is set to 'True' then rendered @ntisp@m tags will have
+    //  If this flag is set to 'True' then rendered SP@in tags will have
     //  'mailto:' 'href's:
     $flagUseMailto = True;
 ?>

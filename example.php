@@ -1,5 +1,5 @@
 <?php
-    require_once('@ntisp@m.php');
+    require_once('sp@in.php');
 ?>
 <!DOCTYPE HTML>
 
@@ -7,7 +7,7 @@
   <head>
     <title>CAPTCHA example</title>
     <link rel='stylesheet'
-        href='/components/@ntisp@m/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
+        href='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
     <style>
       .as_bold {
           font-weight:      bold;
@@ -78,21 +78,21 @@
         <p>
           Hard-coded span tag:
           <br>
-          <span data-antispam='true'></span>
+          <span data-spain='true'></span>
         </p>
       </li>
       <li>
         <p>
           Hard-coded anchor tag originally empty:
           <br>
-          <a href='#' data-antispam='true'></a>
+          <a href='#' data-spain='true'></a>
         </p>
       </li>
       <li>
         <p>
           Hard-coded anchor tag originally with custom content:
           <br>
-          <a href='#' data-antispam='true'>Send Email to Somebody</a>
+          <a href='#' data-spain='true'>Send Email to Somebody</a>
         </p>
       </li>
     </ul>
@@ -100,9 +100,9 @@
     <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
     </script>
     <script type='text/javascript'
-        src='/components/@ntisp@m/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.js'>
+        src='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.js'>
     </script>
-    <script type='text/javascript' src='/components/@ntisp@m/./@ntisp@m.js'>
+    <script type='text/javascript' src='/components/sp@in/./sp@in.js'>
     </script>
   </body>
 </html>

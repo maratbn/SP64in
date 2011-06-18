@@ -1,5 +1,5 @@
 /**
- *  @ntisp@m website component for CAPTCHA-protecting email addresses from
+ *  SP@in website component for CAPTCHA-protecting email addresses from
  *  email address harvesting web crawlers.
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
@@ -11,10 +11,10 @@
  *      Copyright (c) 2010 Klaus Hartl (stilbuero.de)
  *      Used under MIT license
  *
- *  Module:         @ntisp@m.js
+ *  Module:         sp@in.js
  *
  *  Description:    JavaScript logic that activates anchor tags / links with
- *                  HTML attribute 'data-antispam' to become CAPTCHA-protected
+ *                  HTML attribute 'data-spain' to become CAPTCHA-protected
  *                  email links.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -186,12 +186,12 @@ $(document).ready(function($) {
     }
 
     /**
-     *  Returns the value of session cookie '@ntisp@m_recall', which is the
+     *  Returns the value of session cookie 'sp@in_recall', which is the
      *  recall ID to retrieve the emails from the server if the user already
      *  solved the CAPTCHAs on his last visit to the page.
      */
     function getCachedRecallID() {
-        return khartl_cookie('@ntisp@m_recall');
+        return khartl_cookie('sp@in_recall');
     }
 
     var elEvents = $("<span />");
@@ -212,7 +212,7 @@ $(document).ready(function($) {
      */
     function retrieveEmailData(params) {
         $.ajax({
-                url: '/components/@ntisp@m/./validator.php',
+                url: '/components/sp@in/./validator.php',
                 type: 'POST',
                 data: params.request,
                 dataType: 'json',
@@ -227,18 +227,18 @@ $(document).ready(function($) {
                         isReqValidated = data && data.is_req_validated;
 
                         khartl_cookie(
-                            '@ntisp@m_recall',
+                            'sp@in_recall',
                             data && data.recall_id || "");
 
                         if (params.success) params.success(data);
 
-                        elEvents.trigger('@ntisp@m_update');
+                        elEvents.trigger('sp@in_update');
                     }
             })
     }
 
     function recallEmailData() {
-        var recall_id = khartl_cookie('@ntisp@m_recall');
+        var recall_id = khartl_cookie('sp@in_recall');
         if (!recall_id) return;
 
         retrieveEmailData({
@@ -270,7 +270,7 @@ $(document).ready(function($) {
                                   "font-family:arial sans-serif;",
                                   "font-size:10px;",
                                   "font-weight:bold;",
-                                "'>@ntisp@m</div>",
+                                "'>sp@in</div>",
                         "</div>"].join(""));
             var inputValidate = $([
                         "<input type='text' style='",
@@ -307,7 +307,7 @@ $(document).ready(function($) {
             function refreshCAPTCHA() {
                 divCAPTCHA.css(
                     'background-image',
-                    "url('/components/@ntisp@m/./php-captcha/captcha_img.php?"
+                    "url('/components/sp@in/./php-captcha/captcha_img.php?"
                         + (new Date()).getTime() + "_" + totalInvalid + "')");
             }
 
@@ -356,7 +356,7 @@ $(document).ready(function($) {
                             validateCAPTCHA();
                             break;
                         case 27:
-                            elEvents.trigger('@ntisp@m_cancel');
+                            elEvents.trigger('sp@in_cancel');
                             break;
                     }
                 });
@@ -454,23 +454,23 @@ $(document).ready(function($) {
                     showCAPTCHA();
                     qapiClickToReveal.hide();
 
-                    elEvents.trigger('@ntisp@m_opened', [qapiCAPTCHA]);
+                    elEvents.trigger('sp@in_opened', [qapiCAPTCHA]);
                 }
 
                 return false;
             });
 
-        elEvents.bind('@ntisp@m_cancel', function(e) {
+        elEvents.bind('sp@in_cancel', function(e) {
                 hideCAPTCHA();
             });
 
-        elEvents.bind('@ntisp@m_opened', function(e, qapiOpened) {
+        elEvents.bind('sp@in_opened', function(e, qapiOpened) {
                 if (!isCShown || qapiOpened === qapiCAPTCHA) return;
 
                 hideCAPTCHA();
             });
 
-        elEvents.bind('@ntisp@m_update', function(e) {
+        elEvents.bind('sp@in_update', function(e) {
                 if (!getEmail()) return;
 
                 updateEmailAddress();
@@ -489,10 +489,10 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
         var strHref = aSendEmail.attr('href');
-        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S*)@ntisp@m$/i);
+        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S*)sp@in$/i);
         var strMailto = arrMailto && arrMailto.length >= 1 && arrMailto[0];
 
-        var strAS = aSendEmail.attr('data-antispam');
+        var strAS = aSendEmail.attr('data-spain');
         if (!strMailto && strAS === undefined) return;
 
         var strKey = arrMailto && arrMailto.length == 2 && arrMailto[1];
@@ -503,12 +503,12 @@ $(document).ready(function($) {
     }
 
     function insertSendEmailLink(spanParent) {
-        var aSendEmail = $("<a href='#' data-antispam='" +
-                                 spanParent.attr('data-antispam') + "'></a>");
+        var aSendEmail = $("<a href='#' data-spain='" +
+                                 spanParent.attr('data-spain') + "'></a>");
         attachCAPTCHA(aSendEmail);
         spanParent.append(aSendEmail);
     }
 
-    $('span[data-antispam]').each(function() {insertSendEmailLink($(this))});
+    $('span[data-spain]').each(function() {insertSendEmailLink($(this))});
     $('a').each(function() {attachCAPTCHA($(this))});
 });

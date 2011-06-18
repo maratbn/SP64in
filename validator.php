@@ -1,13 +1,13 @@
 <?php
 /**
- *  @ntisp@m website component for CAPTCHA-protecting email addresses from
+ *  SP@in website component for CAPTCHA-protecting email addresses from
  *  email address harvesting web crawlers.
  *
  *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
  *
  *  Module:         validator.php
  *
- *  Description:    @ntisp@m server-side component for validating CAPTCHAs
+ *  Description:    SP@in server-side component for validating CAPTCHAs
  *                  entered by the user, and responding with email address
  *                  data to remote web users who successfuly validated the
  *                  CAPTCHA.
@@ -81,7 +81,7 @@
         if ($isValid) $flagOKtoOutputData = True;
     }
 
-    session_name('@ntisp@m');
+    session_name('sp@in');
     session_start();
 
     if (!$arg_validate && $arg_recall) {
