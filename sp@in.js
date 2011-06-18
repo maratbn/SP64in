@@ -270,7 +270,7 @@ $(document).ready(function($) {
                                   "font-family:arial sans-serif;",
                                   "font-size:10px;",
                                   "font-weight:bold;",
-                                "'>sp@in</div>",
+                                "'>SP@in</div>",
                         "</div>"].join(""));
             var inputValidate = $([
                         "<input type='text' style='",
