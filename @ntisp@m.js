@@ -489,7 +489,7 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
         var strHref = aSendEmail.attr('href');
-        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S)*@ntisp@m$/i);
+        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S*)@ntisp@m$/i);
         var strMailto = arrMailto && arrMailto.length >= 1 && arrMailto[0];
 
         var strAS = aSendEmail.attr('data-antispam');
