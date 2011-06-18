@@ -60,7 +60,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('./email.conf.php');
+        require('email.conf.php');
 
         $argsUse = array_merge(array(
                 'caption'=>"Send Email",
