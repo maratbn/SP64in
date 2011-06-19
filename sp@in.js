@@ -257,7 +257,9 @@ $(document).ready(function($) {
                         "<div style='",
                             "background-color:#ffffff;",
                             "border:1px solid #F1D031;",
-                            "padding:0.3em",
+                            "padding:0.3em;",
+                            "font-family:arial sans-serif;",
+                            "font-size:10px;",
                           "'/>"].join(""));
 
             var divCAPTCHA = $([
@@ -268,8 +270,6 @@ $(document).ready(function($) {
                                   "top:-10px;",
                                   "width:250px;",
                                   "text-align:center;",
-                                  "font-family:arial sans-serif;",
-                                  "font-size:10px;",
                                   "font-weight:bold;",
                                 "'>SP@in</div>",
                         "</div>"].join(""));
