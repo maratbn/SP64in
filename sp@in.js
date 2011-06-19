@@ -2,7 +2,7 @@
  *  SP@in website component for CAPTCHA-protecting email addresses from
  *  email address harvesting web crawlers.
  *
- *  Copyright (c) 2011 Marat Nepomnyashy    maratbn@gmail
+ *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  This module also includes the following embedded 3-rd party code:
  *
