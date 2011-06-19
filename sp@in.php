@@ -1,7 +1,7 @@
 <?php
 /**
- *  SP@in website component for CAPTCHA-protecting email addresses from
- *  email address harvesting web crawlers.
+ *  SP@in = Pain 4 SPAM website component for CAPTCHA-protecting email
+ *  addresses from email address harvesting web crawlers.
  *
  *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
