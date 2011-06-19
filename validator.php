@@ -43,7 +43,12 @@
         //  Based on example at:
         //  http://www.ejeliot.com/pages/php-captcha
         require('./php-captcha/php-captcha.inc.php');
-        return PhpCaptcha::Validate($arg_validate) ? True : False;
+        $isValid = PhpCaptcha::Validate($arg_validate) ? True : False;
+
+        //Closing up the PHP session after php-captcha:
+        session_write_close();
+
+        return $isValid;
     }
 
     # Sets email and recall data on the output hash map.
@@ -76,7 +81,6 @@
 
     if ($arg_validate) {
         $isValid = isCaptchaValid($arg_validate);
-        session_destroy();
         $output['is_valid'] = $isValid;
         if ($isValid) $flagOKtoOutputData = True;
     }
