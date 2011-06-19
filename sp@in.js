@@ -14,8 +14,9 @@
  *  Module:         sp@in.js
  *
  *  Description:    JavaScript logic that activates anchor tags / links with
- *                  HTML attribute 'data-spain' to become CAPTCHA-protected
- *                  email links.
+ *                  HTML attributes 'data-spain' and 'href' with values
+ *                  'mailto:<key>sp@in' to become CAPTCHA-protected email
+ *                  links.
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions are met:
