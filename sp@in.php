@@ -15,7 +15,7 @@
  *                  functions in this module in order to render SP@in
  *                  anchor tags on the page.
  *
- *                  For example how to 'require' this file into a PHP page,
+ *                  For example on how to utilize this module in a PHP page,
  *                  see module 'example.php'.
  *
  *  Redistribution and use in source and binary forms, with or without
