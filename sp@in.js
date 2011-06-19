@@ -404,7 +404,7 @@ $(document).ready(function($) {
 
         var qapiClickToReveal = createQT(
                             aSendEmail,
-                            $("<div>Click to reveal email address.</div>"));
+                            $("<div>Click to reveal email address...</div>"));
 
         var elContainerCAPTCHA = $("<div />");
         var qapiCAPTCHA = createQT(aSendEmail, elContainerCAPTCHA, {
