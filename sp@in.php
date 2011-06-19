@@ -16,7 +16,7 @@
  *                  anchor tags on the page.
  *
  *                  For example how to 'require' this file into a PHP page,
- *                  see module 'test.php'.
+ *                  see module 'example.php'.
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions are met:
