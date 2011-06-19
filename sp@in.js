@@ -419,6 +419,26 @@ $(document).ready(function($) {
 
         var isCShown = false;
 
+        //  This callback will close the qTip on an outside mouseclick.
+        $(document.body).bind('click', function(event) {
+                //  No need to hide a non-rendered or non-shown qTip.
+                if (!isCShown) return;
+                var elQT = qapiCAPTCHA.elements.tooltip;
+                if (!elQT) return;
+
+                //  Need to know which element was clicked to continue.
+                if (!event.target) return;
+
+                //  This checks if the original element clicked is inside the
+                //  qTip, and if so, it lets the qTip remain.
+                if ($(event.target).parents().filter(elQT).length > 0) return;
+
+                //  If execution got to here it means that the click was
+                //  outside an opened qTip, and sending this event will close
+                //  it.
+                elEvents.trigger('sp@in_cancel');
+            });
+
         function hideCAPTCHA() {
             qapiCAPTCHA.hide();
             isCShown = false;
