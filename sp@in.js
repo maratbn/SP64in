@@ -255,6 +255,7 @@ $(document).ready(function($) {
         function createCAPTCHA() {
             var divCEntry = $([
                         "<div style='",
+                            "color:#333333;",
                             "background-color:#ffffff;",
                             "border:1px solid #F1D031;",
                             "padding:0.3em;",
