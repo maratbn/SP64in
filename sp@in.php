@@ -101,7 +101,7 @@
         } else {
               ?>#' data-spain='<?php
 
-            if ($argsUse['key']) {
+            if (strlen($argsUse['key'])) {
               ?><?=$argsUse['key']?><?php
             } else {
               ?>true<?php
@@ -110,7 +110,7 @@
 
               ?>'<?php
 
-        if ($argsUse['class']) {
+        if (strlen($argsUse['class'])) {
             ?> class='<?=$argsUse['class']?>'<?php
         }
 
