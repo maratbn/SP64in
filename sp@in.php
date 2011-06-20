@@ -64,7 +64,7 @@
      *  @param  $args['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function asInjectEmailAnchorHere(array $args = array()) {
+    function spainInjectTag(array $args = array()) {
 
         //  This function temporarily switches to the PHP session 'sp@in' to
         //  which it saves various data used by other modules of the SP@in

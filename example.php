@@ -22,16 +22,16 @@
       <li>
         <p>
           Anchor tag injected via PHP convenience function
-          'asInjectEmailAnchorHere(...)' with all default options:
+          'spainInjectTag(...)' with all default options:
           <br>
-          <?php asInjectEmailAnchorHere() ?>
+          <?php spainInjectTag() ?>
         </p>
       </li>
       <li>
         <p>
           PHP-injected anchor tag with non-default caption:
           <br>
-          <?php asInjectEmailAnchorHere(array(
+          <?php spainInjectTag(array(
               'caption'=>"Send Email to Somebody")) ?>
         </p>
       </li>
@@ -39,7 +39,7 @@
         <p>
           PHP-injected anchor tag with non-default CSS classes:
           <br>
-          <?php asInjectEmailAnchorHere(array(
+          <?php spainInjectTag(array(
               'class'=>"as_bold as_italic")) ?>
         </p>
       </li>
@@ -49,7 +49,7 @@
         <p>
           PHP-injected anchor tag with non-default CSS style:
           <br>
-          <?php asInjectEmailAnchorHere(array(
+          <?php spainInjectTag(array(
                   'style'=> "display:block;width:15em;padding:0.4em;"
                             . "margin:0.6em;border: 2px dashed red;"
                             . "text-align:center"
@@ -61,7 +61,7 @@
         <p>
           PHP-injected anchor tag with key 'webmaster':
           <br>
-          <?php asInjectEmailAnchorHere(array(
+          <?php spainInjectTag(array(
               'key'=>'webmaster')) ?>
         </p>
       </li>
@@ -69,7 +69,7 @@
         <p>
           PHP-injected anchor tag with key 'admin':
           <br>
-          <?php asInjectEmailAnchorHere(array(
+          <?php spainInjectTag(array(
               'key'=>'admin')) ?>
         </p>
       </li>
