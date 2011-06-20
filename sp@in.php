@@ -53,6 +53,14 @@
      *  @param  $args['class']          String value of the tag attribute
      *                                                                'class'.
      *
+     *  @param  $args['key']            String value of the configured key in
+     *                                  'email.conf.php' associated with the
+     *                                  email for which the email anchor tag
+     *                                  will be rendered.
+     *
+     *                                  Email anchor tag will be rendered for
+     *                                  the default email by default.
+     *
      *  @param  $args['style']          String value of the tag attribute
      *                                                                'style'.
      */
