@@ -97,7 +97,11 @@
         ?><a href='<?php
 
         if ($flagUseMailto) {
-              ?>mailto:<?=$optsUse['key']?>sp@in<?php
+              ?>mailto:<?php
+            if (strlen($optsUse['key'])) {
+                ?><?=$optsUse['key']?>_<?php
+            }
+                ?>sp@in<?php
         } else {
               ?>#' data-spain='<?php
 

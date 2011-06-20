@@ -511,13 +511,13 @@ $(document).ready(function($) {
 
     function attachCAPTCHA(aSendEmail) {
         var strHref = aSendEmail.attr('href');
-        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*(\S*)sp@in$/i);
+        var arrMailto = strHref && strHref.match(/^\s*mailto:\s*((\S*)_)?sp@in$/i);
         var strMailto = arrMailto && arrMailto.length >= 1 && arrMailto[0];
 
         var strAS = aSendEmail.attr('data-spain');
         if (!strMailto && strAS === undefined) return;
 
-        var strKey = arrMailto && arrMailto.length == 2 && arrMailto[1];
+        var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
 
         if (strAS && strAS.toLowerCase() != 'true') strKey = strAS;
 
