@@ -76,6 +76,15 @@
 
       <li>
         <p>
+          PHP-injected anchor tag with a non-pre-statically-configured email
+          address:
+          <br>
+          <?php spainInjectTagForNonConfigEmail("non_config@example.com") ?>
+        </p>
+      </li>
+
+      <li>
+        <p>
           Hard-coded span tag:
           <br>
           <span data-spain='true'></span>

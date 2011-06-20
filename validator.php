@@ -62,9 +62,20 @@
 
         require('email.conf.php');
 
+        $arrEmailsKeyed = null;
+
+        //  May need to merge-in the dynamically generated keys.
+        if (array_key_exists('emails_keyed_dynamic', $_SESSION)) {
+            $arrEmailsKeyed = array_merge(
+                                    $emails_keyed,
+                                    $_SESSION['emails_keyed_dynamic']);
+        } else {
+            $arrEmailsKeyed = $emails_keyed;
+        }
+
         $output['email']                = array();
         $output['email']['def']         = $email_default;
-        $output['email']['keyed']       = $emails_keyed;
+        $output['email']['keyed']       = $arrEmailsKeyed;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }

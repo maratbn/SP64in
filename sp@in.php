@@ -66,23 +66,6 @@
      */
     function spainInjectTag(array $opts = array()) {
 
-        //  This function temporarily switches to the PHP session 'sp@in' to
-        //  which it saves various data used by other modules of the SP@in
-        //  website component.
-        //
-        //  Here the PHP session of the calling function is saved so that it
-        //  can be restored after this function finishes its work.
-        $flagOldSessionExisted = (strlen(session_id()) > 0);
-        $strOldSessionName = $flagOldSessionExisted ? session_name() : "";
-
-        if ($flagOldSessionExisted) {
-            session_write_close();
-        }
-
-        //  Here the 'sp@in' PHP session is temporarily activated:
-        session_name('sp@in');
-        session_start();
-
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
         require('email.conf.php');
@@ -123,7 +106,96 @@
           ?>><?php
           ?><?=$optsUse['caption']?><?php
         ?></a><?php
+    }
 
+    /**
+     *  Injects SP@in email anchor tag into the server-side-rendered page for
+     *  a dynamic email address that has not been statically configured in the
+     *  file 'email.conf.php'
+     *
+     *  @param  $opts                   Array with configuration parameters,
+     *                                  same as for the function
+     *                                  'spainInjectTag(...)' except for the
+     *                                  'key' option, that is determined by
+     *                                  this function.
+     *
+     *  strNonConfigEmail               String with the dynamic email address
+     *                                  to render the tag for.
+     */
+    function spainInjectTagForNonConfigEmail(
+        $strNonConfigEmail,
+        array $opts = null) {
+
+        //  This function temporarily switches to the PHP session 'sp@in' to
+        //  which it saves various data used by other modules of the SP@in
+        //  website component.
+        //
+        //  Here the PHP session of the calling function is saved so that it
+        //  can be restored after this function finishes its work.
+        $flagOldSessionExisted = (strlen(session_id()) > 0);
+        $strOldSessionName = $flagOldSessionExisted ? session_name() : "";
+
+        if ($flagOldSessionExisted) {
+            session_write_close();
+        }
+
+        //  Here the 'sp@in' PHP session is temporarily activated:
+        session_name('sp@in');
+        session_start();
+
+        //  This utility needs to access the configuration file to determine
+        //  how to render the email anchor tags.
+        require('email.conf.php');
+
+
+        //  Now that the session has been initialized and configuration file
+        //  loaded, it is time to get down to business.
+
+        $strKeyUse = null;          //  This variable will hold the key.
+
+        //  First need to check if the email address specified is actually
+        //  configured already:
+        $flagEmailAlreadyConfigured = False;
+        if ($strNonConfigEmail == $email_default) {
+            $flagEmailAlreadyConfigured = True;
+        } else {
+            foreach ($emails_keyed as $strKey => $strValue) {
+                if ($strNonConfigEmail == $strValue) {
+                    $strKeyUse = $strKey;
+                    $flagEmailAlreadyConfigured = True;
+                    break;
+                }
+            }
+        }
+
+        //  If the email address specified really is not an already configured
+        //  address, then need to create a new key for it now.
+        if (!$flagEmailAlreadyConfigured) {
+            if (!array_key_exists('keys_dynamic', $_SESSION)) {
+                $_SESSION['keys_dynamic'] = array();
+            }
+            if (array_key_exists(
+                $strNonConfigEmail,
+                $_SESSION['keys_dynamic'])) {
+                $strKeyUse = $_SESSION['keys_dynamic'][$strNonConfigEmail];
+            } else {
+                $strKeyUse = uniqid(True);
+                $_SESSION['keys_dynamic'][$strNonConfigEmail] = $strKeyUse;
+                if (!array_key_exists('emails_keyed_dynamic', $_SESSION)) {
+                    $_SESSION['emails_keyed_dynamic'] = array();
+                }
+                $_SESSION['emails_keyed_dynamic'][$strKeyUse] =
+                                                           $strNonConfigEmail;
+            }
+        }
+
+        //  The key has now been either determined or generated.
+        $optsUse = $opts;
+        if (!$optsUse) $opsUse = array();
+        $optsUse['key'] = $strKeyUse;
+
+        //  Time to render the tag.
+        spainInjectTag($optsUse);
 
         //  Closing the 'sp@in' PHP session:
         session_write_close();
