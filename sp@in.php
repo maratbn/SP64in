@@ -46,14 +46,14 @@
     /**
      *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
-     *  @param  $args                   Array with configuration parameters.
+     *  @param  $opts                   Array with configuration parameters.
      *
-     *  @param  $args['caption']        String to display inside the tag.
+     *  @param  $opts['caption']        String to display inside the tag.
      *
-     *  @param  $args['class']          String value of the tag attribute
+     *  @param  $opts['class']          String value of the tag attribute
      *                                                                'class'.
      *
-     *  @param  $args['key']            String value of the configured key in
+     *  @param  $opts['key']            String value of the configured key in
      *                                  'email.conf.php' associated with the
      *                                  email for which the email anchor tag
      *                                  will be rendered.
@@ -61,10 +61,10 @@
      *                                  Email anchor tag will be rendered for
      *                                  the default email by default.
      *
-     *  @param  $args['style']          String value of the tag attribute
+     *  @param  $opts['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function spainInjectTag(array $args = array()) {
+    function spainInjectTag(array $opts = array()) {
 
         //  This function temporarily switches to the PHP session 'sp@in' to
         //  which it saves various data used by other modules of the SP@in
@@ -87,22 +87,22 @@
         //  how to render the email anchor tags.
         require('email.conf.php');
 
-        $argsUse = array_merge(array(
+        $optsUse = array_merge(array(
                 'caption'=>"Send Email",
                 'class'=>"",
                 'key'=>"",
                 'style'=>""
-            ), $args);
+            ), $opts);
 
         ?><a href='<?php
 
         if ($flagUseMailto) {
-              ?>mailto:<?=$argsUse['key']?>sp@in<?php
+              ?>mailto:<?=$optsUse['key']?>sp@in<?php
         } else {
               ?>#' data-spain='<?php
 
-            if (strlen($argsUse['key'])) {
-              ?><?=$argsUse['key']?><?php
+            if (strlen($optsUse['key'])) {
+              ?><?=$optsUse['key']?><?php
             } else {
               ?>true<?php
             }
@@ -110,14 +110,14 @@
 
               ?>'<?php
 
-        if (strlen($argsUse['class'])) {
-            ?> class='<?=$argsUse['class']?>'<?php
+        if (strlen($optsUse['class'])) {
+            ?> class='<?=$optsUse['class']?>'<?php
         }
 
-            ?> style='<?=$argsUse['style']?>;visibility:hidden'<?php
+            ?> style='<?=$optsUse['style']?>;visibility:hidden'<?php
 
           ?>><?php
-          ?><?=$argsUse['caption']?><?php
+          ?><?=$optsUse['caption']?><?php
         ?></a><?php
 
 
