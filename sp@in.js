@@ -289,6 +289,9 @@ $(document).ready(function($) {
                                   "font-weight:bold;",
                                 "'>SP@in</div>",
                         "</div>"].join(""));
+
+            var idInputValidate = "sp@in_input_" + (new Date()).getTime();
+
             var inputValidate = $([
                         "<input type='text' style='",
                             "float:left;",
@@ -300,22 +303,31 @@ $(document).ready(function($) {
                             "padding-bottom:0.2em;",
                             "width:5em;",
                           "'>"].join(""));
+
+            inputValidate.attr('id', idInputValidate);
+
             var buttonSubmit = $([
                         "<button style='",
                             "float:right;margin-top:0.5em'>",
                           "Reveal Email</button>"].join(""));
 
-            var divStatus = $([
-                        "<div style='text-align:center;margin-top:0.4em'>",
+            var elStatus = $([
+                        "<label style='",
+                              "display:block;",
+                              "text-align:center;",
+                              "margin-top:0.4em",
+                            "'>",
                           "Enter letters above:",
-                        "</div>"].join(""));
+                        "</label>"].join(""));
+
+            elStatus.attr('for', idInputValidate);
 
             divCEntry
                 .append(divCAPTCHA)
                 .append($([
                         "<div style='margin:0 1.2em;'>",
                         "</div>"].join(""))
-                        .append(divStatus)
+                        .append(elStatus)
                         .append(inputValidate)
                         .append(buttonSubmit))
                 .append($("<div style='clear:both' />"));
@@ -338,7 +350,7 @@ $(document).ready(function($) {
              *  the server.
              */
             function validateCAPTCHA() {
-                divStatus.text("Validating...  Please wait...");
+                elStatus.text("Validating...  Please wait...");
                 inputValidate.attr('readonly', true);
                 buttonSubmit.css('display', 'none');
                 buttonSubmit.attr('disabled', true);
@@ -352,14 +364,14 @@ $(document).ready(function($) {
                                 refreshInput();
                             },
                         error: function() {
-                                divStatus.text("Encountered error making XHR"
+                                elStatus.text("Encountered error making XHR"
                                                + " request to server.");
                             },
                         success: function(data) {
                                 if (data && data.is_valid) {
-                                    divStatus.text("Validated successfully.");
+                                    elStatus.text("Validated successfully.");
                                 } else {
-                                    divStatus.text("Incorrect letters " +
+                                    elStatus.text("Incorrect letters " +
                                                "entered.  Please try again.");
                                     totalInvalid++;
                                 }
