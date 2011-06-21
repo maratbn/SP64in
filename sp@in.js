@@ -318,7 +318,7 @@ $(document).ready(function($) {
                         .append(divStatus)
                         .append(inputValidate)
                         .append(buttonSubmit))
-                        .append($("<div style='clear:both' />"));
+                .append($("<div style='clear:both' />"));
 
             var totalInvalid = 0;
             function refreshCAPTCHA() {
