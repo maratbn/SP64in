@@ -54,6 +54,8 @@
     # Sets email and recall data on the output hash map.
     function setEmailData(&$output) {
 
+        //  This creates and saves a recall id so that the user does not have
+        //  to enter the CAPTCHA more than once:
         if (!array_key_exists('recall', $_SESSION))
             $_SESSION['recall'] = array();
 
