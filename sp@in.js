@@ -195,6 +195,22 @@ $(document).ready(function($) {
         return khartl_cookie('sp@in_recall');
     }
 
+    var mapRememberedKeys = {};
+    var arrRememberedKeys = [];
+
+    /**
+     *  Remembers a sp@in tag key present on the page, to be able to later
+     *  tell the server which emails we need for this page.
+     */
+    function rememberKey(strKey) {
+        if (!strKey) return;
+
+        if (!mapRememberedKeys[strKey]) {
+            mapRememberedKeys[strKey] = true;
+            arrRememberedKeys.push(strKey);
+        }
+    }
+
     var elEvents = $("<span />");
 
     var isReqValidated = false;
@@ -215,7 +231,7 @@ $(document).ready(function($) {
         $.ajax({
                 url: '/components/sp@in/./validator.php',
                 type: 'POST',
-                data: params.request,
+                data: $.extend({keys: arrRememberedKeys.join(" ")}, params.request),
                 dataType: 'json',
                 complete: function() {
                         if (params.complete) params.complete();
@@ -246,7 +262,6 @@ $(document).ready(function($) {
                 request: {'recall': recall_id}
             });
     }
-    recallEmailData();
 
     var captcha = (
         /**
@@ -376,6 +391,8 @@ $(document).ready(function($) {
         })();
 
     function attachCAPTCHAForKey(aSendEmail, strKey) {
+
+        rememberKey(strKey);
 
         function getEmail() {
             if (!dataEmail) return "";
@@ -533,4 +550,6 @@ $(document).ready(function($) {
 
     $('span[data-spain]').each(function() {insertSendEmailLink($(this))});
     $('a').each(function() {attachCAPTCHA($(this))});
+
+    recallEmailData();
 });

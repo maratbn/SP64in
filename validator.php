@@ -75,9 +75,22 @@
             $arrEmailsKeyed = $emails_keyed;
         }
 
+        //  Now will pick out only the keys within which the client is
+        //  interested:
+        $arg_keysNeeded = array_key_exists('keys', $_POST)
+                                                      ? $_POST['keys'] : "";
+        $arrKeysNeeded = explode(" ", $arg_keysNeeded);
+
+        $arrEmailsKeyedNeeded = array();
+        foreach ($arrKeysNeeded as $strKey) {
+            if (!array_key_exists($strKey, $arrEmailsKeyed)) continue;
+
+            $arrEmailsKeyedNeeded[$strKey] = $arrEmailsKeyed[$strKey];
+        }
+        
         $output['email']                = array();
         $output['email']['def']         = $email_default;
-        $output['email']['keyed']       = $arrEmailsKeyed;
+        $output['email']['keyed']       = $arrEmailsKeyedNeeded;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }
