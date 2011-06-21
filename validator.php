@@ -53,11 +53,11 @@
 
     # Sets email and recall data on the output hash map.
     function setEmailData(&$output) {
-        $recall_id = uniqid(True);
 
         if (!array_key_exists('recall', $_SESSION))
             $_SESSION['recall'] = array();
 
+        $recall_id = uniqid(True);
         $_SESSION['recall'][$recall_id] = True;
 
         require('email.conf.php');
