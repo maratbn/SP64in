@@ -56,7 +56,7 @@
         if (!array_key_exists('recall', $_SESSION))
             $_SESSION['recall'] = array();
 
-        $recall_id = uniqid(True);
+        $recall_id = uniqid("", True);
         $_SESSION['recall'][$recall_id] = True;
 
         require('email.conf.php');

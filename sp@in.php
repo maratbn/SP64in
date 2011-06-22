@@ -164,7 +164,7 @@
                 $_SESSION['keys_dynamic'])) {
                 $strKeyUse = $_SESSION['keys_dynamic'][$strNonConfigEmail];
             } else {
-                $strKeyUse = uniqid(True);
+                $strKeyUse = uniqid("", True);
                 $_SESSION['keys_dynamic'][$strNonConfigEmail] = $strKeyUse;
                 if (!array_key_exists('emails_keyed_dynamic', $_SESSION)) {
                     $_SESSION['emails_keyed_dynamic'] = array();
