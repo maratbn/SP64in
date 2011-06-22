@@ -108,8 +108,8 @@
         if ($isValid) $flagOKtoOutputData = True;
     }
 
-    session_name('sp@in');
-    session_start();
+    //  Start a session if it was not started already:
+    if (!strlen(session_id())) session_start();
 
     if (!$arg_validate && $arg_recall) {
         if (array_key_exists('recall', $_SESSION) &&
