@@ -39,6 +39,8 @@
  *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+    require_once('common.php');
+
     function isCaptchaValid($arg_validate) {
         //  Based on example at:
         //  http://www.ejeliot.com/pages/php-captcha
@@ -72,6 +74,14 @@
             $arrEmailsKeyed = $emails_keyed;
         }
 
+        $arrEmailsKeyedEnc = null;
+        if ($flagAlwaysEncryptKeys) {
+            $arrEmailsKeyedEnc = array();
+            foreach ($arrEmailsKeyed as $strKey => $strEmail) {
+                $arrEmailsKeyedEnc[encryptKey($strKey)] = $strEmail;
+            }
+        }
+
         //  Now will pick out only the keys within which the client is
         //  interested:
         $arg_keysNeeded = array_key_exists('keys', $_POST)
@@ -79,12 +89,31 @@
         $arrKeysNeeded = explode(" ", $arg_keysNeeded);
 
         $arrEmailsKeyedNeeded = array();
-        foreach ($arrKeysNeeded as $strKey) {
-            if (!array_key_exists($strKey, $arrEmailsKeyed)) continue;
 
-            $arrEmailsKeyedNeeded[$strKey] = $arrEmailsKeyed[$strKey];
+        function pickoutKeys(
+            &$arrKeysNeeded,
+            &$arrEmailsKeyedPickFrom,
+            &$arrEmailsKeyedNeeded) {
+            foreach ($arrKeysNeeded as $strKey) {
+                if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
+                    continue;
+
+                $arrEmailsKeyedNeeded[$strKey] = $arrEmailsKeyedPickFrom[$strKey];
+            }
         }
-        
+
+        if ($arrEmailsKeyedEnc) {
+            pickoutKeys(
+                $arrKeysNeeded,
+                $arrEmailsKeyedEnc,
+                $arrEmailsKeyedNeeded);
+        } else {
+            pickoutKeys(
+                $arrKeysNeeded,
+                $arrEmailsKeyed,
+                $arrEmailsKeyedNeeded);
+        }
+
         $output['email']                = array();
         $output['email']['def']         = $email_default;
         $output['email']['keyed']       = $arrEmailsKeyedNeeded;

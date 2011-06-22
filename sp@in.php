@@ -43,6 +43,8 @@
  *
  */
 
+    require_once('common.php');
+
     /**
      *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
@@ -82,14 +84,14 @@
         if ($flagUseMailto) {
               ?>mailto:<?php
             if (strlen($optsUse['key'])) {
-                ?><?=$optsUse['key']?>_<?php
+                ?><?=encryptKeyIfNeeded($optsUse['key'])?>_<?php
             }
                 ?>sp@in<?php
         } else {
               ?>#' data-spain='<?php
 
             if (strlen($optsUse['key'])) {
-              ?><?=$optsUse['key']?><?php
+              ?><?=encryptKeyIfNeeded($optsUse['key'])?><?php
             } else {
               ?>true<?php
             }
