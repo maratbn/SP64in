@@ -126,27 +126,12 @@
         $strNonConfigEmail,
         array $opts = null) {
 
-        //  This function temporarily switches to the PHP session 'sp@in' to
-        //  which it saves various data used by other modules of the SP@in
-        //  website component.
-        //
-        //  Here the PHP session of the calling function is saved so that it
-        //  can be restored after this function finishes its work.
-        $flagOldSessionExisted = (strlen(session_id()) > 0);
-        $strOldSessionName = $flagOldSessionExisted ? session_name() : "";
-
-        if ($flagOldSessionExisted) {
-            session_write_close();
-        }
-
-        //  Here the 'sp@in' PHP session is temporarily activated:
-        session_name('sp@in');
-        session_start();
-
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
         require('email.conf.php');
 
+        //  Start a session if it was not started already:
+        if (!strlen(session_id())) session_start();
 
         //  Now that the session has been initialized and configuration file
         //  loaded, it is time to get down to business.
@@ -196,14 +181,5 @@
 
         //  Time to render the tag.
         spainInjectTag($optsUse);
-
-        //  Closing the 'sp@in' PHP session:
-        session_write_close();
-
-        //  Politely restoring the calling function's session if it existed:
-        if ($flagOldSessionExisted) {
-            session_name($strOldSessionName);
-            session_start();
-        }
     }
 ?>

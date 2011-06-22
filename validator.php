@@ -45,9 +45,6 @@
         require('./php-captcha/php-captcha.inc.php');
         $isValid = PhpCaptcha::Validate($arg_validate) ? True : False;
 
-        //Closing up the PHP session after php-captcha:
-        session_write_close();
-
         return $isValid;
     }
 
