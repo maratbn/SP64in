@@ -564,4 +564,7 @@ $(document).ready(function($) {
     $('a').each(function() {attachCAPTCHA($(this))});
 
     recallEmailData();
+
+    $('img[src="/components/sp@in/graphics/loading-1.gif"]').css(
+                                                            'display','none');
 });
