@@ -158,16 +158,16 @@
         //  If the email address specified really is not an already configured
         //  address, then need to create a new key for it now.
         if (!$flagEmailAlreadyConfigured) {
-            if (!array_key_exists('keys_dynamic', $_SESSION)) {
-                $_SESSION['keys_dynamic'] = array();
+            if (!array_key_exists('sp@in_keys_dynamic', $_SESSION)) {
+                $_SESSION['sp@in_keys_dynamic'] = array();
             }
             if (array_key_exists(
                 $strNonConfigEmail,
-                $_SESSION['keys_dynamic'])) {
-                $strKeyUse = $_SESSION['keys_dynamic'][$strNonConfigEmail];
+                $_SESSION['sp@in_keys_dynamic'])) {
+                $strKeyUse = $_SESSION['sp@in_keys_dynamic'][$strNonConfigEmail];
             } else {
                 $strKeyUse = uniqid("", True);
-                $_SESSION['keys_dynamic'][$strNonConfigEmail] = $strKeyUse;
+                $_SESSION['sp@in_keys_dynamic'][$strNonConfigEmail] = $strKeyUse;
                 if (!array_key_exists('emails_keyed_dynamic', $_SESSION)) {
                     $_SESSION['emails_keyed_dynamic'] = array();
                 }
