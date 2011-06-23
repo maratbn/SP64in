@@ -55,11 +55,11 @@
 
         //  This creates and saves a recall id so that the user does not have
         //  to enter the CAPTCHA more than once:
-        if (!array_key_exists('recall', $_SESSION))
-            $_SESSION['recall'] = array();
+        if (!array_key_exists('sp@in_recall', $_SESSION))
+            $_SESSION['sp@in_recall'] = array();
 
         $recall_id = uniqid("", True);
-        $_SESSION['recall'][$recall_id] = True;
+        $_SESSION['sp@in_recall'][$recall_id] = True;
 
         require('email.conf.php');
 
@@ -141,10 +141,10 @@
     if (!strlen(session_id())) session_start();
 
     if (!$arg_validate && $arg_recall) {
-        if (array_key_exists('recall', $_SESSION) &&
-            array_key_exists($arg_recall, $_SESSION['recall']) &&
-                                           $_SESSION['recall'][$arg_recall]) {
-            $_SESSION['recall'][$arg_recall] = False;
+        if (array_key_exists('sp@in_recall', $_SESSION) &&
+            array_key_exists($arg_recall, $_SESSION['sp@in_recall']) &&
+                                     $_SESSION['sp@in_recall'][$arg_recall]) {
+            $_SESSION['sp@in_recall'][$arg_recall] = False;
             $flagOKtoOutputData = True;
         }
     }
