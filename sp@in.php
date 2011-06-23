@@ -168,10 +168,11 @@
             } else {
                 $strKeyUse = uniqid("", True);
                 $_SESSION['sp@in_keys_dynamic'][$strNonConfigEmail] = $strKeyUse;
-                if (!array_key_exists('emails_keyed_dynamic', $_SESSION)) {
-                    $_SESSION['emails_keyed_dynamic'] = array();
+                if (!array_key_exists('sp@in_emails_keyed_dynamic',
+                                                                 $_SESSION)) {
+                    $_SESSION['sp@in_emails_keyed_dynamic'] = array();
                 }
-                $_SESSION['emails_keyed_dynamic'][$strKeyUse] =
+                $_SESSION['sp@in_emails_keyed_dynamic'][$strKeyUse] =
                                                            $strNonConfigEmail;
             }
         }

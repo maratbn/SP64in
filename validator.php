@@ -66,10 +66,10 @@
         $arrEmailsKeyed = null;
 
         //  May need to merge-in the dynamically generated keys.
-        if (array_key_exists('emails_keyed_dynamic', $_SESSION)) {
+        if (array_key_exists('sp@in_emails_keyed_dynamic', $_SESSION)) {
             $arrEmailsKeyed = array_merge(
                                     $emails_keyed,
-                                    $_SESSION['emails_keyed_dynamic']);
+                                    $_SESSION['sp@in_emails_keyed_dynamic']);
         } else {
             $arrEmailsKeyed = $emails_keyed;
         }
