@@ -10,6 +10,7 @@
             'treasurer'     => 'max@example.com',
             'pubrelations'  => 'roz@example.com',
             'sales'         => 'rudy@example.com',
+            'support'       => 'ellen@example.com',
             'product'       => 'violet@example.com',
             'marketing'     => 'clark@example.com',
             'engineering'   => 'brad@example.com'
