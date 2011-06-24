@@ -565,6 +565,12 @@ $(document).ready(function($) {
 
     recallEmailData();
 
-    $('img[src="/components/sp@in/graphics/loading-1.gif"]').css(
-                                                            'display','none');
+    //  Need to hide the loading graphics.
+    //  A less efficient algorithm is used on <= IE7 because jQuery has a
+    //  problem with the attribute selector on this browser.
+    (($.browser.msie && $.browser.version <= 7)
+        ? ($('img').filter(function() {return ($(this).attr('src')
+                             == '/components/sp@in/graphics/loading-1.gif')}))
+        : $('img[src="/components/sp@in/graphics/loading-1.gif"]'))
+        .css('display','none');
 });
