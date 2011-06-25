@@ -56,7 +56,7 @@
      *                                                                'class'.
      *
      *  @param  $opts['key']            String value of the configured key in
-     *                                  'email.conf.php' associated with the
+     *                                  'sp@in.conf.php' associated with the
      *                                  email for which the email anchor tag
      *                                  will be rendered.
      *
@@ -70,7 +70,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('email.conf.php');
+        require('sp@in.conf.php');
 
         $optsUse = array_merge(array(
                 'caption'=>"Send Email",
@@ -114,7 +114,7 @@
     /**
      *  Injects SP@in email anchor tag into the server-side-rendered page for
      *  a dynamic email address that has not been statically configured in the
-     *  file 'email.conf.php'
+     *  file 'sp@in.conf.php'
      *
      *  @param  $opts                   Array with configuration parameters,
      *                                  same as for the function
@@ -131,7 +131,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('email.conf.php');
+        require('sp@in.conf.php');
 
         //  Start a session if it was not started already:
         if (!strlen(session_id())) session_start();

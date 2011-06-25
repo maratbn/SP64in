@@ -61,7 +61,7 @@
         $recall_id = uniqid("", True);
         $_SESSION['sp@in_recall'][$recall_id] = True;
 
-        require('email.conf.php');
+        require('sp@in.conf.php');
 
         $arrEmailsKeyed = null;
 

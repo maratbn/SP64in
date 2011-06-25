@@ -47,14 +47,14 @@
     /**
      *  Encrypts the email key specified according to the configuration
      *  setting '$flagAlwaysEncryptKeys' in the configuration file
-     *  'email.conf.php'.
+     *  'sp@in.conf.php'.
      *
      *  @param  $strKey                 String with the email key to possibly
      *                                                                encrypt.
      */
     function encryptKeyIfNeeded($strKey) {
         //  Need to read the configuration setting '$flagAlwaysEncryptKeys':
-        require('email.conf.php');
+        require('sp@in.conf.php');
         return $flagAlwaysEncryptKeys ? encryptKey($strKey) : $strKey;
     }
 ?>
