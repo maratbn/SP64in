@@ -276,6 +276,12 @@ $(document).ready(function($) {
                             "font-size:10px;",
                           "'/>"].join(""));
 
+            // This <div> stretches on IE6 if dimensions are not applied.
+            if ($.browser.msie && $.browser.version <= 6) {
+                divCEntry.css('position', 'relative');
+                divCEntry.css('width', '252px');
+            }
+
             var divCAPTCHA = $([
                         "<div style='",
                             "position:relative;width:250px;height:70px'>",
