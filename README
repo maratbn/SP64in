@@ -1,0 +1,35 @@
+                              SP@in = Pain 4 SPAM
+
+
+Website component for CAPTCHA-protecting email addresses from email address
+harvesting web crawlers.
+
+
+Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+
+Licensed under BSD, with BSD / MIT licensed components.  See LICENSE for
+                                                                      details.
+
+
+  Note: Currently requires the PHP server-side framework for CAPTCHA
+        generation.
+
+
+  Overview:
+
+    * Hides published email addresses from conventional web crawlers.
+
+    * Supports organization directories with multiple email addresses.
+
+    * Each unique visitor can privately see the published email addresses only
+      by solving a CAPTCHA challenge.
+
+    * Published email addresses are revealed in clickable links compatible
+      with the browser-configured default email client.
+
+    * The process of entering the CAPTCHA challenge does not involve page
+      navigation or switching browser windows.
+
+    * CAPTCHA re-entry not always necessary on subsequent page re-visits.
+
+    * Works on IE6 and better browsers.
