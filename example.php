@@ -30,7 +30,7 @@
          *
          *  SET THE FOLLOWING VARIABLE TO False IF DEPLOYED TO PUBLIC SITE:
          */
-        $flagExamplePageEnabledSecurityRisk = True;
+        $flagExamplePageEnabledSecurityRisk = False;
         if (!$flagExamplePageEnabledSecurityRisk) {
     ?>
       <p>
