@@ -5,7 +5,7 @@
 
 <html>
   <head>
-    <title>SP@in usage example</title>
+    <title>SP@in Usage Examples</title>
     <link rel='stylesheet'
         href='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
     <style>
