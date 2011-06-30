@@ -92,6 +92,13 @@
       </li>
       <li>
         <p>
+          Upper-case hard-coded mailto anchor tag originally empty:
+          <br>
+          <a href='MAILTO:SP@IN'></a>
+        </p>
+      </li>
+      <li>
+        <p>
           Hard-coded anchor tag originally empty:
           <br>
           <a href='#' data-spain='true'></a>
