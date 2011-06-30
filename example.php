@@ -85,6 +85,13 @@
 
       <li>
         <p>
+          Hard-coded mailto anchor tag originally empty:
+          <br>
+          <a href='mailto:sp@in'></a>
+        </p>
+      </li>
+      <li>
+        <p>
           Hard-coded anchor tag originally empty:
           <br>
           <a href='#' data-spain='true'></a>
