@@ -85,13 +85,6 @@
 
       <li>
         <p>
-          Hard-coded span tag:
-          <br>
-          <span data-spain='true'></span>
-        </p>
-      </li>
-      <li>
-        <p>
           Hard-coded anchor tag originally empty:
           <br>
           <a href='#' data-spain='true'></a>
@@ -102,6 +95,13 @@
           Hard-coded anchor tag originally with custom content:
           <br>
           <a href='#' data-spain='true'>Send Email to Somebody</a>
+        </p>
+      </li>
+      <li>
+        <p>
+          Hard-coded span tag:
+          <br>
+          <span data-spain='true'></span>
         </p>
       </li>
     </ul>
