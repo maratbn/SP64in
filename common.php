@@ -43,7 +43,28 @@
      *  Encrypts the email key specified.
      */
     function encryptKey($strKey) {
-        return sha1($strKey);
+        //  Need to read the configuration setting
+        //  '$flagAlwaysEncryptWithSalt':
+        require('sp@in.conf.php');
+
+        //  Prepare string to encrypt:
+        $strEncrypt = $strKey;
+
+        //  Now need to check if the encryption should be salted:
+        if ($flagAlwaysEncryptWithSalt) {
+            //  Start a session if it was not started already:
+            if (!strlen(session_id())) session_start();
+
+            //  Make sure to have a salt:
+            if (!array_key_exists('sp@in_salt', $_SESSION)) {
+                $_SESSION['sp@in_salt'] = uniqid("", True);
+            }
+
+            //  Add the salt:
+            $strEncrypt .= $_SESSION['sp@in_salt'];
+        }
+
+        return sha1($strEncrypt);
     }
 
     /**

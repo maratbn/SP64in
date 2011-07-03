@@ -287,13 +287,16 @@ $(document).ready(function($) {
             var divCAPTCHA = $([
                         "<div style='",
                             "position:relative;width:250px;height:70px'>",
-                            "<div style='",
+                          "<div style='",
                                   "position:absolute;",
                                   "top:-10px;",
                                   "width:250px;",
                                   "text-align:center;",
                                   "font-weight:bold;",
-                                "'>SP@in</div>",
+                                "'>",
+                            "<a href='http://maratbn.com/sp@in'",
+                                                   " target='_new'>SP@in</a>",
+                          "</div>",
                         "</div>"].join(""));
 
             var idInputValidate = "sp@in_input_" + (new Date()).getTime();
