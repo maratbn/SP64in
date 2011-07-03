@@ -25,4 +25,14 @@
     //  Disabling this setting may sometimes be useful for debuging, but
     //  otherwise NOT RECOMMENDED.
     $flagAlwaysEncryptKeys = True;
+
+    //  If this flag is set to 'True', then all the email keys will always be
+    //  encrypted with an additional random salt for each session.  This means
+    //  that the same keys will never be encrypted the same across separate
+    //  sessions, preventing correctly guessing the encrypted key tokens just
+    //  by knowing how they look like encrypted.
+    //
+    //  Disabling this setting may sometimes be useful for debuging, but
+    //  otherwise NOT RECOMMENDED.
+    $flagAlwaysEncryptWithSalt = True;
 ?>
