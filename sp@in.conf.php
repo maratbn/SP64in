@@ -19,7 +19,7 @@
     //  'mailto:' 'href's:
     $flagUseMailto = True;
 
-    //  If this flag is set to 'True', then all email keys will always be
+    //  If this flag is set to 'True', then all the email keys will always be
     //  rendered to the client encrypted rather than in cleartext.
     //
     //  Disabling this setting may sometimes be useful for debuging, but
