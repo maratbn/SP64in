@@ -98,18 +98,18 @@
 
         <li>
           <p>
-            PHP-injected anchor tag with key 'webmaster':
-            <br>
-            <?php spainInjectTag(array(
-                'key'=>'webmaster')) ?>
-          </p>
-        </li>
-        <li>
-          <p>
             PHP-injected anchor tag with key 'admin':
             <br>
             <?php spainInjectTag(array(
                 'key'=>'admin')) ?>
+          </p>
+        </li>
+        <li>
+          <p>
+            PHP-injected anchor tag with key 'support':
+            <br>
+            <?php spainInjectTag(array(
+                'key'=>'support')) ?>
           </p>
         </li>
 
