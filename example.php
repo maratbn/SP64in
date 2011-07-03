@@ -168,7 +168,7 @@
     <script type='text/javascript'
         src='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.min.js'>
     </script>
-    <script type='text/javascript' src='/components/sp@in/./sp@in-v0.1.1-min.js'>
+    <script type='text/javascript' src='/components/sp@in/./sp@in-v0.1.2-min.js'>
     </script>
   </body>
 </html>

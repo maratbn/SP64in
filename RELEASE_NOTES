@@ -1,8 +1,21 @@
 2011-06-25  Version 0.1
 
-    Original release
+    Original release.
 
 
 2011-06-28  Version 0.1.1
 
-    Fixed CAPTCHA entry tooltip width problem on IE6
+    Fixed CAPTCHA entry tooltip width problem on IE6.
+
+
+2011-07-03  Version 0.1.2
+
+    Supporting mixed case mailto anchor tags.
+
+    Disabling example pages by default.
+
+    Switched to OSL font Pecita.
+
+    Encrypting key tokens with a random salt.
+
+    Added banner link to the SP@in project page.
