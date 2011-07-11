@@ -7,7 +7,7 @@
   <head>
     <title>SP@in Usage Examples</title>
     <link rel='stylesheet'
-        href='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
+        href='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.css'>
     <style>
       .as_bold {
           font-weight:      bold;
@@ -166,9 +166,9 @@
     <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
     </script>
     <script type='text/javascript'
-        src='/components/sp@in/./toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.js'>
+        src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.js'>
     </script>
-    <script type='text/javascript' src='/components/sp@in/./sp@in.js'>
+    <script type='text/javascript' src='/components/sp@in/sp@in.js'>
     </script>
   </body>
 </html>
