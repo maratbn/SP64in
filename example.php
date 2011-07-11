@@ -163,7 +163,8 @@
         }
     ?>
 
-    <script type='text/javascript' src='/toolkits/jquery/jquery-1.5.min.js'>
+    <script type='text/javascript'
+        src='/components/sp@in/toolkits/jquery/jquery-1.6.2.min.js'>
     </script>
     <script type='text/javascript'
         src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.min.js'>
