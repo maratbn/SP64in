@@ -445,7 +445,11 @@ $(document).ready(function($) {
 
         var qapiClickToReveal = createQT(
                             aSendEmail,
-                            $("<div>Click to reveal email address...</div>"));
+                            $("<div>Click to reveal email address...</div>"),
+                            {
+                                show: { effect: true },
+                                hide: { effect: true }
+                            });
 
         var elContainerCAPTCHA = $("<div />");
         var qapiCAPTCHA = createQT(aSendEmail, elContainerCAPTCHA, {
