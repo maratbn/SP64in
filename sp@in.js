@@ -4,7 +4,7 @@
  *
  *  http://maratbn.com/sp@in
  *
- *  Version 0.1.2
+ *  Version 0.1.3
  *
  *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
