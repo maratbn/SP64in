@@ -1,3 +1,9 @@
+2011-07-11  Version 0.1.3
+
+    Bundling jQuery 1.6.2 with SP@in so that the example page works without
+    prior jQuery deployment.
+
+
 2011-07-03  Version 0.1.2
 
     Supporting mixed case mailto anchor tags.
