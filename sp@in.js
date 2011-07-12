@@ -575,8 +575,8 @@ $(document).ready(function($) {
         spanParent.append(aSendEmail);
     }
 
-    $('span[data-spain]').each(function() {insertSendEmailLink($(this))});
     $('a').each(function() {attachCAPTCHA($(this))});
+    $('span[data-spain]').each(function() {insertSendEmailLink($(this))});
 
     recallEmailData();
 
