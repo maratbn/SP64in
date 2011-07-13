@@ -2,7 +2,7 @@
  *  SP@in = Pain 4 SPAM website component for CAPTCHA-protecting email
  *  addresses from email address harvesting web crawlers.
  *
- *  http://maratbn.com/sp@in
+ *  http://maratbn.com/projects/sp@in
  *
  *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
@@ -294,7 +294,7 @@ $(document).ready(function($) {
                                   "text-align:center;",
                                   "font-weight:bold;",
                                 "'>",
-                            "<a href='http://maratbn.com/sp@in'",
+                            "<a href='http://maratbn.com/projects/sp@in'",
                                                    " target='_new'>SP@in</a>",
                           "</div>",
                         "</div>"].join(""));
