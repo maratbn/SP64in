@@ -1,3 +1,11 @@
+2012-12-15  Version 0.1.4
+
+    Updated project information to include the alternative name SP64in.
+
+    Project now hosted at http://maratbn.com/projects/sp64in/ and
+                                             https://github.com/maratbn/SP64in
+
+
 2011-07-11  Version 0.1.3
 
     Bundling jQuery 1.6.2 with SP@in so that the example page works without
