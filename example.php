@@ -58,7 +58,7 @@
         based on instructions on lines 23 - 31.
       </p>
       <p>
-        This example page is for SP@in version VERSION
+        This example page is for SP@in version RELEASE
       </p>
       <ul>
         <li>
