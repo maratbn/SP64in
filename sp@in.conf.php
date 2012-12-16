@@ -1,4 +1,6 @@
 <?php
+    //  This configuration file is intended for SP@in (SP64in) version VERSION
+
     $email_default = "webmaster@example.com";
 
     $emails_keyed = array(
