@@ -57,6 +57,9 @@
         This examples page can be disabled by editing line 33 of this file,
         based on instructions on lines 23 - 31.
       </p>
+      <p>
+        This example page is for SP@in version VERSION
+      </p>
       <ul>
         <li>
           <p>
