@@ -5,7 +5,7 @@
  *
  *  http://maratbn.com/projects/sp64in
  *
- *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  Module:         common.php
  *
