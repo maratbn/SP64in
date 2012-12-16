@@ -1,13 +1,13 @@
 <?php
 /**
- *  SP@in = Pain 4 SPAM website component for CAPTCHA-protecting email
- *  addresses from email address harvesting web crawlers.
+ *  SP@in (SP64in) = Pain 4 SPAM website component for CAPTCHA-protecting
+ *  email addresses from email address harvesting web crawlers.
  *
- *  http://maratbn.com/projects/sp@in
+ *  http://maratbn.com/projects/sp64in
  *
- *  Version 0.1.3
+ *  Version: RELEASE
  *
- *  Copyright (c) 2011 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  Module:         validator.php
  *
