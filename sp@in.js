@@ -294,7 +294,7 @@ $(document).ready(function($) {
                                   "text-align:center;",
                                   "font-weight:bold;",
                                 "'>",
-                            "<a href='http://maratbn.com/projects/sp@in'",
+                            "<a href='http://maratbn.com/projects/sp64in'",
                                                    " target='_new'>SP@in</a>",
                           "</div>",
                         "</div>"].join(""));
