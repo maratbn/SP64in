@@ -64,16 +64,16 @@
         <li>
           <p>
             Anchor tag injected via PHP convenience function
-            'spainInjectTag(...)' with all default options:
+            'sp64inInjectTag(...)' with all default options:
             <br>
-            <?php spainInjectTag() ?>
+            <?php sp64inInjectTag() ?>
           </p>
         </li>
         <li>
           <p>
             PHP-injected anchor tag with non-default caption:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'caption'=>"Send Email to Somebody")) ?>
           </p>
         </li>
@@ -81,7 +81,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS classes:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'class'=>"as_bold as_italic")) ?>
           </p>
         </li>
@@ -91,7 +91,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS style:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                     'style'=> "display:block;width:15em;padding:0.4em;"
                               . "margin:0.6em;border: 2px dashed red;"
                               . "text-align:center"
@@ -103,7 +103,7 @@
           <p>
             PHP-injected anchor tag with key 'admin':
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'key'=>'admin')) ?>
           </p>
         </li>
@@ -111,7 +111,7 @@
           <p>
             PHP-injected anchor tag with key 'support':
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'key'=>'support')) ?>
           </p>
         </li>
@@ -121,7 +121,7 @@
             PHP-injected anchor tag with a non-pre-statically-configured email
             address:
             <br>
-            <?php spainInjectTagForNonConfigEmail("non_config@example.com") ?>
+            <?php sp64inInjectTagForNonConfigEmail("non_config@example.com") ?>
           </p>
         </li>
 
@@ -143,21 +143,21 @@
           <p>
             Hard-coded anchor tag originally empty:
             <br>
-            <a href='#' data-spain='true'></a>
+            <a href='#' data-sp64in='true'></a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded anchor tag originally with custom content:
             <br>
-            <a href='#' data-spain='true'>Send Email to Somebody</a>
+            <a href='#' data-sp64in='true'>Send Email to Somebody</a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded span tag:
             <br>
-            <span data-spain='true'></span>
+            <span data-sp64in='true'></span>
           </p>
         </li>
       </ul>
@@ -167,7 +167,7 @@
     ?>
 
     <script type='text/javascript'
-        src='/components/sp@in/toolkits/jquery/jquery-1.6.2.min.js'>
+        src='/components/sp@in/toolkits/jquery/jquery-1.8.3.js'>
     </script>
     <script type='text/javascript'
         src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-0b294b/jquery.qtip.min.js'>

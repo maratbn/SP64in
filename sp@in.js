@@ -18,7 +18,7 @@
  *  Module:         sp@in.js
  *
  *  Description:    JavaScript logic that activates anchor tags / links with
- *                  HTML attributes 'data-spain' and 'href' with values
+ *                  HTML attributes 'data-sp64in' and 'href' with values
  *                  'mailto:<key>sp@in' to become CAPTCHA-protected email
  *                  links.
  *
@@ -296,7 +296,7 @@ $(document).ready(function($) {
                                   "text-align:center;",
                                   "font-weight:bold;",
                                 "'>",
-                            "<a href='http://maratbn.com/projects/sp@in'",
+                            "<a href='http://maratbn.com/projects/sp64in'",
                                                    " target='_new'>SP@in</a>",
                           "</div>",
                         "</div>"].join(""));
@@ -558,7 +558,8 @@ $(document).ready(function($) {
         var arrMailto = strHref && strHref.match(/^\s*mailto:\s*((\S*)_)?sp@in$/i);
         var strMailto = arrMailto && arrMailto.length >= 1 && arrMailto[0];
 
-        var strAS = aSendEmail.attr('data-spain');
+        var strAS = aSendEmail.attr('data-sp64in');
+        if (!strAS) strAS = aSendEmail.attr('data-spain');
         if (!strMailto && strAS === undefined) return;
 
         var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
@@ -569,13 +570,14 @@ $(document).ready(function($) {
     }
 
     function insertSendEmailLink(spanParent) {
-        var aSendEmail = $("<a href='#' data-spain='" +
-                                 spanParent.attr('data-spain') + "'></a>");
+        var aSendEmail = $("<a href='#' data-sp64in='" +
+                                 spanParent.attr('data-sp64in') + "'></a>");
         attachCAPTCHA(aSendEmail);
         spanParent.append(aSendEmail);
     }
 
     $('a').each(function() {attachCAPTCHA($(this))});
+    $('span[data-sp64in]').each(function() {insertSendEmailLink($(this))});
     $('span[data-spain]').each(function() {insertSendEmailLink($(this))});
 
     recallEmailData();
