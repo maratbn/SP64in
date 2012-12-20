@@ -79,11 +79,12 @@
     This license is available at (http://scripts.sil.org/OFL)
 
 
-  jQuery 1.6.2
+  jQuery 1.8.3
   http://jquery.com/
   Included under MIT license.
 
-    Copyright (c) 2011 John Resig, http://jquery.com/
+    Copyright 2012 jQuery Foundation and other contributors
+    http://jquery.com/
 
     Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the
