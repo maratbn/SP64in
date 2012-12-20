@@ -91,7 +91,7 @@
             }
                 ?>sp@in<?php
         } else {
-              ?>#' data-spain='<?php
+              ?>#' data-sp64in='<?php
 
             if (strlen($optsUse['key'])) {
               ?><?=encryptKeyIfNeeded($optsUse['key'])?><?php
