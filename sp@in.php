@@ -68,7 +68,7 @@
      *  @param  $opts['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function spainInjectTag(array $opts = array()) {
+    function sp64inInjectTag(array $opts = array()) {
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
@@ -120,14 +120,14 @@
      *
      *  @param  $opts                   Array with configuration parameters,
      *                                  same as for the function
-     *                                  'spainInjectTag(...)' except for the
+     *                                  'sp64inInjectTag(...)' except for the
      *                                  'key' option, that is determined by
      *                                  this function.
      *
      *  strNonConfigEmail               String with the dynamic email address
      *                                  to render the tag for.
      */
-    function spainInjectTagForNonConfigEmail(
+    function sp64inInjectTagForNonConfigEmail(
         $strNonConfigEmail,
         array $opts = null) {
 
@@ -186,6 +186,16 @@
         $optsUse['key'] = $strKeyUse;
 
         //  Time to render the tag.
-        spainInjectTag($optsUse);
+        sp64inInjectTag($optsUse);
+    }
+
+    //  For now preserving these old method names for backwards compatibility:
+    function spainInjectTag(array $opts = array()) {
+        sp64inInjectTag($opts);
+    }
+    function spainInjectTagForNonConfigEmail(
+        $strNonConfigEmail,
+        array $opts = null) {
+        sp64inInjectTagForNonConfigEmail($strNonConfigEmail, $opts);
     }
 ?>

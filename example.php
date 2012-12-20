@@ -61,16 +61,16 @@
         <li>
           <p>
             Anchor tag injected via PHP convenience function
-            'spainInjectTag(...)' with all default options:
+            'sp64inInjectTag(...)' with all default options:
             <br>
-            <?php spainInjectTag() ?>
+            <?php sp64inInjectTag() ?>
           </p>
         </li>
         <li>
           <p>
             PHP-injected anchor tag with non-default caption:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'caption'=>"Send Email to Somebody")) ?>
           </p>
         </li>
@@ -78,7 +78,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS classes:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'class'=>"as_bold as_italic")) ?>
           </p>
         </li>
@@ -88,7 +88,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS style:
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                     'style'=> "display:block;width:15em;padding:0.4em;"
                               . "margin:0.6em;border: 2px dashed red;"
                               . "text-align:center"
@@ -100,7 +100,7 @@
           <p>
             PHP-injected anchor tag with key 'admin':
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'key'=>'admin')) ?>
           </p>
         </li>
@@ -108,7 +108,7 @@
           <p>
             PHP-injected anchor tag with key 'support':
             <br>
-            <?php spainInjectTag(array(
+            <?php sp64inInjectTag(array(
                 'key'=>'support')) ?>
           </p>
         </li>
@@ -118,7 +118,7 @@
             PHP-injected anchor tag with a non-pre-statically-configured email
             address:
             <br>
-            <?php spainInjectTagForNonConfigEmail("non_config@example.com") ?>
+            <?php sp64inInjectTagForNonConfigEmail("non_config@example.com") ?>
           </p>
         </li>
 
