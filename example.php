@@ -173,7 +173,7 @@
         src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.js'>
     </script>
     <script type='text/javascript'
-        src='/components/sp@in/sp@in.js'>
+        src='/components/sp@in/sp@in-v0.1.5-min.js'>
     </script>
   </body>
 </html>
