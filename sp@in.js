@@ -516,7 +516,10 @@ Please use a more modern web browser."
                 }
             });
         aSendEmail.bind('click', function() {
-                if (isIEUnder7) return false;
+                if (isIEUnder7) {
+                    qapiClickToReveal.show();
+                    return false;
+                }
 
                 if (getEmail()) return false;
 
