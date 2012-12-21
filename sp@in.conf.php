@@ -4,6 +4,7 @@
     $email_default = "webmaster@example.com";
 
     $emails_keyed = array(
+            'webmaster'     => 'joe_the_webmaster@example.com',
             'admin'         => 'tom_the_admin@example.com',
             'president'     => 'roy@example.com',
             'vpresident'    => 'franklin@example.com',
