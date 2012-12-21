@@ -443,9 +443,16 @@ $(document).ready(function($) {
 
         updateEmailAddress();
 
+        var isIEUnder7 = $.browser.msie && $.browser.version < 7;
+
         var qapiClickToReveal = createQT(
                             aSendEmail,
-                            $("<div>Click to reveal email address...</div>"),
+                            $(["<div>",
+                                    isIEUnder7
+                                        ? "MS IE version < 7 not supported.  \
+Please use a more modern web browser."
+                                        : "Click to reveal email address...",
+                                "</div>"].join("")),
                             {
                                 show: { effect: true },
                                 hide: { effect: true }
@@ -511,7 +518,12 @@ $(document).ready(function($) {
                 }
             });
         aSendEmail.bind('click', function() {
-                if (getEmail()) return;
+                if (isIEUnder7) {
+                    qapiClickToReveal.show();
+                    return false;
+                }
+
+                if (getEmail()) return false;
 
                 if (isCShown) {
                     hideCAPTCHA();
