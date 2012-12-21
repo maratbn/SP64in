@@ -33,4 +33,4 @@ Licensed under BSD, with BSD / MIT / OFL licensed components.  See LICENSE for
 
     * CAPTCHA re-entry not always necessary on subsequent page re-visits.
 
-    * Works on IE6 and better browsers.
+    * Works on IE7 and better browsers.
