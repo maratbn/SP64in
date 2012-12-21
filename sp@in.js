@@ -518,7 +518,7 @@ Please use a more modern web browser."
         aSendEmail.bind('click', function() {
                 if (isIEUnder7) return false;
 
-                if (getEmail()) return;
+                if (getEmail()) return false;
 
                 if (isCShown) {
                     hideCAPTCHA();
