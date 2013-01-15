@@ -96,12 +96,16 @@
               ?>'<?php
 
         $strDataSp = null;
-        if (!$flagUseMailto) {
-            if (strlen($optsUse['key'])) {
-                $strDataSp = encryptKeyIfNeeded($optsUse['key']);
-            } else {
-                $strDataSp = 'true';
+        if (function_exists('gd_info')) {
+            if (!$flagUseMailto) {
+                if (strlen($optsUse['key'])) {
+                    $strDataSp = encryptKeyIfNeeded($optsUse['key']);
+                } else {
+                    $strDataSp = 'true';
+                }
             }
+        } else {
+            $strDataSp = 'nogd';
         }
         if ($strDataSp) {
               ?> data-sp64in='<?= $strDataSp ?>'<?php
