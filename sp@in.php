@@ -91,16 +91,21 @@
             }
                 ?>sp@in<?php
         } else {
-              ?>#' data-sp64in='<?php
+              ?>#<?php
+        }
+              ?>'<?php
 
+        $strDataSp = null;
+        if (!$flagUseMailto) {
             if (strlen($optsUse['key'])) {
-              ?><?=encryptKeyIfNeeded($optsUse['key'])?><?php
+                $strDataSp = encryptKeyIfNeeded($optsUse['key']);
             } else {
-              ?>true<?php
+                $strDataSp = 'true';
             }
         }
-
-              ?>'<?php
+        if ($strDataSp) {
+              ?> data-sp64in='<?= $strDataSp ?>'<?php
+        }
 
         if (strlen($optsUse['class'])) {
             ?> class='<?=$optsUse['class']?>'<?php
