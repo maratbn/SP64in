@@ -19,6 +19,29 @@
   </head>
   <body>
     <?php
+        if (!function_exists('gd_info')) {
+            ?>
+              <p>
+                If you can read this, then this SP@in examples page has been
+                deployed on a web server on which the PHP GD module is
+                currently not available.  This module is utilized by SP@in to
+                generate the CAPTCHA challenge graphics.
+              </p>
+              <p>
+                SP@in UI will be disabled on client web browsers as long as
+                the PHP GD module is not available on the web server.
+              </p>
+              <p>
+                The procedure to install and configure the PHP GD module
+                on the web server varies depending on the server type.  On a
+                Debian-based Linux system, the appropiate command would be:
+              </p>
+              <code>
+                sudo apt-get install php5-gd
+              </code>
+            <?php
+        }
+
         /*
          *  The following variable enables this examples page, if set to True.
          *
