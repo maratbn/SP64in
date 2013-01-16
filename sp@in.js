@@ -531,7 +531,7 @@ Please use a more modern web browser.";
                     return false;
                 }
 
-                if (getEmail()) return false;
+                if (getEmail()) return true;
 
                 if (isCShown) {
                     hideCAPTCHA();
