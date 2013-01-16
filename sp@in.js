@@ -570,7 +570,7 @@ the web server.";
             //  Set email anchor link text caption if there isn't one already:
             if (!aSendEmail.text()) aSendEmail.text("Send Email");
         } else {
-            aSendEmail.text("SP@in disabled.");
+            aSendEmail.text("SP@in disabled");
         }
 
         //  Clear-out the 'visibility:hidden' inline style initially applied
