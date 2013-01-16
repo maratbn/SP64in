@@ -7,7 +7,7 @@
  *
  *  Version: RELEASE
  *
- *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2013 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  Module:         common.php
  *
