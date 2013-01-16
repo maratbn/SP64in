@@ -6,7 +6,7 @@
  *
  *  Version: RELEASE
  *
- *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2013 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  This module also includes the following embedded 3-rd party code:
  *
@@ -215,6 +215,7 @@ $(document).ready(function($) {
 
     var elEvents = $("<span />");
 
+    var isGDAvailable = true;
     var isReqValidated = false;
     var dataEmail = null;
 
@@ -415,6 +416,8 @@ $(document).ready(function($) {
 
     function attachCAPTCHAForKey(aSendEmail, strKey) {
 
+        if (aSendEmail.attr('data-sp64in') == 'nogd') isGDAvailable = false;
+
         rememberKey(strKey);
 
         function getEmail() {
@@ -445,13 +448,22 @@ $(document).ready(function($) {
 
         var isIEUnder7 = $.browser.msie && $.browser.version < 7;
 
+        var strClickToRevealText = null;
+        if (isIEUnder7) {
+            strClickToRevealText = "MS IE version < 7 not supported.  \
+Please use a more modern web browser.";
+        } else if (!isGDAvailable) {
+            strClickToRevealText = "PHP GD needed for CAPTCHA generation not \
+available.  PHP GD module needs to be properly installed and configured on \
+the web server.";
+        } else {
+            strClickToRevealText = "Click to reveal email address...";
+        }
+
         var qapiClickToReveal = createQT(
                             aSendEmail,
                             $(["<div>",
-                                    isIEUnder7
-                                        ? "MS IE version < 7 not supported.  \
-Please use a more modern web browser."
-                                        : "Click to reveal email address...",
+                                  strClickToRevealText,
                                 "</div>"].join("")),
                             {
                                 show: { effect: true },
@@ -518,12 +530,12 @@ Please use a more modern web browser."
                 }
             });
         aSendEmail.bind('click', function() {
-                if (isIEUnder7) {
+                if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
                     return false;
                 }
 
-                if (getEmail()) return false;
+                if (getEmail()) return true;
 
                 if (isCShown) {
                     hideCAPTCHA();
@@ -556,8 +568,12 @@ Please use a more modern web browser."
             });
 
 
-        //  Set email anchor link text caption if there isn't one already:
-        if (!aSendEmail.text()) aSendEmail.text("Send Email");
+        if (isGDAvailable) {
+            //  Set email anchor link text caption if there isn't one already:
+            if (!aSendEmail.text()) aSendEmail.text("Send Email");
+        } else {
+            aSendEmail.text("SP@in disabled");
+        }
 
         //  Clear-out the 'visibility:hidden' inline style initially applied
         //  by the server-side rendering to prevent the appearance of a
@@ -576,7 +592,8 @@ Please use a more modern web browser."
 
         var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
 
-        if (strAS && strAS.toLowerCase() != 'true') strKey = strAS;
+        var strASLC = strAS && strAS.toLowerCase();
+        if (strAS && strASLC != 'true' && strASLC != 'nogc') strKey = strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }

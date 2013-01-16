@@ -7,7 +7,7 @@
  *
  *  Version: RELEASE
  *
- *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2013 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  Module:         sp@in.php
  *
@@ -93,16 +93,25 @@
             }
                 ?>sp@in<?php
         } else {
-              ?>#' data-sp64in='<?php
-
-            if (strlen($optsUse['key'])) {
-              ?><?=encryptKeyIfNeeded($optsUse['key'])?><?php
-            } else {
-              ?>true<?php
-            }
+              ?>#<?php
         }
-
               ?>'<?php
+
+        $strDataSp = null;
+        if (function_exists('gd_info')) {
+            if (!$flagUseMailto) {
+                if (strlen($optsUse['key'])) {
+                    $strDataSp = encryptKeyIfNeeded($optsUse['key']);
+                } else {
+                    $strDataSp = 'true';
+                }
+            }
+        } else {
+            $strDataSp = 'nogd';
+        }
+        if ($strDataSp) {
+              ?> data-sp64in='<?= $strDataSp ?>'<?php
+        }
 
         if (strlen($optsUse['class'])) {
             ?> class='<?=$optsUse['class']?>'<?php
