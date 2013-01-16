@@ -446,13 +446,20 @@ $(document).ready(function($) {
 
         var isIEUnder7 = $.browser.msie && $.browser.version < 7;
 
+        var strClickToRevealText = null;
+        if (isIEUnder7) {
+            strClickToRevealText = "MS IE version < 7 not supported.  \
+Please use a more modern web browser.";
+        } else if (!isGDAvailable) {
+            strClickToRevealText = "PHP GD not available on web server.";
+        } else {
+            strClickToRevealText = "Click to reveal email address...";
+        }
+
         var qapiClickToReveal = createQT(
                             aSendEmail,
                             $(["<div>",
-                                    isIEUnder7
-                                        ? "MS IE version < 7 not supported.  \
-Please use a more modern web browser."
-                                        : "Click to reveal email address...",
+                                  strClickToRevealText,
                                 "</div>"].join("")),
                             {
                                 show: { effect: true },
@@ -519,7 +526,7 @@ Please use a more modern web browser."
                 }
             });
         aSendEmail.bind('click', function() {
-                if (isIEUnder7) {
+                if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
                     return false;
                 }
@@ -557,8 +564,12 @@ Please use a more modern web browser."
             });
 
 
-        //  Set email anchor link text caption if there isn't one already:
-        if (!aSendEmail.text()) aSendEmail.text("Send Email");
+        if (isGDAvailable) {
+            //  Set email anchor link text caption if there isn't one already:
+            if (!aSendEmail.text()) aSendEmail.text("Send Email");
+        } else {
+            aSendEmail.text("SP@in disabled.");
+        }
 
         //  Clear-out the 'visibility:hidden' inline style initially applied
         //  by the server-side rendering to prevent the appearance of a
