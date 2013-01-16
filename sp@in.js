@@ -4,7 +4,7 @@
  *
  *  http://maratbn.com/projects/sp64in
  *
- *  Copyright (c) 2011-2012 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
+ *  Copyright (c) 2011-2013 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *
  *  This module also includes the following embedded 3-rd party code:
  *
