@@ -451,7 +451,9 @@ $(document).ready(function($) {
             strClickToRevealText = "MS IE version < 7 not supported.  \
 Please use a more modern web browser.";
         } else if (!isGDAvailable) {
-            strClickToRevealText = "PHP GD not available on web server.";
+            strClickToRevealText = "PHP GD needed for CAPTCHA generation not \
+available.  PHP GD module needs to be properly installed and configured on \
+the web server.";
         } else {
             strClickToRevealText = "Click to reveal email address...";
         }
