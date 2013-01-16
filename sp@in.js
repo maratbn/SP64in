@@ -213,6 +213,7 @@ $(document).ready(function($) {
 
     var elEvents = $("<span />");
 
+    var isGDAvailable = true;
     var isReqValidated = false;
     var dataEmail = null;
 
@@ -413,6 +414,8 @@ $(document).ready(function($) {
 
     function attachCAPTCHAForKey(aSendEmail, strKey) {
 
+        if (aSendEmail.attr('data-sp64in') == 'nogd') isGDAvailable = false;
+
         rememberKey(strKey);
 
         function getEmail() {
@@ -574,7 +577,8 @@ Please use a more modern web browser."
 
         var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
 
-        if (strAS && strAS.toLowerCase() != 'true') strKey = strAS;
+        var strASLC = strAS.toLowerCase();
+        if (strAS && strASLC != 'true' && strASLC != 'nogc') strKey = strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }
