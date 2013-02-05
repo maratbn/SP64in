@@ -44,7 +44,7 @@
  */
 
 
-$(document).ready(function($) {
+jQuery(document).ready(function($) {
 
     /**
      *  The following is Klaus Hartl's jquery.cookie.js library pasted in with
