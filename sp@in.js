@@ -617,8 +617,8 @@ the web server.";
             function() {
                 var strAttrSrc = $(this).attr('src');
                 return strAttrSrc &&
-                                strAttrSrc.match(/\/graphics\/loading-1.gif$/);
+                         strAttrSrc.match(/\/graphics\/sp@in-loading-1.gif$/);
             }))
-        : $('img[src$="/graphics/loading-1.gif"]'))
+        : $('img[src$="/graphics/sp@in-loading-1.gif"]'))
         .css('display','none');
 });

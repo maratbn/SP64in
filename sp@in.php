@@ -85,7 +85,7 @@
                 'style'=>""
             ), $opts);
 
-        ?><img src='<?=$strURLPath?>/graphics/loading-1.gif' title='SP@in field initializing...'/><?php
+        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
         ?><a href='<?php
 
         if ($flagUseMailto) {
