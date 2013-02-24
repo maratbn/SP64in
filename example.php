@@ -83,7 +83,7 @@
         based on instructions on lines 48 - 56.
       </p>
       <p>
-        This example page is for SP@in version RELEASE
+        This example page is for SP@in version 0.1.8
       </p>
       <ul>
         <li>

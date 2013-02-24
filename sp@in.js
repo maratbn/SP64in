@@ -4,7 +4,7 @@
  *
  *  http://maratbn.com/projects/sp64in
  *
- *  Version: RELEASE
+ *  Version: 0.1.8
  *
  *  Copyright (c) 2011-2013 Marat Nepomnyashy  http://maratbn.com  maratbn@gmail
  *

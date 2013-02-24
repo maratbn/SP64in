@@ -1,5 +1,5 @@
 <?php
-    //  This configuration file is intended for SP@in (SP64in) version RELEASE
+    //  This configuration file is intended for SP@in (SP64in) version 0.1.8
 
     $email_default = "webmaster@example.com";
 
