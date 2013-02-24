@@ -1,5 +1,7 @@
 <?php
     require_once('sp@in.php');
+
+    $strURLPath = sp64in_determineURLPath();
 ?>
 <!DOCTYPE HTML>
 
@@ -7,7 +9,7 @@
   <head>
     <title>SP@in (SP64in) Usage Examples</title>
     <link rel='stylesheet'
-        href='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.css'>
+        href='<?=$strURLPath?>/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.css'>
     <style>
       .as_bold {
           font-weight:      bold;
@@ -187,12 +189,12 @@
     ?>
 
     <script type='text/javascript'
-        src='/components/sp@in/toolkits/jquery/jquery-1.8.3.js'>
+        src='<?=$strURLPath?>/toolkits/jquery/jquery-1.8.3.js'>
     </script>
     <script type='text/javascript'
-        src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.js'>
+        src='<?=$strURLPath?>/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.js'>
     </script>
-    <script type='text/javascript' src='/components/sp@in/sp@in.js'>
+    <script type='text/javascript' src='<?=$strURLPath?>/sp@in.js'>
     </script>
   </body>
 </html>
