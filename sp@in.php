@@ -89,7 +89,7 @@
         if ($flagUseMailto) {
               ?>mailto:<?php
             if (strlen($optsUse['key'])) {
-                ?><?=encryptKeyIfNeeded($optsUse['key'])?>_<?php
+                ?><?=sp64in_encryptKeyIfNeeded($optsUse['key'])?>_<?php
             }
                 ?>sp@in<?php
         } else {
@@ -101,7 +101,7 @@
         if (function_exists('gd_info')) {
             if (!$flagUseMailto) {
                 if (strlen($optsUse['key'])) {
-                    $strDataSp = encryptKeyIfNeeded($optsUse['key']);
+                    $strDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
                 } else {
                     $strDataSp = 'true';
                 }

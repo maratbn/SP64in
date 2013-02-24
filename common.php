@@ -87,7 +87,7 @@
      *  @param  $strKey                 String with the email key to possibly
      *                                                                encrypt.
      */
-    function encryptKeyIfNeeded($strKey) {
+    function sp64in_encryptKeyIfNeeded($strKey) {
         //  Need to read the configuration setting '$flagAlwaysEncryptKeys':
         require('sp@in.conf.php');
         return $flagAlwaysEncryptKeys ? sp64in_encryptKey($strKey) : $strKey;
