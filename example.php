@@ -65,8 +65,8 @@
         published.
       </p>
       <p>
-        This examples page can be enabled by editing line 56 of this file,
-        based on instructions on lines 46 - 54.
+        This examples page can be enabled by editing line 58 of this file,
+        based on instructions on lines 48 - 56.
       </p>
     <?php
         } else {
