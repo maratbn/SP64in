@@ -203,14 +203,4 @@
         //  Time to render the tag.
         sp64inInjectTag($optsUse);
     }
-
-    //  For now preserving these old method names for backwards compatibility:
-    function spainInjectTag(array $opts = array()) {
-        sp64inInjectTag($opts);
-    }
-    function spainInjectTagForNonConfigEmail(
-        $strNonConfigEmail,
-        array $opts = null) {
-        sp64inInjectTagForNonConfigEmail($strNonConfigEmail, $opts);
-    }
 ?>
