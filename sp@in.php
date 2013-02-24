@@ -115,6 +115,10 @@
               ?> data-sp64in='<?= $strDataSp ?>'<?php
         }
 
+        if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
+              ?> data-sp64in-path='<?= $strURLPath ?>'<?php
+        }
+
         if (strlen($optsUse['class'])) {
             ?> class='<?=$optsUse['class']?>'<?php
         }
