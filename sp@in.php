@@ -81,7 +81,7 @@
                 'style'=>""
             ), $opts);
 
-        $strURLPath = determineURLPath();
+        $strURLPath = sp64in_determineURLPath();
 
         ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
         ?><a href='<?php
