@@ -70,6 +70,10 @@
      */
     function sp64inInjectTag(array $opts = array()) {
 
+        $strURLPath = substr(
+                        dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT']));
+        if ($strURLPath[0] != '/') $strURLPath = '/' . $strURLPath;
+
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
         require('sp@in.conf.php');
@@ -81,7 +85,7 @@
                 'style'=>""
             ), $opts);
 
-        ?><img src='/components/sp@in/graphics/loading-1.gif' title='SP@in field initializing...'/><?php
+        ?><img src='<?=$strURLPath?>/graphics/loading-1.gif' title='SP@in field initializing...'/><?php
         ?><a href='<?php
 
         if ($flagUseMailto) {
