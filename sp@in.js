@@ -610,7 +610,7 @@ the web server.";
         var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
 
         var strASLC = strAS && strAS.toLowerCase();
-        if (strAS && strASLC != 'true' && strASLC != 'nogc') strKey = strAS;
+        if (strAS && strASLC != 'true' && strASLC != 'nogd') strKey = strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }
