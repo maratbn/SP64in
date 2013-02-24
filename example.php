@@ -79,8 +79,8 @@
         that may not have yet been intended to be published.
       </p>
       <p>
-        This examples page can be disabled by editing line 33 of this file,
-        based on instructions on lines 23 - 31.
+        This examples page can be disabled by editing line 58 of this file,
+        based on instructions on lines 48 - 56.
       </p>
       <ul>
         <li>
