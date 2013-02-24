@@ -54,7 +54,7 @@
     /**
      *  Encrypts the email key specified.
      */
-    function encryptKey($strKey) {
+    function sp64in_encryptKey($strKey) {
         //  Need to read the configuration setting
         //  '$flagAlwaysEncryptWithSalt':
         require('sp@in.conf.php');
@@ -90,6 +90,6 @@
     function encryptKeyIfNeeded($strKey) {
         //  Need to read the configuration setting '$flagAlwaysEncryptKeys':
         require('sp@in.conf.php');
-        return $flagAlwaysEncryptKeys ? encryptKey($strKey) : $strKey;
+        return $flagAlwaysEncryptKeys ? sp64in_encryptKey($strKey) : $strKey;
     }
 ?>

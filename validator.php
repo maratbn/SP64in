@@ -80,7 +80,7 @@
         if ($flagAlwaysEncryptKeys) {
             $arrEmailsKeyedEnc = array();
             foreach ($arrEmailsKeyed as $strKey => $strEmail) {
-                $arrEmailsKeyedEnc[encryptKey($strKey)] = $strEmail;
+                $arrEmailsKeyedEnc[sp64in_encryptKey($strKey)] = $strEmail;
             }
         }
 
