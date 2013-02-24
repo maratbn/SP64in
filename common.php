@@ -40,6 +40,18 @@
  */
 
     /**
+     *  Determines the URL path to the SP@in component installation location.
+     *  This is used to direct the client to the appropriate server-side
+     *  resources.
+     */
+    function determineURLPath() {
+        $strURLPath = substr(
+                        dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT']));
+        if ($strURLPath[0] != '/') $strURLPath = '/' . $strURLPath;
+        return $strURLPath;
+    }
+
+    /**
      *  Encrypts the email key specified.
      */
     function encryptKey($strKey) {
