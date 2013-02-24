@@ -14,8 +14,8 @@ Licensed under BSD, with BSD / MIT / OFL licensed components.  See LICENSE for
                                                                       details.
 
 
-  Note: Currently requires the PHP server-side framework for CAPTCHA
-        generation.
+  Note: Currently requires the PHP server-side framework with GD support for
+        CAPTCHA generation.
 
 
   Overview:

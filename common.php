@@ -42,9 +42,21 @@
  */
 
     /**
+     *  Determines the URL path to the SP@in component installation location.
+     *  This is used to direct the client to the appropriate server-side
+     *  resources.
+     */
+    function sp64in_determineURLPath() {
+        $strURLPath = substr(
+                        dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT']));
+        if ($strURLPath[0] != '/') $strURLPath = '/' . $strURLPath;
+        return $strURLPath;
+    }
+
+    /**
      *  Encrypts the email key specified.
      */
-    function encryptKey($strKey) {
+    function sp64in_encryptKey($strKey) {
         //  Need to read the configuration setting
         //  '$flagAlwaysEncryptWithSalt':
         require('sp@in.conf.php');
@@ -77,9 +89,9 @@
      *  @param  $strKey                 String with the email key to possibly
      *                                                                encrypt.
      */
-    function encryptKeyIfNeeded($strKey) {
+    function sp64in_encryptKeyIfNeeded($strKey) {
         //  Need to read the configuration setting '$flagAlwaysEncryptKeys':
         require('sp@in.conf.php');
-        return $flagAlwaysEncryptKeys ? encryptKey($strKey) : $strKey;
+        return $flagAlwaysEncryptKeys ? sp64in_encryptKey($strKey) : $strKey;
     }
 ?>

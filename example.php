@@ -1,5 +1,7 @@
 <?php
     require_once('sp@in.php');
+
+    $strURLPath = sp64in_determineURLPath();
 ?>
 <!DOCTYPE HTML>
 
@@ -7,7 +9,7 @@
   <head>
     <title>SP@in (SP64in) Usage Examples</title>
     <link rel='stylesheet'
-        href='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.css'>
+        href='<?=$strURLPath?>/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.css'>
     <style>
       .as_bold {
           font-weight:      bold;
@@ -63,8 +65,8 @@
         published.
       </p>
       <p>
-        This examples page can be enabled by editing line 56 of this file,
-        based on instructions on lines 46 - 54.
+        This examples page can be enabled by editing line 58 of this file,
+        based on instructions on lines 48 - 56.
       </p>
     <?php
         } else {
@@ -152,35 +154,35 @@
           <p>
             Hard-coded mailto anchor tag originally empty:
             <br>
-            <a href='mailto:sp@in'></a>
+            <a href='mailto:sp@in' data-sp64in-path=<?=$strURLPath?>></a>
           </p>
         </li>
         <li>
           <p>
             Upper-case hard-coded mailto anchor tag originally empty:
             <br>
-            <a href='MAILTO:SP@IN'></a>
+            <a href='MAILTO:SP@IN' data-sp64in-path=<?=$strURLPath?>></a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded anchor tag originally empty:
             <br>
-            <a href='#' data-sp64in='true'></a>
+            <a href='#' data-sp64in='true' data-sp64in-path=<?=$strURLPath?>></a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded anchor tag originally with custom content:
             <br>
-            <a href='#' data-sp64in='true'>Send Email to Somebody</a>
+            <a href='#' data-sp64in='true' data-sp64in-path=<?=$strURLPath?>>Send Email to Somebody</a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded span tag:
             <br>
-            <span data-sp64in='true'></span>
+            <span data-sp64in='true' data-sp64in-path=<?=$strURLPath?>></span>
           </p>
         </li>
       </ul>
@@ -190,13 +192,12 @@
     ?>
 
     <script type='text/javascript'
-        src='/components/sp@in/toolkits/jquery/jquery-1.8.3.min.js'>
+        src='<?=$strURLPath?>/toolkits/jquery/jquery-1.8.3.min.js'>
     </script>
     <script type='text/javascript'
-        src='/components/sp@in/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.js'>
+        src='<?=$strURLPath?>/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.js'>
     </script>
-    <script type='text/javascript'
-        src='/components/sp@in/sp@in.js'>
+    <script type='text/javascript' src='<?=$strURLPath?>/sp@in.js'>
     </script>
   </body>
 </html>

@@ -197,19 +197,25 @@ jQuery(document).ready(function($) {
         return khartl_cookie('sp@in_recall');
     }
 
-    var mapRememberedKeys = {};
-    var arrRememberedKeys = [];
+    var mapPaths = {}
 
     /**
-     *  Remembers a sp@in tag key present on the page, to be able to later
-     *  tell the server which emails we need for this page.
+     *  Remembers a sp@in tag path and key present on the page, to be able to
+     *  later tell the server which emails we need for this page.
      */
-    function rememberKey(strKey) {
+    function rememberPathKey(strPath, strKey) {
+        if (!strPath) return;
+
+        if (!mapPaths[strPath]) mapPaths[strPath] = {
+                map_keys: {},
+                arr_keys: []
+            };
+
         if (!strKey) return;
 
-        if (!mapRememberedKeys[strKey]) {
-            mapRememberedKeys[strKey] = true;
-            arrRememberedKeys.push(strKey);
+        if (!mapPaths[strPath].map_keys[strKey]) {
+            mapPaths[strPath].map_keys = true;
+            mapPaths[strPath].arr_keys.push(strKey);
         }
     }
 
@@ -224,6 +230,9 @@ jQuery(document).ready(function($) {
      *  specified to retrieve the email data.
      *
      *  @param  params              Object with parameters.
+     *  @param  params.path         String with the path to the root directory
+     *                              where SP@in server-side components are
+     *                              installed.
      *  @param  params.request      Object with the HTTP request
      *                                                     parameters.
      *  @param  params.complete     The 'complete' callback.
@@ -232,9 +241,11 @@ jQuery(document).ready(function($) {
      */
     function retrieveEmailData(params) {
         $.ajax({
-                url: '/components/sp@in/./validator.php',
+                url: params.path + '/validator.php',
                 type: 'POST',
-                data: $.extend({keys: arrRememberedKeys.join(" ")}, params.request),
+                data: $.extend(
+                            {keys: mapPaths[params.path].arr_keys.join(" ")},
+                            params.request),
                 dataType: 'json',
                 complete: function() {
                         if (params.complete) params.complete();
@@ -261,16 +272,20 @@ jQuery(document).ready(function($) {
         var recall_id = khartl_cookie('sp@in_recall');
         if (!recall_id) return;
 
-        retrieveEmailData({
-                request: {'recall': recall_id}
-            });
+        for (strPath in mapPaths) {
+            retrieveEmailData({
+                    'path': strPath,
+                    request: {'recall': recall_id}
+                });
+        }
     }
 
-    var captcha = (
+    function attachCAPTCHAForKey(aSendEmail, strKey) {
+
         /**
          *  Creates the CAPTCHA entering DOM.
          */
-        function createCAPTCHA() {
+        function createCAPTCHA(strPath) {
             var divCEntry = $([
                         "<div style='",
                             "color:#333333;",
@@ -348,7 +363,7 @@ jQuery(document).ready(function($) {
             function refreshCAPTCHA() {
                 divCAPTCHA.css(
                     'background-image',
-                    "url('/components/sp@in/./php-captcha/captcha_img.php?"
+                    "url('" + strPath + "/php-captcha/captcha_img.php?"
                         + (new Date()).getTime() + "_" + totalInvalid + "')");
             }
 
@@ -368,6 +383,7 @@ jQuery(document).ready(function($) {
                 buttonSubmit.attr('disabled', true);
 
                 retrieveEmailData({
+                        path: strPath,
                         request: {'validate': inputValidate.val()},
                         complete: function() {
                                 inputValidate.attr('readonly', false);
@@ -412,13 +428,7 @@ jQuery(document).ready(function($) {
                     parent: divCEntry,
                     input: inputValidate
                 };
-        })();
-
-    function attachCAPTCHAForKey(aSendEmail, strKey) {
-
-        if (aSendEmail.attr('data-sp64in') == 'nogd') isGDAvailable = false;
-
-        rememberKey(strKey);
+        }
 
         function getEmail() {
             if (!dataEmail) return "";
@@ -443,6 +453,15 @@ jQuery(document).ready(function($) {
                 aSendEmail.text("Unable to determine email.");
             }
         }
+
+        var strPath = aSendEmail.attr('data-sp64in-path')
+                                                      || '/components/sp@in/';
+
+        if (aSendEmail.attr('data-sp64in') == 'nogd') isGDAvailable = false;
+
+        rememberPathKey(strPath, strKey);
+
+        var captcha = createCAPTCHA(strPath);
 
         updateEmailAddress();
 
@@ -593,7 +612,7 @@ the web server.";
         var strKey = arrMailto && arrMailto.length == 3 && arrMailto[2];
 
         var strASLC = strAS && strAS.toLowerCase();
-        if (strAS && strASLC != 'true' && strASLC != 'nogc') strKey = strAS;
+        if (strAS && strASLC != 'true' && strASLC != 'nogd') strKey = strAS;
 
         attachCAPTCHAForKey(aSendEmail, strKey);
     }
@@ -601,6 +620,10 @@ the web server.";
     function insertSendEmailLink(spanParent) {
         var aSendEmail = $("<a href='#' data-sp64in='" +
                                  spanParent.attr('data-sp64in') + "'></a>");
+
+        var strPath = spanParent.attr('data-sp64in-path');
+        if (strPath) aSendEmail.attr('data-sp64in-path', strPath);
+
         attachCAPTCHA(aSendEmail);
         spanParent.append(aSendEmail);
     }
@@ -615,8 +638,12 @@ the web server.";
     //  A less efficient algorithm is used on <= IE7 because jQuery has a
     //  problem with the attribute selector on this browser.
     (($.browser.msie && $.browser.version <= 7)
-        ? ($('img').filter(function() {return ($(this).attr('src')
-                             == '/components/sp@in/graphics/loading-1.gif')}))
-        : $('img[src="/components/sp@in/graphics/loading-1.gif"]'))
+        ? ($('img').filter(
+            function() {
+                var strAttrSrc = $(this).attr('src');
+                return strAttrSrc &&
+                         strAttrSrc.match(/\/graphics\/sp@in-loading-1.gif$/);
+            }))
+        : $('img[src$="/graphics/sp@in-loading-1.gif"]'))
         .css('display','none');
 });

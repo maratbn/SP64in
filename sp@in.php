@@ -83,13 +83,15 @@
                 'style'=>""
             ), $opts);
 
-        ?><img src='/components/sp@in/graphics/loading-1.gif' title='SP@in field initializing...'/><?php
+        $strURLPath = sp64in_determineURLPath();
+
+        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
         ?><a href='<?php
 
         if ($flagUseMailto) {
               ?>mailto:<?php
             if (strlen($optsUse['key'])) {
-                ?><?=encryptKeyIfNeeded($optsUse['key'])?>_<?php
+                ?><?=sp64in_encryptKeyIfNeeded($optsUse['key'])?>_<?php
             }
                 ?>sp@in<?php
         } else {
@@ -101,7 +103,7 @@
         if (function_exists('gd_info')) {
             if (!$flagUseMailto) {
                 if (strlen($optsUse['key'])) {
-                    $strDataSp = encryptKeyIfNeeded($optsUse['key']);
+                    $strDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
                 } else {
                     $strDataSp = 'true';
                 }
@@ -111,6 +113,10 @@
         }
         if ($strDataSp) {
               ?> data-sp64in='<?= $strDataSp ?>'<?php
+        }
+
+        if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
+              ?> data-sp64in-path='<?= $strURLPath ?>'<?php
         }
 
         if (strlen($optsUse['class'])) {
@@ -198,15 +204,5 @@
 
         //  Time to render the tag.
         sp64inInjectTag($optsUse);
-    }
-
-    //  For now preserving these old method names for backwards compatibility:
-    function spainInjectTag(array $opts = array()) {
-        sp64inInjectTag($opts);
-    }
-    function spainInjectTagForNonConfigEmail(
-        $strNonConfigEmail,
-        array $opts = null) {
-        sp64inInjectTagForNonConfigEmail($strNonConfigEmail, $opts);
     }
 ?>
