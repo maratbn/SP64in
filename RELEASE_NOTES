@@ -1,3 +1,11 @@
+2013-02-24  Version 0.1.8
+
+    Added support for server-side deployments to locations other than '/components/sp@in/'.
+
+    Removed deprecated functions 'spainInjectTag(...)' and
+    'spainInjectTagForNonConfigEmail(...)'.
+
+
 2013-02-04  Version 0.1.7
 
     Added support for the jQuery 'noConflict' mode.
