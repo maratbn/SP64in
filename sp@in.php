@@ -48,6 +48,27 @@
     require_once('common.php');
 
     /**
+     *  Initializes the PHP session used by SP@in, if a PHP session has not
+     *  already been initialized.  
+     *
+     *  This function adds a session cookie to the HTTP response, and
+     *  therefore must be called before any HTTP response generation, so that
+     *  the session cookie gets included in the HTTP headers.
+     */
+    function sp64inInit() {
+        //  Need to read the configuration setting
+        //  '$flagAlwaysEncryptWithSalt':
+        require('sp@in.conf.php');
+
+        //  Now need to check if the encryption should be salted:
+        //  (as the PHP session is currently used only to store that salt)
+        if ($flagAlwaysEncryptWithSalt) {
+            //  Start a session if it was not started already:
+            if (!strlen(session_id())) session_start();
+        }
+    }
+
+    /**
      *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
      *  @param  $opts                   Array with configuration parameters.
