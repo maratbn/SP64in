@@ -1,3 +1,17 @@
+2013-03-07  Version 0.1.9
+
+    Added new function 'sp64inInit()' to the SP@in API.  This function must be
+    called at the start of the HTTP response generation, but before the page
+    content generation.  This is to initialize the PHP session for SP@in.  The
+    function must be called before page content generation because it causes
+    the PHP session cookie to be included in the HTTP response header (which
+    would not succeed after the header already been rendered).
+
+    If this new function is not called, then SP@in will not be able to send an
+    appropriate session cookie to the client, and this will later prevent it
+    from validating the CAPTCHA challenge.
+
+
 2013-02-24  Version 0.1.8
 
     Added support for server-side deployments to locations other than '/components/sp@in/'.
