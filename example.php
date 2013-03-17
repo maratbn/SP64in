@@ -1,6 +1,9 @@
 <?php
     require_once('sp@in.php');
 
+    // IMPORTANT:  MUST initialize SP@in BEFORE page content is rendered !!!
+    sp64inInit();
+
     $strURLPath = sp64in_determineURLPath();
 ?>
 <!DOCTYPE HTML>
