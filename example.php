@@ -154,35 +154,35 @@
           <p>
             Hard-coded mailto anchor tag originally empty:
             <br>
-            <a href='mailto:sp@in' data-sp64in-path=<?=$strURLPath?>></a>
+            <a href='mailto:sp@in' data-sp64in-path='<?=$strURLPath?>'></a>
           </p>
         </li>
         <li>
           <p>
             Upper-case hard-coded mailto anchor tag originally empty:
             <br>
-            <a href='MAILTO:SP@IN' data-sp64in-path=<?=$strURLPath?>></a>
+            <a href='MAILTO:SP@IN' data-sp64in-path='<?=$strURLPath?>'></a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded anchor tag originally empty:
             <br>
-            <a href='#' data-sp64in='true' data-sp64in-path=<?=$strURLPath?>></a>
+            <a href='#' data-sp64in='true' data-sp64in-path='<?=$strURLPath?>'></a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded anchor tag originally with custom content:
             <br>
-            <a href='#' data-sp64in='true' data-sp64in-path=<?=$strURLPath?>>Send Email to Somebody</a>
+            <a href='#' data-sp64in='true' data-sp64in-path='<?=$strURLPath?>'>Send Email to Somebody</a>
           </p>
         </li>
         <li>
           <p>
             Hard-coded span tag:
             <br>
-            <span data-sp64in='true' data-sp64in-path=<?=$strURLPath?>></span>
+            <span data-sp64in='true' data-sp64in-path='<?=$strURLPath?>'></span>
           </p>
         </li>
       </ul>
