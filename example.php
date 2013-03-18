@@ -68,8 +68,8 @@
         published.
       </p>
       <p>
-        This examples page can be enabled by editing line 58 of this file,
-        based on instructions on lines 48 - 56.
+        This examples page can be enabled by editing line 61 of this file,
+        based on instructions on lines 51 - 59.
       </p>
     <?php
         } else {
@@ -82,8 +82,8 @@
         that may not have yet been intended to be published.
       </p>
       <p>
-        This examples page can be disabled by editing line 58 of this file,
-        based on instructions on lines 48 - 56.
+        This examples page can be disabled by editing line 61 of this file,
+        based on instructions on lines 51 - 59.
       </p>
       <ul>
         <li>
