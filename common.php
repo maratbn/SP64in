@@ -50,6 +50,7 @@
         $strURLPath = substr(
                         dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT']));
         if ($strURLPath[0] != '/') $strURLPath = '/' . $strURLPath;
+        $strURLPath .= '/';
         return $strURLPath;
     }
 
