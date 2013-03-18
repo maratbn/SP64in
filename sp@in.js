@@ -119,7 +119,7 @@ jQuery(document).ready(function($) {
         //  (or some other library that registers itself as $.cookie)
         //  explicitly.
         //  jQuery.cookie = function (key, value, options) {
-        khartl_cookie = function (key, value, options) {
+        var khartl_cookie = function (key, value, options) {
             
             // key and at least value given, set cookie...
             if (arguments.length > 1 && String(value) !== "[object Object]") {
