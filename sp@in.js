@@ -191,12 +191,51 @@ jQuery(document).ready(function($) {
      *  recall ID to retrieve the emails from the server if the user already
      *  solved the CAPTCHAs on his last visit to the page.
      */
-    function getCachedRecallID() {
-        return khartl_cookie('sp@in_recall');
+    function getCachedRecallID(strPathHash) {
+        var strAllData = khartl_cookie('sp@in_recall');
+        if (!strAllData) return "";
+
+        var reFindRecallID = new RegExp('\\[' + strPathHash +
+                                                         ':([^\\[:\\[]+)\\]');
+        var arrMatches = reFindRecallID.exec(strAllData);
+
+        if (!arrMatches || arrMatches.length != 2) return "";
+        return arrMatches[1];
     }
 
-    function setCachedRecallID(strRecallID) {
-        khartl_cookie('sp@in_recall', strRecallID);
+    function setCachedRecallID(strPathHash, strRecallID) {
+        var strNewSegment = '[' + strPathHash + ':' + strRecallID + ']';
+
+        var strAllData = khartl_cookie('sp@in_recall') || "";
+
+        var reReplaceRecallID = new RegExp('\\[' + strPathHash +
+                                                         ':([^\\[:\\[]+)\\]');
+        if (reReplaceRecallID.test(strAllData)) {
+            strAllData = strAllData.replace(reReplaceRecallID, strNewSegment);
+        } else {
+            strAllData += strNewSegment;
+        }
+
+        khartl_cookie('sp@in_recall', strAllData);
+    }
+
+    /**
+     *  Turns a path string into a compact number, many of which can be stored
+     *  in local cookie as keys for path recall IDs.
+     *
+     *  Borrowed from: http://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
+     */
+    function getHashForPath(strPath) {
+        var hash = 0;
+        if (!strPath) return hash;
+
+        for (var i = 0; i < strPath.length; i++) {
+            var ch = strPath.charCodeAt(i);
+            hash = ((hash<<5)-hash)+ch;
+            hash = hash & hash;     // Convert to 32bit integer.
+        }
+
+        return hash < 0 ? -hash : hash;   // Keep the number positive.
     }
 
     var mapPaths = {}
@@ -209,6 +248,7 @@ jQuery(document).ready(function($) {
         if (!strPath) return;
 
         if (!mapPaths[strPath]) mapPaths[strPath] = {
+                hash: getHashForPath(strPath),
                 map_keys: {},
                 arr_keys: []
             };
@@ -259,7 +299,9 @@ jQuery(document).ready(function($) {
                         dataEmail = data && data.email || null;
                         isReqValidated = data && data.is_req_validated;
 
-                        setCachedRecallID(data && data.recall_id || "");
+                        setCachedRecallID(
+                            mapPaths[params.path].hash,
+                            data && data.recall_id || "");
 
                         if (params.success) params.success(data);
 
@@ -269,10 +311,10 @@ jQuery(document).ready(function($) {
     }
 
     function recallEmailData() {
-        var recall_id = getCachedRecallID();
-        if (!recall_id) return;
-
         for (strPath in mapPaths) {
+            var recall_id = getCachedRecallID(mapPaths[strPath].hash);
+            if (!recall_id) continue;
+
             retrieveEmailData({
                     'path': strPath,
                     request: {'recall': recall_id}
