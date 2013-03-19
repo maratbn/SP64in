@@ -267,7 +267,7 @@ jQuery(document).ready(function($) {
     }
 
     function recallEmailData() {
-        var recall_id = khartl_cookie('sp@in_recall');
+        var recall_id = getCachedRecallID();
         if (!recall_id) return;
 
         for (strPath in mapPaths) {
