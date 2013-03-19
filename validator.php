@@ -127,7 +127,7 @@
 
     $output = array();
 
-    $flagOKtoOutputData = False;
+    $flagUserSolvedCaptcha = False;
 
     $arg_recall = array_key_exists('recall', $_POST) ? $_POST['recall'] : "";
     $arg_validate = array_key_exists('validate', $_POST)
@@ -136,7 +136,7 @@
     if ($arg_validate) {
         $isValid = isCaptchaValid($arg_validate);
         $output['is_valid'] = $isValid;
-        if ($isValid) $flagOKtoOutputData = True;
+        if ($isValid) $flagUserSolvedCaptcha = True;
     }
 
     //  Start a session if it was not started already:
@@ -147,11 +147,11 @@
             array_key_exists($arg_recall, $_SESSION['sp@in_recall']) &&
                                      $_SESSION['sp@in_recall'][$arg_recall]) {
             $_SESSION['sp@in_recall'][$arg_recall] = False;
-            $flagOKtoOutputData = True;
+            $flagUserSolvedCaptcha = True;
         }
     }
 
-    if ($flagOKtoOutputData) {
+    if ($flagUserSolvedCaptcha) {
         setEmailData($output);
     }
 
