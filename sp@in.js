@@ -195,6 +195,10 @@ jQuery(document).ready(function($) {
         return khartl_cookie('sp@in_recall');
     }
 
+    function setCachedRecallID(strRecallID) {
+        khartl_cookie('sp@in_recall', strRecallID);
+    }
+
     var mapPaths = {}
 
     /**
@@ -255,9 +259,7 @@ jQuery(document).ready(function($) {
                         dataEmail = data && data.email || null;
                         isReqValidated = data && data.is_req_validated;
 
-                        khartl_cookie(
-                            'sp@in_recall',
-                            data && data.recall_id || "");
+                        setCachedRecallID(data && data.recall_id || "");
 
                         if (params.success) params.success(data);
 
