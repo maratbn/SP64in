@@ -127,20 +127,20 @@
         }
               ?>'<?php
 
-        $strDataSp = null;
+        $strAttrDataSp = null;
         if (function_exists('gd_info')) {
             if (!$flagUseMailto) {
                 if (strlen($optsUse['key'])) {
-                    $strDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
+                    $strAttrDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
                 } else {
-                    $strDataSp = 'true';
+                    $strAttrDataSp = 'true';
                 }
             }
         } else {
-            $strDataSp = 'nogd';
+            $strAttrDataSp = 'nogd';
         }
-        if ($strDataSp) {
-              ?> data-sp64in='<?= $strDataSp ?>'<?php
+        if ($strAttrDataSp) {
+              ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
         }
 
         if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
