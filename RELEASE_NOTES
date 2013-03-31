@@ -1,3 +1,14 @@
+2013-03-30  Version 0.1.10
+
+    Renamed the function 'sp64inInjectTag(...)' to
+    'sp64inInjectTagForEmail(...)', deprecating the old function name.
+
+    Rendering a parent <span> tag around the rest of the tags rendered by
+    'sp@in.php'.
+
+    Numerous bugs fixed.
+
+
 2013-03-07  Version 0.1.9
 
     Added new function 'sp64inInit()' to the SP@in API.  This function must be
