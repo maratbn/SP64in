@@ -111,8 +111,6 @@
                 'style'=>""
             ), $opts);
 
-        $strURLPath = sp64in_determineURLPath();
-
         $strAttrHref = '#';
         if ($flagUseMailto) {
             $strAttrHref = 'mailto:' .
@@ -134,6 +132,8 @@
         } else {
             $strAttrDataSp = 'nogd';
         }
+
+        $strURLPath = sp64in_determineURLPath();
 
         ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
         ?><a href='<?=$strAttrHref?>'<?php
