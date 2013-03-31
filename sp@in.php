@@ -60,14 +60,23 @@
     function sp64inInit() {
         //  Need to read the configuration setting
         //  '$flagAlwaysEncryptWithSalt':
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         //  Now need to check if the encryption should be salted:
         //  (as the PHP session is currently used only to store that salt)
-        if ($flagAlwaysEncryptWithSalt) {
+        if ($sp64in_cfg->flagAlwaysEncryptWithSalt) {
             //  Start a session if it was not started already:
             if (!strlen(session_id())) session_start();
         }
+    }
+
+    /**
+     *  Calls the function 'sp64inInjectTagForEmail()'.
+     *
+     *  @deprecated  Use 'sp64inInjectTagForEmail()' instead.
+     */
+    function sp64inInjectTag(array $opts = array()) {
+        sp64inInjectTagForEmail($opts);
     }
 
     /**
@@ -91,64 +100,60 @@
      *  @param  $opts['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function sp64inInjectTag(array $opts = array()) {
+    function sp64inInjectTagForEmail(array $opts = array()) {
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         $optsUse = array_merge(array(
-                'caption'=>"Send Email",
+                'caption'=>'Send Email',
                 'class'=>"",
                 'key'=>"",
                 'style'=>""
             ), $opts);
 
+        $strAttrHref = '#';
+        $strAttrDataSp = null;
+
+        if ($sp64in_cfg->flagUseMailto) {
+            $strAttrHref = 'mailto:' .
+                            (strlen($optsUse['key'])
+                                ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
+                                                                        . '_')
+                                : '') . 'sp@in';
+        } else {
+            $strAttrDataSp = strlen($optsUse['key'])
+                                ? sp64in_encryptKeyIfNeeded($optsUse['key'])
+                                : 'true';
+        }
+
         $strURLPath = sp64in_determineURLPath();
 
-        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-        ?><a href='<?php
+        ?><span class='<?=$sp64in_cfg->class_parent_span?>'><?php
+          ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
+          ?><a href='<?=$strAttrHref?>'<?php
 
-        if ($flagUseMailto) {
-              ?>mailto:<?php
-            if (strlen($optsUse['key'])) {
-                ?><?=sp64in_encryptKeyIfNeeded($optsUse['key'])?>_<?php
-            }
-                ?>sp@in<?php
-        } else {
-              ?>#<?php
+        if ($strAttrDataSp) {
+                ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
         }
-              ?>'<?php
 
-        $strDataSp = null;
-        if (function_exists('gd_info')) {
-            if (!$flagUseMailto) {
-                if (strlen($optsUse['key'])) {
-                    $strDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
-                } else {
-                    $strDataSp = 'true';
-                }
-            }
-        } else {
-            $strDataSp = 'nogd';
-        }
-        if ($strDataSp) {
-              ?> data-sp64in='<?= $strDataSp ?>'<?php
+        if (!function_exists('gd_info')) {
+                ?> data-sp64in-nogd='true'<?php
         }
 
         if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
-              ?> data-sp64in-path='<?= $strURLPath ?>'<?php
+                ?> data-sp64in-path='<?= $strURLPath ?>'<?php
         }
 
         if (strlen($optsUse['class'])) {
-            ?> class='<?=$optsUse['class']?>'<?php
+              ?> class='<?=$optsUse['class']?>'<?php
         }
 
-            ?> style='<?=$optsUse['style']?>;visibility:hidden'<?php
+              ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
 
-          ?>><?php
-          ?><?=$optsUse['caption']?><?php
-        ?></a><?php
+            ?><?=$optsUse['caption']?></a><?php
+        ?></span><?php
     }
 
     /**
@@ -158,9 +163,9 @@
      *
      *  @param  $opts                   Array with configuration parameters,
      *                                  same as for the function
-     *                                  'sp64inInjectTag(...)' except for the
-     *                                  'key' option, that is determined by
-     *                                  this function.
+     *                                  'sp64inInjectTagForEmail(...)' except
+     *                                  for the 'key' option, that is
+     *                                  determined by this function.
      *
      *  strNonConfigEmail               String with the dynamic email address
      *                                  to render the tag for.
@@ -171,7 +176,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         //  Start a session if it was not started already:
         if (!strlen(session_id())) session_start();
@@ -184,10 +189,10 @@
         //  First need to check if the email address specified is actually
         //  configured already:
         $flagEmailAlreadyConfigured = False;
-        if ($strNonConfigEmail == $email_default) {
+        if ($strNonConfigEmail == $sp64in_cfg->email_default) {
             $flagEmailAlreadyConfigured = True;
         } else {
-            foreach ($emails_keyed as $strKey => $strValue) {
+            foreach ($sp64in_cfg->emails_keyed as $strKey => $strValue) {
                 if ($strNonConfigEmail == $strValue) {
                     $strKeyUse = $strKey;
                     $flagEmailAlreadyConfigured = True;
@@ -224,6 +229,6 @@
         $optsUse['key'] = $strKeyUse;
 
         //  Time to render the tag.
-        sp64inInjectTag($optsUse);
+        sp64inInjectTagForEmail($optsUse);
     }
 ?>

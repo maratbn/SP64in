@@ -65,21 +65,21 @@
         $recall_id = uniqid("", True);
         $_SESSION['sp@in_recall'][$recall_id] = True;
 
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         $arrEmailsKeyed = null;
 
         //  May need to merge-in the dynamically generated keys.
         if (array_key_exists('sp@in_emails_keyed_dynamic', $_SESSION)) {
             $arrEmailsKeyed = array_merge(
-                                    $emails_keyed,
+                                    $sp64in_cfg->emails_keyed,
                                     $_SESSION['sp@in_emails_keyed_dynamic']);
         } else {
-            $arrEmailsKeyed = $emails_keyed;
+            $arrEmailsKeyed = $sp64in_cfg->emails_keyed;
         }
 
         $arrEmailsKeyedEnc = null;
-        if ($flagAlwaysEncryptKeys) {
+        if ($sp64in_cfg->flagAlwaysEncryptKeys) {
             $arrEmailsKeyedEnc = array();
             foreach ($arrEmailsKeyed as $strKey => $strEmail) {
                 $arrEmailsKeyedEnc[sp64in_encryptKey($strKey)] = $strEmail;
@@ -119,7 +119,7 @@
         }
 
         $output['email']                = array();
-        $output['email']['def']         = $email_default;
+        $output['email']['def']         = $sp64in_cfg->email_default;
         $output['email']['keyed']       = $arrEmailsKeyedNeeded;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
@@ -129,7 +129,7 @@
 
     $output = array();
 
-    $flagOKtoOutputData = False;
+    $flagUserSolvedCaptcha = False;
 
     $arg_recall = array_key_exists('recall', $_POST) ? $_POST['recall'] : "";
     $arg_validate = array_key_exists('validate', $_POST)
@@ -138,7 +138,7 @@
     if ($arg_validate) {
         $isValid = isCaptchaValid($arg_validate);
         $output['is_valid'] = $isValid;
-        if ($isValid) $flagOKtoOutputData = True;
+        if ($isValid) $flagUserSolvedCaptcha = True;
     }
 
     //  Start a session if it was not started already:
@@ -149,11 +149,11 @@
             array_key_exists($arg_recall, $_SESSION['sp@in_recall']) &&
                                      $_SESSION['sp@in_recall'][$arg_recall]) {
             $_SESSION['sp@in_recall'][$arg_recall] = False;
-            $flagOKtoOutputData = True;
+            $flagUserSolvedCaptcha = True;
         }
     }
 
-    if ($flagOKtoOutputData) {
+    if ($flagUserSolvedCaptcha) {
         setEmailData($output);
     }
 

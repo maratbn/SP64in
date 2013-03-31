@@ -60,13 +60,13 @@
     function sp64in_encryptKey($strKey) {
         //  Need to read the configuration setting
         //  '$flagAlwaysEncryptWithSalt':
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         //  Prepare string to encrypt:
         $strEncrypt = $strKey;
 
         //  Now need to check if the encryption should be salted:
-        if ($flagAlwaysEncryptWithSalt) {
+        if ($sp64in_cfg->flagAlwaysEncryptWithSalt) {
             //  Start a session if it was not started already:
             if (!strlen(session_id())) session_start();
 
@@ -92,7 +92,8 @@
      */
     function sp64in_encryptKeyIfNeeded($strKey) {
         //  Need to read the configuration setting '$flagAlwaysEncryptKeys':
-        require('sp@in.conf.php');
-        return $flagAlwaysEncryptKeys ? sp64in_encryptKey($strKey) : $strKey;
+        require('sp@in.conf.php');global $sp64in_cfg;
+        return $sp64in_cfg->flagAlwaysEncryptKeys
+                                       ? sp64in_encryptKey($strKey) : $strKey;
     }
 ?>
