@@ -128,28 +128,30 @@
 
         $strURLPath = sp64in_determineURLPath();
 
-        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-        ?><a href='<?=$strAttrHref?>'<?php
+        ?><span><?php
+          ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
+          ?><a href='<?=$strAttrHref?>'<?php
 
         if ($strAttrDataSp) {
-              ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
+                ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
         }
 
         if (!function_exists('gd_info')) {
-              ?> data-sp64in-nogd='true'<?php
+                ?> data-sp64in-nogd='true'<?php
         }
 
         if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
-              ?> data-sp64in-path='<?= $strURLPath ?>'<?php
+                ?> data-sp64in-path='<?= $strURLPath ?>'<?php
         }
 
         if (strlen($optsUse['class'])) {
-            ?> class='<?=$optsUse['class']?>'<?php
+              ?> class='<?=$optsUse['class']?>'<?php
         }
 
-            ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
+              ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
 
-          ?><?=$optsUse['caption']?></a><?php
+            ?><?=$optsUse['caption']?></a><?php
+        ?></span><?php
     }
 
     /**
