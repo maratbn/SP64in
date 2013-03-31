@@ -147,9 +147,8 @@
             ?> class='<?=$optsUse['class']?>'<?php
         }
 
-            ?> style='<?=$optsUse['style']?>;visibility:hidden'<?php
+            ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
 
-          ?>><?php
           ?><?=$optsUse['caption']?><?php
         ?></a><?php
     }
