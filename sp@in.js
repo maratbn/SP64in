@@ -499,7 +499,7 @@ jQuery(document).ready(function($) {
         var strPath = aSendEmail.attr('data-sp64in-path')
                                                       || '/components/sp@in/';
 
-        if (aSendEmail.attr('data-sp64in') == 'nogd') isGDAvailable = false;
+        if (aSendEmail.attr('data-sp64in-nogd')) isGDAvailable = false;
 
         rememberPathKey(strPath, strKey);
 
@@ -662,6 +662,9 @@ the web server.";
     function insertSendEmailLink(spanParent) {
         var aSendEmail = $("<a href='#' data-sp64in='" +
                                  spanParent.attr('data-sp64in') + "'></a>");
+
+        var strNogd = spanParent.attr('data-sp64in-nogd');
+        if (strNogd) aSendEmail.attr('data-sp64in-nogd', strNogd);
 
         var strPath = spanParent.attr('data-sp64in-path');
         if (strPath) aSendEmail.attr('data-sp64in-path', strPath);
