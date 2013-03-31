@@ -122,9 +122,6 @@
                                 : '') . 'sp@in';
         }
 
-        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-        ?><a href='<?=$strAttrHref?>'<?php
-
         $strAttrDataSp = null;
         if (function_exists('gd_info')) {
             if (!$flagUseMailto) {
@@ -137,6 +134,10 @@
         } else {
             $strAttrDataSp = 'nogd';
         }
+
+        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
+        ?><a href='<?=$strAttrHref?>'<?php
+
         if ($strAttrDataSp) {
               ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
         }
