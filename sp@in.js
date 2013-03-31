@@ -17,7 +17,7 @@
  *
  *  Description:    JavaScript logic that activates anchor tags / links with
  *                  HTML attributes 'data-sp64in' and 'href' with values
- *                  'mailto:<key>sp@in' to become CAPTCHA-protected email
+ *                  'mailto:<key>_sp@in' to become CAPTCHA-protected email
  *                  links.
  *
  *  Redistribution and use in source and binary forms, with or without
