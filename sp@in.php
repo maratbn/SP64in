@@ -142,6 +142,10 @@
               ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
         }
 
+        if (!function_exists('gd_info')) {
+              ?> data-sp64in-nogd='true'<?php
+        }
+
         if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
               ?> data-sp64in-path='<?= $strURLPath ?>'<?php
         }
