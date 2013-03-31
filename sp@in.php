@@ -149,8 +149,7 @@
 
             ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
 
-          ?><?=$optsUse['caption']?><?php
-        ?></a><?php
+          ?><?=$optsUse['caption']?></a><?php
     }
 
     /**
