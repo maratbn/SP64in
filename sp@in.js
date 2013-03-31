@@ -591,12 +591,12 @@ the web server.";
                 }
             });
         aSendEmail.bind('click', function() {
+                if (getEmail()) return true;
+
                 if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
                     return false;
                 }
-
-                if (getEmail()) return true;
 
                 if (isCShown) {
                     hideCAPTCHA();
