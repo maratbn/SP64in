@@ -105,7 +105,7 @@
         require('sp@in.conf.php');
 
         $optsUse = array_merge(array(
-                'caption'=>"Send Email",
+                'caption'=>'Send Email',
                 'class'=>"",
                 'key'=>"",
                 'style'=>""
