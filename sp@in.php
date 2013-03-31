@@ -69,6 +69,15 @@
     }
 
     /**
+     *  Calls the function 'sp64inInjectTagForEmail()'.
+     *
+     *  @deprecated  Use 'sp64inInjectTagForEmail()' instead.
+     */
+    function sp64inInjectTag(array $opts = array()) {
+        sp64inInjectTagForEmail($opts);
+    }
+
+    /**
      *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
      *  @param  $opts                   Array with configuration parameters.
@@ -89,7 +98,7 @@
      *  @param  $opts['style']          String value of the tag attribute
      *                                                                'style'.
      */
-    function sp64inInjectTag(array $opts = array()) {
+    function sp64inInjectTagForEmail(array $opts = array()) {
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
