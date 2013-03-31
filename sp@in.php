@@ -113,19 +113,17 @@
 
         $strURLPath = sp64in_determineURLPath();
 
-        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-        ?><a href='<?php
-
+        $strAttrHref = '#';
         if ($flagUseMailto) {
-              ?>mailto:<?php
-            if (strlen($optsUse['key'])) {
-                ?><?=sp64in_encryptKeyIfNeeded($optsUse['key'])?>_<?php
-            }
-                ?>sp@in<?php
-        } else {
-              ?>#<?php
+            $strAttrHref = 'mailto:' .
+                            (strlen($optsUse['key'])
+                                ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
+                                                                        . '_')
+                                : '') . 'sp@in';
         }
-              ?>'<?php
+
+        ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
+        ?><a href='<?=$strAttrHref?>'<?php
 
         $strAttrDataSp = null;
         if (function_exists('gd_info')) {
