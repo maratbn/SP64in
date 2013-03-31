@@ -89,16 +89,16 @@
         <li>
           <p>
             Anchor tag injected via PHP convenience function
-            'sp64inInjectTag(...)' with all default options:
+            'sp64inInjectTagForEmail(...)' with all default options:
             <br>
-            <?php sp64inInjectTag() ?>
+            <?php sp64inInjectTagForEmail() ?>
           </p>
         </li>
         <li>
           <p>
             PHP-injected anchor tag with non-default caption:
             <br>
-            <?php sp64inInjectTag(array(
+            <?php sp64inInjectTagForEmail(array(
                 'caption'=>"Send Email to Somebody")) ?>
           </p>
         </li>
@@ -106,7 +106,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS classes:
             <br>
-            <?php sp64inInjectTag(array(
+            <?php sp64inInjectTagForEmail(array(
                 'class'=>"as_bold as_italic")) ?>
           </p>
         </li>
@@ -116,7 +116,7 @@
           <p>
             PHP-injected anchor tag with non-default CSS style:
             <br>
-            <?php sp64inInjectTag(array(
+            <?php sp64inInjectTagForEmail(array(
                     'style'=> "display:block;width:15em;padding:0.4em;"
                               . "margin:0.6em;border: 2px dashed red;"
                               . "text-align:center"
@@ -128,7 +128,7 @@
           <p>
             PHP-injected anchor tag with key 'admin':
             <br>
-            <?php sp64inInjectTag(array(
+            <?php sp64inInjectTagForEmail(array(
                 'key'=>'admin')) ?>
           </p>
         </li>
@@ -136,7 +136,7 @@
           <p>
             PHP-injected anchor tag with key 'support':
             <br>
-            <?php sp64inInjectTag(array(
+            <?php sp64inInjectTagForEmail(array(
                 'key'=>'support')) ?>
           </p>
         </li>

@@ -161,9 +161,9 @@
      *
      *  @param  $opts                   Array with configuration parameters,
      *                                  same as for the function
-     *                                  'sp64inInjectTag(...)' except for the
-     *                                  'key' option, that is determined by
-     *                                  this function.
+     *                                  'sp64inInjectTagForEmail(...)' except
+     *                                  for the 'key' option, that is
+     *                                  determined by this function.
      *
      *  strNonConfigEmail               String with the dynamic email address
      *                                  to render the tag for.
@@ -227,6 +227,6 @@
         $optsUse['key'] = $strKeyUse;
 
         //  Time to render the tag.
-        sp64inInjectTag($optsUse);
+        sp64inInjectTagForEmail($optsUse);
     }
 ?>
