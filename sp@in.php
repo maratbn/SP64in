@@ -58,11 +58,11 @@
     function sp64inInit() {
         //  Need to read the configuration setting
         //  '$flagAlwaysEncryptWithSalt':
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         //  Now need to check if the encryption should be salted:
         //  (as the PHP session is currently used only to store that salt)
-        if ($flagAlwaysEncryptWithSalt) {
+        if ($sp64in_cfg->flagAlwaysEncryptWithSalt) {
             //  Start a session if it was not started already:
             if (!strlen(session_id())) session_start();
         }
@@ -102,7 +102,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         $optsUse = array_merge(array(
                 'caption'=>'Send Email',
@@ -114,7 +114,7 @@
         $strAttrHref = '#';
         $strAttrDataSp = null;
 
-        if ($flagUseMailto) {
+        if ($sp64in_cfg->flagUseMailto) {
             $strAttrHref = 'mailto:' .
                             (strlen($optsUse['key'])
                                 ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
@@ -128,7 +128,7 @@
 
         $strURLPath = sp64in_determineURLPath();
 
-        ?><span class='<?=$class_parent_span?>'><?php
+        ?><span class='<?=$sp64in_cfg->class_parent_span?>'><?php
           ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
           ?><a href='<?=$strAttrHref?>'<?php
 
@@ -174,7 +174,7 @@
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
-        require('sp@in.conf.php');
+        require('sp@in.conf.php');global $sp64in_cfg;
 
         //  Start a session if it was not started already:
         if (!strlen(session_id())) session_start();
@@ -187,10 +187,10 @@
         //  First need to check if the email address specified is actually
         //  configured already:
         $flagEmailAlreadyConfigured = False;
-        if ($strNonConfigEmail == $email_default) {
+        if ($strNonConfigEmail == $sp64in_cfg->email_default) {
             $flagEmailAlreadyConfigured = True;
         } else {
-            foreach ($emails_keyed as $strKey => $strValue) {
+            foreach ($sp64in_cfg->emails_keyed as $strKey => $strValue) {
                 if ($strNonConfigEmail == $strValue) {
                     $strKeyUse = $strKey;
                     $flagEmailAlreadyConfigured = True;

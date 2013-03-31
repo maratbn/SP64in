@@ -1,7 +1,8 @@
-<?php
-    $email_default = "webmaster@example.com";
+<?php if (!class_exists('SP64inCfg')) {class SP64inCfg {
 
-    $emails_keyed = array(
+    public $email_default = "webmaster@example.com";
+
+    public $emails_keyed = array(
             'webmaster'     => 'joe_the_webmaster@example.com',
             'admin'         => 'tom_the_admin@example.com',
             'president'     => 'roy@example.com',
@@ -18,14 +19,14 @@
 
     //  If this flag is set to 'True' then rendered SP@in tags will have
     //  'mailto:' 'href's:
-    $flagUseMailto = True;
+    public $flagUseMailto = True;
 
     //  If this flag is set to 'True', then all the email keys will always be
     //  rendered to the client encrypted rather than in cleartext.
     //
     //  Disabling this setting may sometimes be useful for debuging, but
     //  otherwise NOT RECOMMENDED.
-    $flagAlwaysEncryptKeys = True;
+    public $flagAlwaysEncryptKeys = True;
 
     //  If this flag is set to 'True', then all the email keys will always be
     //  encrypted with an additional random salt for each session.  This means
@@ -35,9 +36,11 @@
     //
     //  Disabling this setting may sometimes be useful for debuging, but
     //  otherwise NOT RECOMMENDED.
-    $flagAlwaysEncryptWithSalt = True;
+    public $flagAlwaysEncryptWithSalt = True;
 
 
     //  This is the default CSS class for the parent <span>.
-    $class_parent_span = 'sp64in_parent';
-?>
+    public $class_parent_span = 'sp64in_parent';
+
+}
+global $sp64in_cfg; $sp64in_cfg = new SP64inCfg();}?>
