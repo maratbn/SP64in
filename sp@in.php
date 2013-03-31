@@ -128,7 +128,7 @@
 
         $strURLPath = sp64in_determineURLPath();
 
-        ?><span><?php
+        ?><span class='<?=$class_parent_span?>'><?php
           ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
           ?><a href='<?=$strAttrHref?>'<?php
 

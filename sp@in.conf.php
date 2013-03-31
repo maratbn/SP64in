@@ -36,4 +36,8 @@
     //  Disabling this setting may sometimes be useful for debuging, but
     //  otherwise NOT RECOMMENDED.
     $flagAlwaysEncryptWithSalt = True;
+
+
+    //  This is the default CSS class for the parent <span>.
+    $class_parent_span = 'sp64in_parent';
 ?>
