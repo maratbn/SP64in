@@ -112,25 +112,18 @@
             ), $opts);
 
         $strAttrHref = '#';
+        $strAttrDataSp = null;
+
         if ($flagUseMailto) {
             $strAttrHref = 'mailto:' .
                             (strlen($optsUse['key'])
                                 ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
                                                                         . '_')
                                 : '') . 'sp@in';
-        }
-
-        $strAttrDataSp = null;
-        if (function_exists('gd_info')) {
-            if (!$flagUseMailto) {
-                if (strlen($optsUse['key'])) {
-                    $strAttrDataSp = sp64in_encryptKeyIfNeeded($optsUse['key']);
-                } else {
-                    $strAttrDataSp = 'true';
-                }
-            }
         } else {
-            $strAttrDataSp = 'nogd';
+            $strAttrDataSp = strlen($optsUse['key'])
+                                ? sp64in_encryptKeyIfNeeded($optsUse['key'])
+                                : 'true';
         }
 
         $strURLPath = sp64in_determineURLPath();
