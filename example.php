@@ -86,7 +86,7 @@
         based on instructions on lines 51 - 59.
       </p>
       <p>
-        This example page is for SP@in version RELEASE
+        This example page is for SP@in version RELEASE_SP64in
       </p>
       <ul>
         <li>
