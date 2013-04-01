@@ -1,4 +1,9 @@
-2013-03-30  Version 0.1.10
+2013-03-31  Version 0.2
+
+    Configuration file 'sp@in.conf.php' now has a new format to avoid global
+    variable name collisions.  All variables used to store configuration
+    settings are now public fields inside the 'SP64inCfg' class, which is
+    accessible through the global object 'sp64in_cfg'.
 
     Renamed the function 'sp64inInjectTag(...)' to
     'sp64inInjectTagForEmail(...)', deprecating the old function name.
