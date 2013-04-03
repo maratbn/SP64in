@@ -19,6 +19,12 @@
             'engineering'   => 'brad@example.com'
         );
 
+    //  This is the default CSS class for the parent <span>.
+    public $class_parent_span = 'sp64in_parent';
+
+
+// The default configuration below should not be modified in most cases
+
     //  If this flag is set to 'True' then rendered SP@in tags will have
     //  'mailto:' 'href's:
     public $flagUseMailto = True;
@@ -39,10 +45,6 @@
     //  Disabling this setting may sometimes be useful for debuging, but
     //  otherwise NOT RECOMMENDED.
     public $flagAlwaysEncryptWithSalt = True;
-
-
-    //  This is the default CSS class for the parent <span>.
-    public $class_parent_span = 'sp64in_parent';
 
 
 // SP@in configuration ends here
