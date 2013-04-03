@@ -111,47 +111,21 @@
                 'style'=>""
             ), $opts);
 
-        $strAttrHref = '#';
-        $strAttrDataSp = null;
-
         if ($sp64in_cfg->flagUseMailto) {
-            $strAttrHref = 'mailto:' .
+            $optsUse['href'] = 'mailto:' .
                             (strlen($optsUse['key'])
                                 ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
                                                                         . '_')
                                 : '') . 'sp@in';
+            $optsUse['data-sp'] = null;
         } else {
-            $strAttrDataSp = strlen($optsUse['key'])
+            $optsUse['href'] = '#';
+            $optsUse['data-sp'] = strlen($optsUse['key'])
                                 ? sp64in_encryptKeyIfNeeded($optsUse['key'])
                                 : 'true';
         }
 
-        $strURLPath = sp64in_determineURLPath();
-
-        ?><span class='<?=$sp64in_cfg->class_parent_span?>'><?php
-          ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-          ?><a href='<?=$strAttrHref?>'<?php
-
-        if ($strAttrDataSp) {
-                ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
-        }
-
-        if (!function_exists('gd_info')) {
-                ?> data-sp64in-nogd='true'<?php
-        }
-
-        if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
-                ?> data-sp64in-path='<?= $strURLPath ?>'<?php
-        }
-
-        if (strlen($optsUse['class'])) {
-              ?> class='<?=$optsUse['class']?>'<?php
-        }
-
-              ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
-
-            ?><?=$optsUse['caption']?></a><?php
-        ?></span><?php
+        sp64in_injectTag($optsUse);
     }
 
     /**
