@@ -40,6 +40,9 @@
  */
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Determines the URL path to the SP@in component installation location.
      *  This is used to direct the client to the appropriate server-side
      *  resources.
@@ -53,6 +56,9 @@
     }
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Encrypts the email key specified.
      */
     function sp64in_encryptKey($strKey) {
@@ -81,6 +87,9 @@
     }
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Encrypts the email key specified according to the configuration
      *  setting '$flagAlwaysEncryptKeys' in the configuration file
      *  'sp@in.conf.php'.
