@@ -1,4 +1,6 @@
 <?php if (!class_exists('SP64inCfg')) {class SP64inCfg {
+// SP@in configuration starts here
+
 
     public $email_default = "webmaster@example.com";
 
@@ -42,5 +44,7 @@
     //  This is the default CSS class for the parent <span>.
     public $class_parent_span = 'sp64in_parent';
 
+
+// SP@in configuration ends here
 }
 global $sp64in_cfg; $sp64in_cfg = new SP64inCfg();}?>
