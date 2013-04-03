@@ -83,6 +83,7 @@
      *  @param  $opts                   Array with configuration parameters.
      *
      *  @param  $opts['caption']        String to display inside the tag.
+     *                                  Defaults to 'Send Email'.
      *
      *  @param  $opts['class']          String value of the tag attribute
      *                                                                'class'.
