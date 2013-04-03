@@ -85,7 +85,7 @@
      *  @param  $opts['caption']        String to display inside the tag.
      *                                  Defaults to 'Send Email'.
      *
-     *  @param  $opts['class']          String value of the tag attribute
+     *  @param  $opts['class']          String value for the tag attribute
      *                                                                'class'.
      *
      *  @param  $opts['key']            String value of the configured key in
@@ -96,7 +96,7 @@
      *                                  Email anchor tag will be rendered for
      *                                  the default email by default.
      *
-     *  @param  $opts['style']          String value of the tag attribute
+     *  @param  $opts['style']          String value for the tag attribute
      *                                                                'style'.
      */
     function sp64inInjectTagForEmail(array $opts = array()) {
