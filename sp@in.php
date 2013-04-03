@@ -113,7 +113,45 @@
             ), $opts);
 
         if ($sp64in_cfg->flagUseMailto) {
-            $optsUse['href'] = 'mailto:' .
+            $optsUse['scheme'] = 'mailto:';
+        }
+
+        sp64inInjectTagForUrl($optsUse);
+    }
+
+    /**
+     *  Injects SP@in URL anchor tag into the server-side-rendered page.
+     *
+     *  @param  $opts                   Array with configuration parameters.
+     *
+     *  @param  $opts['caption']        String to display inside the tag.
+     *                                  Defaults to 'Visit'.
+     *
+     *  @param  $opts['class']          String value for the tag attribute
+     *                                                                'class'.
+     *
+     *  @param  $opts['key']            String value of the configured key in
+     *                                  'sp@in.conf.php' associated with the
+     *                                  url for which the url anchor tag
+     *                                  will be rendered.
+     *
+     *  @param  $opts['scheme']         URL scheme, such as 'mailto:' or
+     *                                  'http://'.
+     *
+     *  @param  $opts['style']          String value for the tag attribute
+     *                                                                'style'.
+     */
+    function sp64inInjectTagForUrl(array $opts = array()) {
+
+        $optsUse = array_merge(array(
+                'caption'=>'Visit',
+                'class'=>"",
+                'key'=>"",
+                'style'=>""
+            ), $opts);
+
+        if (strlen($optsUse['scheme'])) {
+            $optsUse['href'] = $optsUse['scheme'] .
                             (strlen($optsUse['key'])
                                 ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
                                                                         . '_')
