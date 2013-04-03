@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
 
     var isGDAvailable = true;
     var isReqValidated = false;
-    var dataEmail = null;
+    var dataEmails = null;
 
     /**
      *  Does the XHR request to the server with the request parameters
@@ -296,7 +296,7 @@ jQuery(document).ready(function($) {
                         if (params.error) params.error();
                     },
                 success: function(data) {
-                        dataEmail = data && data.email || null;
+                        dataEmails = data && data.emails || null;
                         isReqValidated = data && data.is_req_validated;
 
                         setCachedRecallID(
@@ -473,12 +473,12 @@ jQuery(document).ready(function($) {
         }
 
         function getEmail() {
-            if (!dataEmail) return "";
+            if (!dataEmails) return "";
 
             if (strKey) {
-                return dataEmail.keyed && dataEmail.keyed[strKey] || "";
+                return dataEmails.keyed && dataEmails.keyed[strKey] || "";
             } else {
-                return dataEmail.def || "";
+                return dataEmails.def || "";
             }
         }
 

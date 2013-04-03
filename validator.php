@@ -116,9 +116,9 @@
                 $arrEmailsKeyedNeeded);
         }
 
-        $output['email']                = array();
-        $output['email']['def']         = $sp64in_cfg->email_default;
-        $output['email']['keyed']       = $arrEmailsKeyedNeeded;
+        $output['emails']               = array();
+        $output['emails']['def']        = $sp64in_cfg->email_default;
+        $output['emails']['keyed']      = $arrEmailsKeyedNeeded;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }
