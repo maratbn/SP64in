@@ -529,9 +529,16 @@ the web server.";
             });
 
         var isCShown = false;
+        var isErrorShown = false;
 
         //  This callback will close the qTip on an outside mouseclick.
         $(document.body).bind('click', function(event) {
+                if (isErrorShown) { //  The 'click to reveal' mouse-over
+                                    //  bubble may be used to show errors.
+                    isErrorShown = false;
+                    qapiClickToReveal.hide();
+                }
+
                 //  No need to hide a non-rendered or non-shown qTip.
                 if (!isCShown) return;
                 var elQT = qapiCAPTCHA.elements.tooltip;
@@ -620,6 +627,7 @@ the web server.";
                 elClickToRevealText.text(
                     "Unable to determine email.  Click to try again...");
                 qapiClickToReveal.show();
+                isErrorShown = true;
             }
         }
 
