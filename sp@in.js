@@ -626,7 +626,7 @@ the web server.";
                 qapiClickToReveal.hide();
             } else {
                 elClickToRevealText.text(
-                    "Unable to retrieve email.  Click to try again...");
+                    "Unable to retrieve data.  Click to try again...");
                 qapiClickToReveal.show();
                 isErrorShown = true;
             }
