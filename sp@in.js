@@ -482,20 +482,6 @@ jQuery(document).ready(function($) {
             }
         }
 
-        function updateEmailAddress() {
-            if (!isReqValidated) return;
-
-            var strEmail = getEmail();
-
-            if (strEmail) {
-                aSendEmail
-                    .attr('href', 'mailto:' + strEmail)
-                    .text(strEmail);
-            } else {
-                aSendEmail.text("Unable to determine email.");
-            }
-        }
-
         var strPath = aSendEmail.attr('data-sp64in-path')
                                                       || '/components/sp@in/';
 
@@ -504,8 +490,6 @@ jQuery(document).ready(function($) {
         rememberPathKey(strPath, strKey);
 
         var captcha = createCAPTCHA(strPath);
-
-        updateEmailAddress();
 
         var isIEUnder7 = $.browser.msie && $.browser.version < 7;
 
@@ -620,6 +604,22 @@ the web server.";
 
                 hideCAPTCHA();
             });
+
+        function updateEmailAddress() {
+            if (!isReqValidated) return;
+
+            var strEmail = getEmail();
+
+            if (strEmail) {
+                aSendEmail
+                    .attr('href', 'mailto:' + strEmail)
+                    .text(strEmail);
+            } else {
+                aSendEmail.text("Unable to determine email.");
+            }
+        }
+
+        updateEmailAddress();
 
         elEvents.bind('sp@in_update', function(e) {
                 if (!getEmail()) return;
