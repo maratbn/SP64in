@@ -623,6 +623,7 @@ the web server.";
                 aSendEmail
                     .attr('href', 'mailto:' + strEmail)
                     .text(strEmail);
+                qapiClickToReveal.hide();
             } else {
                 elClickToRevealText.text(
                     "Unable to determine email.  Click to try again...");
