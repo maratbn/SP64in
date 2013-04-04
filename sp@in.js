@@ -619,6 +619,7 @@ the web server.";
             } else {
                 elClickToRevealText.text(
                     "Unable to determine email.  Click to try again...");
+                qapiClickToReveal.show();
             }
         }
 
