@@ -505,11 +505,13 @@ the web server.";
             strClickToRevealText = "Click to reveal email address...";
         }
 
+        var elClickToRevealText = $([   "<div>",
+                                          strClickToRevealText,
+                                        "</div>"].join(""));
+
         var qapiClickToReveal = createQT(
                             aSendEmail,
-                            $(["<div>",
-                                  strClickToRevealText,
-                                "</div>"].join("")),
+                            elClickToRevealText,
                             {
                                 show: { effect: true },
                                 hide: { effect: true }
@@ -615,7 +617,8 @@ the web server.";
                     .attr('href', 'mailto:' + strEmail)
                     .text(strEmail);
             } else {
-                aSendEmail.text("Unable to determine email.");
+                elClickToRevealText.text(
+                    "Unable to determine email.  Click to try again...");
             }
         }
 
