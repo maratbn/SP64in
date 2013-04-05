@@ -632,8 +632,6 @@ the web server.";
             }
         }
 
-        updateEmailAddress();
-
         elEvents.bind('sp@in_update', function(e) {
                 if (!getEmail()) return;
 
