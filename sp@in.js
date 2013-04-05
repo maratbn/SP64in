@@ -614,25 +614,25 @@ the web server.";
                 hideCAPTCHA();
             });
 
-        function updateEmailAddress() {
-            if (!isReqValidated) return;
-
-            var strEmail = getEmail();
-
-            if (strEmail) {
-                aSendEmail
-                    .attr('href', 'mailto:' + strEmail)
-                    .text(strEmail);
-                qapiClickToReveal.hide();
-            } else {
-                elClickToRevealText.text(
-                    "Unable to retrieve data.  Click to try again...");
-                qapiClickToReveal.show();
-                isErrorShown = true;
-            }
-        }
-
         elEvents.bind('sp@in_update', function(e) {
+                function updateEmailAddress() {
+                    if (!isReqValidated) return;
+
+                    var strEmail = getEmail();
+
+                    if (strEmail) {
+                        aSendEmail
+                            .attr('href', 'mailto:' + strEmail)
+                            .text(strEmail);
+                        qapiClickToReveal.hide();
+                    } else {
+                        elClickToRevealText.text(
+                            "Unable to retrieve data.  Click to try again...");
+                        qapiClickToReveal.show();
+                        isErrorShown = true;
+                    }
+                }
+
                 if (!getEmail()) return;
 
                 updateEmailAddress();
