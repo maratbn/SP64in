@@ -480,7 +480,7 @@ jQuery(document).ready(function($) {
                             : dataEmails.def;
             if (!strEmail) return null;
 
-            return {email: strEmail};
+            return {caption: strEmail, url: 'mailto:' + strEmail};
         }
 
         var strPath = aSendEmail.attr('data-sp64in-path')
@@ -622,8 +622,8 @@ the web server.";
 
                 if (email_info) {
                     aSendEmail
-                        .attr('href', 'mailto:' + email_info.email)
-                        .text(email_info.email);
+                        .attr('href', email_info.url)
+                        .text(email_info.caption);
                     qapiClickToReveal.hide();
                 } else {
                     elClickToRevealText.text(
