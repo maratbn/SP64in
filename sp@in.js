@@ -473,13 +473,14 @@ jQuery(document).ready(function($) {
         }
 
         function getEmailInfo() {
-            if (!dataEmails) return "";
+            if (!dataEmails) return null;
 
-            if (strKey) {
-                return dataEmails.keyed && dataEmails.keyed[strKey] || "";
-            } else {
-                return dataEmails.def || "";
-            }
+            var strEmail = strKey
+                            ? dataEmails.keyed && dataEmails.keyed[strKey]
+                            : dataEmails.def;
+            if (!strEmail) return null;
+
+            return {email: strEmail};
         }
 
         var strPath = aSendEmail.attr('data-sp64in-path')
@@ -617,12 +618,12 @@ the web server.";
         elEvents.bind('sp@in_update', function(e) {
                 if (!isReqValidated) return;
 
-                var strEmail = getEmailInfo();
+                var email_info = getEmailInfo();
 
-                if (strEmail) {
+                if (email_info) {
                     aSendEmail
-                        .attr('href', 'mailto:' + strEmail)
-                        .text(strEmail);
+                        .attr('href', 'mailto:' + email_info.email)
+                        .text(email_info.email);
                     qapiClickToReveal.hide();
                 } else {
                     elClickToRevealText.text(
