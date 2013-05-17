@@ -472,7 +472,7 @@ jQuery(document).ready(function($) {
                 };
         }
 
-        function getEmailInfo() {
+        function getUrlInfo() {
             if (!dataEmails) return null;
 
             var strEmail = strKey
@@ -571,21 +571,21 @@ the web server.";
         }
 
         aSendEmail.bind('mouseover', function() {
-                if (getEmailInfo()) return;
+                if (getUrlInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
-                if (getEmailInfo()) return;
+                if (getUrlInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
-                if (getEmailInfo()) return true;
+                if (getUrlInfo()) return true;
 
                 if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
@@ -618,12 +618,12 @@ the web server.";
         elEvents.bind('sp@in_update', function(e) {
                 if (!isReqValidated) return;
 
-                var email_info = getEmailInfo();
+                var url_info = getUrlInfo();
 
-                if (email_info) {
+                if (url_info) {
                     aSendEmail
-                        .attr('href', email_info.url)
-                        .text(email_info.caption);
+                        .attr('href', url_info.url)
+                        .text(url_info.caption);
                     qapiClickToReveal.hide();
                 } else {
                     elClickToRevealText.text(
