@@ -472,7 +472,7 @@ jQuery(document).ready(function($) {
                 };
         }
 
-        function getEmail() {
+        function getEmailInfo() {
             if (!dataEmails) return "";
 
             if (strKey) {
@@ -570,21 +570,21 @@ the web server.";
         }
 
         aSendEmail.bind('mouseover', function() {
-                if (getEmail()) return;
+                if (getEmailInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
-                if (getEmail()) return;
+                if (getEmailInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
-                if (getEmail()) return true;
+                if (getEmailInfo()) return true;
 
                 if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
@@ -617,7 +617,7 @@ the web server.";
         elEvents.bind('sp@in_update', function(e) {
                 if (!isReqValidated) return;
 
-                var strEmail = getEmail();
+                var strEmail = getEmailInfo();
 
                 if (strEmail) {
                     aSendEmail
