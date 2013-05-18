@@ -475,12 +475,12 @@ jQuery(document).ready(function($) {
         function getUrlInfo() {
             if (!dataEmails) return null;
 
-            var strEmail = strKey
+            var infoEmail = strKey
                             ? dataEmails.keyed && dataEmails.keyed[strKey]
                             : dataEmails.def;
-            if (!strEmail) return null;
+            if (!infoEmail) return null;
 
-            return {caption: strEmail, url: 'mailto:' + strEmail};
+            return infoEmail;
         }
 
         var strPath = aSendEmail.attr('data-sp64in-path')

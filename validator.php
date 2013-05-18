@@ -100,7 +100,9 @@
                 if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
                     continue;
 
-                $arrEmailsKeyedNeeded[$strKey] = $arrEmailsKeyedPickFrom[$strKey];
+                $arrEmailsKeyedNeeded[$strKey] = array(
+                    'caption' => $arrEmailsKeyedPickFrom[$strKey],
+                    'url' => ('mailto:' . $arrEmailsKeyedPickFrom[$strKey]));
             }
         }
 
@@ -117,7 +119,10 @@
         }
 
         $output['emails']               = array();
-        $output['emails']['def']        = $sp64in_cfg->email_default;
+        $output['emails']['def']
+                    = array(
+                        'caption' => $sp64in_cfg->email_default,
+                        'url' => ('mailto:' . $sp64in_cfg->email_default));
         $output['emails']['keyed']      = $arrEmailsKeyedNeeded;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
