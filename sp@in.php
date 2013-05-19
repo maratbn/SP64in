@@ -150,7 +150,8 @@
                 'style'=>""
             ), $opts);
 
-        if (strlen($optsUse['scheme'])) {
+        if (array_key_exists('scheme', $optsUse) &&
+                                                 strlen($optsUse['scheme'])) {
             $optsUse['href'] = $optsUse['scheme'] .
                             (strlen($optsUse['key'])
                                 ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
