@@ -76,6 +76,7 @@
             $arrEmailsKeyed = $sp64in_cfg->emails_keyed;
         }
 
+        //  Here need to encrypt all keys as dictated by the configuration.
         $arrEmailsKeyedEnc = null;
         if ($sp64in_cfg->flagAlwaysEncryptKeys) {
             $arrEmailsKeyedEnc = array();
