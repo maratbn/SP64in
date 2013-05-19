@@ -74,7 +74,7 @@
                                     $sp64in_cfg->emails_keyed,
                                     $_SESSION['sp@in_emails_keyed_dynamic']);
         } else {
-            $arrEmailsKeyed = $sp64in_cfg->emails_keyed;
+            $arrEmailsKeyed =& $sp64in_cfg->emails_keyed;
         }
         $arrUrlsKeyed =& $sp64in_cfg->urls_keyed;
 
