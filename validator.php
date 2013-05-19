@@ -90,7 +90,7 @@
                                                       ? $_POST['keys'] : "";
         $arrKeysNeeded = explode(" ", $arg_keysNeeded);
 
-        $arrEmailsKeyedNeeded = array();
+        $arrUrlsKeyedNeeded = array();
 
         $arrEmailsKeyedPickFrom =& $arrEmailsKeyedEnc ? $arrEmailsKeyedEnc
                                                             : $arrEmailsKeyed;
@@ -99,7 +99,7 @@
             if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
                 continue;
 
-            $arrEmailsKeyedNeeded[$strKey] = array(
+            $arrUrlsKeyedNeeded[$strKey] = array(
                 'caption' => $arrEmailsKeyedPickFrom[$strKey],
                 'url' => ('mailto:' . $arrEmailsKeyedPickFrom[$strKey]));
         }
@@ -109,7 +109,7 @@
                     = array(
                         'caption' => $sp64in_cfg->email_default,
                         'url' => ('mailto:' . $sp64in_cfg->email_default));
-        $output['urls']['keyed']        = $arrEmailsKeyedNeeded;
+        $output['urls']['keyed']        = $arrUrlsKeyedNeeded;
         $output['recall_id']            = $recall_id;
         $output['is_req_validated']     = True;
     }
