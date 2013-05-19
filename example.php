@@ -152,6 +152,15 @@
 
         <li>
           <p>
+            PHP-injected URL anchor tag with key 'sp64in':
+            <br>
+            <?php sp64inInjectTagForUrl(array(
+                'key'=>'sp64in')) ?>
+          </p>
+        </li>
+
+        <li>
+          <p>
             Hard-coded mailto anchor tag originally empty:
             <br>
             <a href='mailto:sp@in' data-sp64in-path='<?=$strURLPath?>'></a>

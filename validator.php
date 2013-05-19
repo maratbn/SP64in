@@ -66,6 +66,7 @@
         require('sp@in.conf.php');global $sp64in_cfg;
 
         $arrEmailsKeyed = null;
+        $arrUrlsKeyed = null;
 
         //  May need to merge-in the dynamically generated keys.
         if (array_key_exists('sp@in_emails_keyed_dynamic', $_SESSION)) {
@@ -75,6 +76,7 @@
         } else {
             $arrEmailsKeyed = $sp64in_cfg->emails_keyed;
         }
+        $arrUrlsKeyed =& $sp64in_cfg->urls_keyed;
 
         //  Here need to encrypt all keys as dictated by the configuration.
         $arrEmailsKeyedEnc = null;
@@ -82,6 +84,13 @@
             $arrEmailsKeyedEnc = array();
             foreach ($arrEmailsKeyed as $strKey => $strEmail) {
                 $arrEmailsKeyedEnc[sp64in_encryptKey($strKey)] = $strEmail;
+            }
+        }
+        $arrUrlsKeyedEnc = null;
+        if ($sp64in_cfg->flagAlwaysEncryptKeys) {
+            $arrUrlsKeyedEnc = array();
+            foreach ($arrUrlsKeyed as $strKey => $strUrl) {
+                $arrUrlsKeyedEnc[sp64in_encryptKey($strKey)] = $strUrl;
             }
         }
 
@@ -102,6 +111,17 @@
             $arrUrlsKeyedNeeded[$strKey] = array(
                 'caption' => $arrEmailsKeyedPickFrom[$strKey],
                 'url' => ('mailto:' . $arrEmailsKeyedPickFrom[$strKey]));
+        }
+
+        $arrUrlsKeyedPickFrom =& $arrUrlsKeyedEnc ? $arrUrlsKeyedEnc
+                                                              : $arrUrlsKeyed;
+        foreach ($arrKeysNeeded as $strKey) {
+            if (!array_key_exists($strKey, $arrUrlsKeyedPickFrom))
+                continue;
+
+            $arrUrlsKeyedNeeded[$strKey] = array(
+                'caption' => ('Visit ' . $arrUrlsKeyedPickFrom[$strKey]),
+                'url' => $arrUrlsKeyedPickFrom[$strKey]);
         }
 
         $output['urls']               = array();

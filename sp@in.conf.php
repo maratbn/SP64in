@@ -19,6 +19,10 @@
             'engineering'   => 'brad@example.com'
         );
 
+    public $urls_keyed = array(
+            'sp64in'        => 'http://maratbn.com/projects/sp64in'
+        );
+
     //  This is the default CSS class for the parent <span>.
     public $class_parent_span = 'sp64in_parent';
 
