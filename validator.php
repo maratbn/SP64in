@@ -92,30 +92,16 @@
 
         $arrEmailsKeyedNeeded = array();
 
-        function pickoutKeys(
-            &$arrKeysNeeded,
-            &$arrEmailsKeyedPickFrom,
-            &$arrEmailsKeyedNeeded) {
-            foreach ($arrKeysNeeded as $strKey) {
-                if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
-                    continue;
+        $arrEmailsKeyedPickFrom =& $arrEmailsKeyedEnc ? $arrEmailsKeyedEnc
+                                                            : $arrEmailsKeyed;
+     
+        foreach ($arrKeysNeeded as $strKey) {
+            if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
+                continue;
 
-                $arrEmailsKeyedNeeded[$strKey] = array(
-                    'caption' => $arrEmailsKeyedPickFrom[$strKey],
-                    'url' => ('mailto:' . $arrEmailsKeyedPickFrom[$strKey]));
-            }
-        }
-
-        if ($arrEmailsKeyedEnc) {
-            pickoutKeys(
-                $arrKeysNeeded,
-                $arrEmailsKeyedEnc,
-                $arrEmailsKeyedNeeded);
-        } else {
-            pickoutKeys(
-                $arrKeysNeeded,
-                $arrEmailsKeyed,
-                $arrEmailsKeyedNeeded);
+            $arrEmailsKeyedNeeded[$strKey] = array(
+                'caption' => $arrEmailsKeyedPickFrom[$strKey],
+                'url' => ('mailto:' . $arrEmailsKeyedPickFrom[$strKey]));
         }
 
         $output['urls']               = array();
