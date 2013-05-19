@@ -95,7 +95,6 @@
 
         $arrEmailsKeyedPickFrom =& $arrEmailsKeyedEnc ? $arrEmailsKeyedEnc
                                                             : $arrEmailsKeyed;
-     
         foreach ($arrKeysNeeded as $strKey) {
             if (!array_key_exists($strKey, $arrEmailsKeyedPickFrom))
                 continue;
