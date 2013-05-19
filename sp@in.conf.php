@@ -20,7 +20,10 @@
         );
 
     public $urls_keyed = array(
-            'sp64in'        => 'http://maratbn.com/projects/sp64in'
+            'sp64in'        => 'http://maratbn.com/projects/sp64in',
+            'sp64in_github' => array(
+                'caption'   => 'Visit SP@in (SP64in) GitHub page',
+                'url'       => 'https://github.com/maratbn/sp64in')
         );
 
     //  This is the default CSS class for the parent <span>.

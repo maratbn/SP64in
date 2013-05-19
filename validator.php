@@ -119,9 +119,16 @@
             if (!array_key_exists($strKey, $arrUrlsKeyedPickFrom))
                 continue;
 
-            $arrUrlsKeyedNeeded[$strKey] = array(
-                'caption' => ('Visit ' . $arrUrlsKeyedPickFrom[$strKey]),
-                'url' => $arrUrlsKeyedPickFrom[$strKey]);
+            $dataUrl = $arrUrlsKeyedPickFrom[$strKey];
+            if (!$dataUrl) continue;
+
+            if (is_array($dataUrl)) {
+                $arrUrlsKeyedNeeded[$strKey] = $dataUrl;
+            } else {
+                $arrUrlsKeyedNeeded[$strKey] = array(
+                    'caption' => ('Visit ' . $dataUrl),
+                    'url' => dataUrl);
+            }
         }
 
         $output['urls']               = array();
