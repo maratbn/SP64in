@@ -188,8 +188,8 @@ jQuery(document).ready(function($) {
 
     /**
      *  Returns the value of session cookie 'sp@in_recall', which is the
-     *  recall ID to retrieve the emails from the server if the user already
-     *  solved the CAPTCHAs on his last visit to the page.
+     *  recall ID to retrieve the urls/emails from the server if the user
+     *  already solved the CAPTCHAs on his last visit to the page.
      */
     function getCachedRecallID(strPathHash) {
         var strAllData = khartl_cookie('sp@in_recall');
@@ -242,7 +242,7 @@ jQuery(document).ready(function($) {
 
     /**
      *  Remembers a sp@in tag path and key present on the page, to be able to
-     *  later tell the server which emails we need for this page.
+     *  later tell the server which urls/emails we need for this page.
      */
     function rememberPathKey(strPath, strKey) {
         if (!strPath) return;
@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
 
     var isGDAvailable = true;
     var isReqValidated = false;
-    var dataEmails = null;
+    var dataUrls = null;
 
     /**
      *  Does the XHR request to the server with the request parameters
@@ -296,7 +296,7 @@ jQuery(document).ready(function($) {
                         if (params.error) params.error();
                     },
                 success: function(data) {
-                        dataEmails = data && data.emails || null;
+                        dataUrls = data && data.urls || null;
                         isReqValidated = data && data.is_req_validated;
 
                         setCachedRecallID(
@@ -473,14 +473,14 @@ jQuery(document).ready(function($) {
         }
 
         function getUrlInfo() {
-            if (!dataEmails) return null;
+            if (!dataUrls) return null;
 
-            var infoEmail = strKey
-                            ? dataEmails.keyed && dataEmails.keyed[strKey]
-                            : dataEmails.def;
-            if (!infoEmail) return null;
+            var dataUrl = strKey
+                            ? dataUrls.keyed && dataUrls.keyed[strKey]
+                            : dataUrls.def;
+            if (!dataUrl) return null;
 
-            return infoEmail;
+            return dataUrl;
         }
 
         var strPath = aSendEmail.attr('data-sp64in-path')
