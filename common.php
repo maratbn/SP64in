@@ -156,7 +156,9 @@
         }
 
               ?> style='<?php
+        if (strlen($opts['style'])) {
                 ?><?=$opts['style']?>;<?php
+        }
                 ?>visibility:hidden'><?php
 
             ?><?=$opts['caption']?></a><?php
