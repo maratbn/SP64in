@@ -155,7 +155,9 @@
               ?> class='<?=$opts['class']?>'<?php
         }
 
-              ?> style='<?=$opts['style']?>;visibility:hidden'><?php
+              ?> style='<?php
+                ?><?=$opts['style']?>;<?php
+                ?>visibility:hidden'><?php
 
             ?><?=$opts['caption']?></a><?php
         ?></span><?php
