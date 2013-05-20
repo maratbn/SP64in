@@ -105,7 +105,7 @@
         //  how to render the email anchor tags.
         require('sp@in.conf.php');global $sp64in_cfg;
 
-        $optsUse = array_merge(array(
+        $arrOptsUse = array_merge(array(
                 'caption'=>'Send Email',
                 'class'=>"",
                 'key'=>"",
@@ -113,10 +113,10 @@
             ), $arrOpts);
 
         if ($sp64in_cfg->flagUseMailto) {
-            $optsUse['scheme'] = 'mailto:';
+            $arrOptsUse['scheme'] = 'mailto:';
         }
 
-        sp64inInjectTagForUrl($optsUse);
+        sp64inInjectTagForUrl($arrOptsUse);
     }
 
     /**
@@ -143,29 +143,29 @@
      */
     function sp64inInjectTagForUrl(array $arrOpts) {
 
-        $optsUse = array_merge(array(
+        $arrOptsUse = array_merge(array(
                 'caption'=>'Visit',
                 'class'=>"",
                 'key'=>"",
                 'style'=>""
             ), $arrOpts);
 
-        if (array_key_exists('scheme', $optsUse) &&
-                                                 strlen($optsUse['scheme'])) {
-            $optsUse['href'] = $optsUse['scheme'] .
-                            (strlen($optsUse['key'])
-                                ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
+        if (array_key_exists('scheme', $arrOptsUse) &&
+                                                 strlen($arrOptsUse['scheme'])) {
+            $arrOptsUse['href'] = $arrOptsUse['scheme'] .
+                            (strlen($arrOptsUse['key'])
+                                ? (sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
                                                                         . '_')
                                 : '') . 'sp@in';
-            $optsUse['data-sp'] = null;
+            $arrOptsUse['data-sp'] = null;
         } else {
-            $optsUse['href'] = '#';
-            $optsUse['data-sp'] = strlen($optsUse['key'])
-                                ? sp64in_encryptKeyIfNeeded($optsUse['key'])
+            $arrOptsUse['href'] = '#';
+            $arrOptsUse['data-sp'] = strlen($arrOptsUse['key'])
+                                ? sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
                                 : 'true';
         }
 
-        sp64in_injectTag($optsUse);
+        sp64in_injectTag($arrOptsUse);
     }
 
     /**
@@ -236,11 +236,11 @@
         }
 
         //  The key has now been either determined or generated.
-        $optsUse = $arrOpts;
-        if (!$optsUse) $opsUse = array();
-        $optsUse['key'] = $strKeyUse;
+        $arrOptsUse = $arrOpts;
+        if (!$arrOptsUse) $opsUse = array();
+        $arrOptsUse['key'] = $strKeyUse;
 
         //  Time to render the tag.
-        sp64inInjectTagForEmail($optsUse);
+        sp64inInjectTagForEmail($arrOptsUse);
     }
 ?>
