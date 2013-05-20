@@ -227,7 +227,7 @@
     <script type='text/javascript'
         src='<?=$strURLPath?>/toolkits/jquery/jquery.qtip-nightly.custom/nightly-365741/jquery.qtip.min.js'>
     </script>
-    <script type='text/javascript' src='<?=$strURLPath?>/sp@in.js'>
+    <script type='text/javascript' src='<?=$strURLPath?>/sp@in-v0.2.1-min.js'>
     </script>
   </body>
 </html>
