@@ -1,5 +1,8 @@
 <?php 
-    //  This configuration file is intended for SP@in (SP64in) version RELEASE_SP64in
+//  -----------------------------------------------------------------------------
+//  This configuration file is intended for SP@in (SP64in) version RELEASE_SP64in
+//  -----------------------------------------------------------------------------
+
 
 if (!class_exists('SP64inCfg')) {class SP64inCfg {
 
