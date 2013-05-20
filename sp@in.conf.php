@@ -5,8 +5,6 @@
 
 
 if (!class_exists('SP64inCfg')) {class SP64inCfg {
-
-
 //  SP@in configuration starts here:
 
     public $email_default = "webmaster@example.com";
