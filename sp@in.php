@@ -116,7 +116,7 @@
             $arrOptsUse['scheme'] = 'mailto:';
         }
 
-        sp64inInjectTagForUrl($arrOptsUse);
+        sp64inInjectTagForUrl($arrOptsUse, array('is_email' => TRUE));
     }
 
     /**
@@ -140,8 +140,15 @@
      *
      *  @param  $arrOpts['style']       String value for the tag attribute
      *                                                                'style'.
+     *
+     *  @param  $arrOptsMeta            Array with meta configuration
+     *                                                             parameters.
+     *
+     *  @param  $arrOptsMeta['is_email']    Boolean, if set to TRUE indicates
+     *                                      that the link is intended to be an
+     *                                  email address.
      */
-    function sp64inInjectTagForUrl(array $arrOpts) {
+    function sp64inInjectTagForUrl(array $arrOpts, array $arrOptsMeta = array()) {
 
         $arrOptsUse = array_merge(array(
                 'caption'=>'Visit',
@@ -150,19 +157,24 @@
                 'style'=>""
             ), $arrOpts);
 
-        if (array_key_exists('scheme', $arrOptsUse) &&
-                                                 strlen($arrOptsUse['scheme'])) {
-            $arrOptsUse['href'] = $arrOptsUse['scheme'] .
-                            (strlen($arrOptsUse['key'])
-                                ? (sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
-                                                                        . '_')
-                                : '') . 'sp@in';
-            $arrOptsUse['data-sp'] = null;
-        } else {
-            $arrOptsUse['href'] = '#';
-            $arrOptsUse['data-sp'] = strlen($arrOptsUse['key'])
-                                ? sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
-                                : 'true';
+        if ((array_key_exists('is_email', $arrOptsMeta)
+                                            && $arrOptsMeta['is_email']) ||
+                (array_key_exists('key', $arrOptsUse) &&
+                                                strlen($arrOptsUse['key']))) {
+            if (array_key_exists('scheme', $arrOptsUse) &&
+                                              strlen($arrOptsUse['scheme'])) {
+                $arrOptsUse['href'] = $arrOptsUse['scheme'] .
+                        (strlen($arrOptsUse['key'])
+                            ? (sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
+                                                                    . '_')
+                            : '') . 'sp@in';
+                $arrOptsUse['data-sp'] = null;
+            } else {
+                $arrOptsUse['href'] = '#';
+                $arrOptsUse['data-sp'] = strlen($arrOptsUse['key'])
+                            ? sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
+                            : 'true';
+            }
         }
 
         sp64in_injectTag($arrOptsUse);
