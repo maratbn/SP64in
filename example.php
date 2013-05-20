@@ -166,6 +166,16 @@
                 'key'=>'sp64in_github')) ?>
           </p>
         </li>
+        <li>
+          <p>
+            PHP-injected URL anchor tag with key 'sp64in_github' and an
+            initial caption of 'Visit GitHub page':
+            <br>
+            <?php sp64inInjectTagForUrl(array(
+                'key'=>'sp64in_github',
+                'caption' => 'Visit GitHub page')) ?>
+          </p>
+        </li>
 
         <li>
           <p>
