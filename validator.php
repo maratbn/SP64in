@@ -129,7 +129,7 @@
             } else {
                 $arrUrlsKeyedNeeded[$strKey] = array(
                     'caption' => ('Visit ' . $dataUrl),
-                    'url' => dataUrl);
+                    'url' => $dataUrl);
             }
         }
 
