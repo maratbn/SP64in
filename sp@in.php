@@ -141,7 +141,7 @@
      *  @param  $opts['style']          String value for the tag attribute
      *                                                                'style'.
      */
-    function sp64inInjectTagForUrl(array $opts = array()) {
+    function sp64inInjectTagForUrl(array $opts) {
 
         $optsUse = array_merge(array(
                 'caption'=>'Visit',
