@@ -1,6 +1,7 @@
 <?php if (!class_exists('SP64inCfg')) {class SP64inCfg {
-// SP@in configuration starts here
 
+
+//  SP@in configuration starts here:
 
     public $email_default = "webmaster@example.com";
 
@@ -54,6 +55,6 @@
     public $flagAlwaysEncryptWithSalt = True;
 
 
-// SP@in configuration ends here
+// SP@in configuration ends here.
 }
 global $sp64in_cfg; $sp64in_cfg = new SP64inCfg();}?>
