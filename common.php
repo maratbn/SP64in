@@ -42,6 +42,9 @@
  */
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Determines the URL path to the SP@in component installation location.
      *  This is used to direct the client to the appropriate server-side
      *  resources.
@@ -55,6 +58,9 @@
     }
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Encrypts the email key specified.
      */
     function sp64in_encryptKey($strKey) {
@@ -83,6 +89,9 @@
     }
 
     /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
      *  Encrypts the email key specified according to the configuration
      *  setting '$flagAlwaysEncryptKeys' in the configuration file
      *  'sp@in.conf.php'.
@@ -95,5 +104,66 @@
         require('sp@in.conf.php');global $sp64in_cfg;
         return $sp64in_cfg->flagAlwaysEncryptKeys
                                        ? sp64in_encryptKey($strKey) : $strKey;
+    }
+
+    /**
+     *  SP@in internal logic function.  Not intended for calls from outside
+     *  of SP@in.
+     *
+     *  Injects the actual SP@in anchor HTML tags into the
+     *  server-side-rendered page.
+     *
+     *  @param  $opts                   Array with configuration parameters.
+     *
+     *  @param  $opts['caption']        String to display inside the tag.
+     *
+     *  @param  $opts['class']          String value for the tag attribute
+     *                                                                'class'.
+     *
+     *  @param  $opts['data-sp']        String value for the tag attribute
+     *                                                          'data-sp64in'.
+     *
+     *  @param  $opts['href']           String value for the tag attribute
+     *                                                                 'href'.
+     *
+     *  @param  $opts['style']          String value for the tag attribute
+     *                                                                'style'.
+     */
+    function sp64in_injectTag($opts) {
+
+        //  This utility needs to access the configuration file to determine
+        //  how to render the email anchor tags.
+        require('sp@in.conf.php');global $sp64in_cfg;
+
+        $strURLPath = sp64in_determineURLPath();
+
+        ?><span class='<?=$sp64in_cfg->class_parent_span?>'><?php
+          ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
+          ?><a href='<?=$opts['href']?>'<?php
+
+        if (strlen($opts['data-sp'])) {
+                ?> data-sp64in='<?=$opts['data-sp']?>'<?php
+        }
+
+        if (!function_exists('gd_info')) {
+                ?> data-sp64in-nogd='true'<?php
+        }
+
+        if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
+                ?> data-sp64in-path='<?= $strURLPath ?>'<?php
+        }
+
+        if (strlen($opts['class'])) {
+              ?> class='<?=$opts['class']?>'<?php
+        }
+
+              ?> style='<?php
+        if (strlen($opts['style'])) {
+                ?><?=$opts['style']?>;<?php
+        }
+                ?>visibility:hidden'><?php
+
+            ?><?=$opts['caption']?></a><?php
+        ?></span><?php
     }
 ?>

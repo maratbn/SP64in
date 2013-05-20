@@ -99,7 +99,7 @@
         </li>
         <li>
           <p>
-            PHP-injected anchor tag with non-default caption:
+            PHP-injected email anchor tag with non-default caption:
             <br>
             <?php sp64inInjectTagForEmail(array(
                 'caption'=>"Send Email to Somebody")) ?>
@@ -107,7 +107,7 @@
         </li>
         <li>
           <p>
-            PHP-injected anchor tag with non-default CSS classes:
+            PHP-injected email anchor tag with non-default CSS classes:
             <br>
             <?php sp64inInjectTagForEmail(array(
                 'class'=>"as_bold as_italic")) ?>
@@ -117,7 +117,7 @@
 
         <li>
           <p>
-            PHP-injected anchor tag with non-default CSS style:
+            PHP-injected email anchor tag with non-default CSS style:
             <br>
             <?php sp64inInjectTagForEmail(array(
                     'style'=> "display:block;width:15em;padding:0.4em;"
@@ -129,7 +129,7 @@
 
         <li>
           <p>
-            PHP-injected anchor tag with key 'admin':
+            PHP-injected email anchor tag with key 'admin':
             <br>
             <?php sp64inInjectTagForEmail(array(
                 'key'=>'admin')) ?>
@@ -137,7 +137,7 @@
         </li>
         <li>
           <p>
-            PHP-injected anchor tag with key 'support':
+            PHP-injected email anchor tag with key 'support':
             <br>
             <?php sp64inInjectTagForEmail(array(
                 'key'=>'support')) ?>
@@ -146,10 +146,37 @@
 
         <li>
           <p>
-            PHP-injected anchor tag with a non-pre-statically-configured email
+            PHP-injected email anchor tag with a non-pre-statically-configured email
             address:
             <br>
             <?php sp64inInjectTagForNonConfigEmail("non_config@example.com") ?>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            PHP-injected URL anchor tag with key 'sp64in':
+            <br>
+            <?php sp64inInjectTagForUrl(array(
+                'key'=>'sp64in')) ?>
+          </p>
+        </li>
+        <li>
+          <p>
+            PHP-injected URL anchor tag with key 'sp64in_github':
+            <br>
+            <?php sp64inInjectTagForUrl(array(
+                'key'=>'sp64in_github')) ?>
+          </p>
+        </li>
+        <li>
+          <p>
+            PHP-injected URL anchor tag with key 'sp64in_github' and an
+            initial caption of 'Visit GitHub page':
+            <br>
+            <?php sp64inInjectTagForUrl(array(
+                'key'=>'sp64in_github',
+                'caption' => 'Visit GitHub page')) ?>
           </p>
         </li>
 

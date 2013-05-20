@@ -190,8 +190,8 @@ jQuery(document).ready(function($) {
 
     /**
      *  Returns the value of session cookie 'sp@in_recall', which is the
-     *  recall ID to retrieve the emails from the server if the user already
-     *  solved the CAPTCHAs on his last visit to the page.
+     *  recall ID to retrieve the urls/emails from the server if the user
+     *  already solved the CAPTCHAs on his last visit to the page.
      */
     function getCachedRecallID(strPathHash) {
         var strAllData = khartl_cookie('sp@in_recall');
@@ -244,7 +244,7 @@ jQuery(document).ready(function($) {
 
     /**
      *  Remembers a sp@in tag path and key present on the page, to be able to
-     *  later tell the server which emails we need for this page.
+     *  later tell the server which urls/emails we need for this page.
      */
     function rememberPathKey(strPath, strKey) {
         if (!strPath) return;
@@ -267,7 +267,7 @@ jQuery(document).ready(function($) {
 
     var isGDAvailable = true;
     var isReqValidated = false;
-    var dataEmail = null;
+    var dataUrls = null;
 
     /**
      *  Does the XHR request to the server with the request parameters
@@ -298,7 +298,7 @@ jQuery(document).ready(function($) {
                         if (params.error) params.error();
                     },
                 success: function(data) {
-                        dataEmail = data && data.email || null;
+                        dataUrls = data && data.urls || null;
                         isReqValidated = data && data.is_req_validated;
 
                         setCachedRecallID(
@@ -474,28 +474,15 @@ jQuery(document).ready(function($) {
                 };
         }
 
-        function getEmail() {
-            if (!dataEmail) return "";
+        function getUrlInfo() {
+            if (!dataUrls) return null;
 
-            if (strKey) {
-                return dataEmail.keyed && dataEmail.keyed[strKey] || "";
-            } else {
-                return dataEmail.def || "";
-            }
-        }
+            var dataUrl = strKey
+                            ? dataUrls.keyed && dataUrls.keyed[strKey]
+                            : dataUrls.def;
+            if (!dataUrl) return null;
 
-        function updateEmailAddress() {
-            if (!isReqValidated) return;
-
-            var strEmail = getEmail();
-
-            if (strEmail) {
-                aSendEmail
-                    .attr('href', 'mailto:' + strEmail)
-                    .text(strEmail);
-            } else {
-                aSendEmail.text("Unable to determine email.");
-            }
+            return dataUrl;
         }
 
         var strPath = aSendEmail.attr('data-sp64in-path')
@@ -506,8 +493,6 @@ jQuery(document).ready(function($) {
         rememberPathKey(strPath, strKey);
 
         var captcha = createCAPTCHA(strPath);
-
-        updateEmailAddress();
 
         var isIEUnder7 = $.browser.msie && $.browser.version < 7;
 
@@ -523,11 +508,13 @@ the web server.";
             strClickToRevealText = "Click to reveal email address...";
         }
 
+        var elClickToRevealText = $([   "<div>",
+                                          strClickToRevealText,
+                                        "</div>"].join(""));
+
         var qapiClickToReveal = createQT(
                             aSendEmail,
-                            $(["<div>",
-                                  strClickToRevealText,
-                                "</div>"].join("")),
+                            elClickToRevealText,
                             {
                                 show: { effect: true },
                                 hide: { effect: true }
@@ -545,9 +532,16 @@ the web server.";
             });
 
         var isCShown = false;
+        var isErrorShown = false;
 
         //  This callback will close the qTip on an outside mouseclick.
         $(document.body).bind('click', function(event) {
+                if (isErrorShown) { //  The 'click to reveal' mouse-over
+                                    //  bubble may be used to show errors.
+                    isErrorShown = false;
+                    qapiClickToReveal.hide();
+                }
+
                 //  No need to hide a non-rendered or non-shown qTip.
                 if (!isCShown) return;
                 var elQT = qapiCAPTCHA.elements.tooltip;
@@ -579,21 +573,21 @@ the web server.";
         }
 
         aSendEmail.bind('mouseover', function() {
-                if (getEmail()) return;
+                if (getUrlInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.show();
                 }
             });
         aSendEmail.bind('mouseout', function() {
-                if (getEmail()) return;
+                if (getUrlInfo()) return;
 
                 if (!isCShown) {
                     qapiClickToReveal.hide();
                 }
             });
         aSendEmail.bind('click', function() {
-                if (getEmail()) return true;
+                if (getUrlInfo()) return true;
 
                 if (isIEUnder7 || !isGDAvailable) {
                     qapiClickToReveal.show();
@@ -624,9 +618,22 @@ the web server.";
             });
 
         elEvents.bind('sp@in_update', function(e) {
-                if (!getEmail()) return;
+                if (!isReqValidated) return;
 
-                updateEmailAddress();
+                var url_info = getUrlInfo();
+
+                if (url_info) {
+                    aSendEmail
+                        .attr('href', url_info.url)
+                        .text(url_info.caption);
+                    qapiClickToReveal.hide();
+                } else {
+                    elClickToRevealText.text(
+                        "Unable to retrieve data.  Click to try again...");
+                    qapiClickToReveal.show();
+                    isErrorShown = true;
+                }
+
                 hideCAPTCHA();
             });
 

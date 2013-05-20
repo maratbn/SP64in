@@ -75,21 +75,22 @@
      *
      *  @deprecated  Use 'sp64inInjectTagForEmail()' instead.
      */
-    function sp64inInjectTag(array $opts = array()) {
-        sp64inInjectTagForEmail($opts);
+    function sp64inInjectTag(array $arrOpts = array()) {
+        sp64inInjectTagForEmail($arrOpts);
     }
 
     /**
      *  Injects SP@in email anchor tag into the server-side-rendered page.
      *
-     *  @param  $opts                   Array with configuration parameters.
+     *  @param  $arrOpts                Array with configuration parameters.
      *
-     *  @param  $opts['caption']        String to display inside the tag.
+     *  @param  $arrOpts['caption']     String to display inside the tag.
+     *                                  Defaults to 'Send Email'.
      *
-     *  @param  $opts['class']          String value of the tag attribute
+     *  @param  $arrOpts['class']       String value for the tag attribute
      *                                                                'class'.
      *
-     *  @param  $opts['key']            String value of the configured key in
+     *  @param  $arrOpts['key']         String value of the configured key in
      *                                  'sp@in.conf.php' associated with the
      *                                  email for which the email anchor tag
      *                                  will be rendered.
@@ -97,63 +98,88 @@
      *                                  Email anchor tag will be rendered for
      *                                  the default email by default.
      *
-     *  @param  $opts['style']          String value of the tag attribute
+     *  @param  $arrOpts['style']       String value for the tag attribute
      *                                                                'style'.
      */
-    function sp64inInjectTagForEmail(array $opts = array()) {
+    function sp64inInjectTagForEmail(array $arrOpts = array()) {
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
         require('sp@in.conf.php');global $sp64in_cfg;
 
-        $optsUse = array_merge(array(
+        $arrOptsUse = array_merge(array(
                 'caption'=>'Send Email',
                 'class'=>"",
                 'key'=>"",
                 'style'=>""
-            ), $opts);
-
-        $strAttrHref = '#';
-        $strAttrDataSp = null;
+            ), $arrOpts);
 
         if ($sp64in_cfg->flagUseMailto) {
-            $strAttrHref = 'mailto:' .
-                            (strlen($optsUse['key'])
-                                ? (sp64in_encryptKeyIfNeeded($optsUse['key'])
-                                                                        . '_')
-                                : '') . 'sp@in';
-        } else {
-            $strAttrDataSp = strlen($optsUse['key'])
-                                ? sp64in_encryptKeyIfNeeded($optsUse['key'])
-                                : 'true';
+            $arrOptsUse['scheme'] = 'mailto:';
         }
 
-        $strURLPath = sp64in_determineURLPath();
+        sp64inInjectTagForUrl($arrOptsUse, array('is_email' => TRUE));
+    }
 
-        ?><span class='<?=$sp64in_cfg->class_parent_span?>'><?php
-          ?><img src='<?=$strURLPath?>/graphics/sp@in-loading-1.gif' title='SP@in field initializing...'/><?php
-          ?><a href='<?=$strAttrHref?>'<?php
+    /**
+     *  Injects SP@in URL anchor tag into the server-side-rendered page.
+     *
+     *  @param  $arrOpts                Array with configuration parameters.
+     *
+     *  @param  $arrOpts['caption']     String to display inside the tag.
+     *                                  Defaults to 'Visit'.
+     *
+     *  @param  $arrOpts['class']       String value for the tag attribute
+     *                                                                'class'.
+     *
+     *  @param  $arrOpts['key']         String value of the configured key in
+     *                                  'sp@in.conf.php' associated with the
+     *                                  url for which the url anchor tag
+     *                                  will be rendered.
+     *
+     *  @param  $arrOpts['scheme']      URL scheme, such as 'mailto:' or
+     *                                  'http://'.
+     *
+     *  @param  $arrOpts['style']       String value for the tag attribute
+     *                                                                'style'.
+     *
+     *  @param  $arrOptsMeta            Array with meta configuration
+     *                                                             parameters.
+     *
+     *  @param  $arrOptsMeta['is_email']    Boolean, if set to TRUE indicates
+     *                                      that the link is intended to be an
+     *                                  email address.
+     */
+    function sp64inInjectTagForUrl(array $arrOpts, array $arrOptsMeta = array()) {
 
-        if ($strAttrDataSp) {
-                ?> data-sp64in='<?= $strAttrDataSp ?>'<?php
+        $arrOptsUse = array_merge(array(
+                'caption'=>'Visit',
+                'class'=>"",
+                'key'=>"",
+                'style'=>""
+            ), $arrOpts);
+
+        if ((array_key_exists('is_email', $arrOptsMeta)
+                                            && $arrOptsMeta['is_email']) ||
+                (array_key_exists('key', $arrOptsUse) &&
+                                                strlen($arrOptsUse['key']))) {
+            if (array_key_exists('scheme', $arrOptsUse) &&
+                                              strlen($arrOptsUse['scheme'])) {
+                $arrOptsUse['href'] = $arrOptsUse['scheme'] .
+                        (strlen($arrOptsUse['key'])
+                            ? (sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
+                                                                    . '_')
+                            : '') . 'sp@in';
+                $arrOptsUse['data-sp'] = null;
+            } else {
+                $arrOptsUse['href'] = '#';
+                $arrOptsUse['data-sp'] = strlen($arrOptsUse['key'])
+                            ? sp64in_encryptKeyIfNeeded($arrOptsUse['key'])
+                            : 'true';
+            }
         }
 
-        if (!function_exists('gd_info')) {
-                ?> data-sp64in-nogd='true'<?php
-        }
-
-        if (!preg_match('/^\/components\/sp@in\/?$/', $strURLPath)) {
-                ?> data-sp64in-path='<?= $strURLPath ?>'<?php
-        }
-
-        if (strlen($optsUse['class'])) {
-              ?> class='<?=$optsUse['class']?>'<?php
-        }
-
-              ?> style='<?=$optsUse['style']?>;visibility:hidden'><?php
-
-            ?><?=$optsUse['caption']?></a><?php
-        ?></span><?php
+        sp64in_injectTag($arrOptsUse);
     }
 
     /**
@@ -161,7 +187,7 @@
      *  a dynamic email address that has not been statically configured in the
      *  file 'sp@in.conf.php'
      *
-     *  @param  $opts                   Array with configuration parameters,
+     *  @param  $arrOpts                Array with configuration parameters,
      *                                  same as for the function
      *                                  'sp64inInjectTagForEmail(...)' except
      *                                  for the 'key' option, that is
@@ -172,7 +198,7 @@
      */
     function sp64inInjectTagForNonConfigEmail(
         $strNonConfigEmail,
-        array $opts = null) {
+        array $arrOpts = null) {
 
         //  This utility needs to access the configuration file to determine
         //  how to render the email anchor tags.
@@ -224,11 +250,11 @@
         }
 
         //  The key has now been either determined or generated.
-        $optsUse = $opts;
-        if (!$optsUse) $opsUse = array();
-        $optsUse['key'] = $strKeyUse;
+        $arrOptsUse = $arrOpts;
+        if (!$arrOptsUse) $opsUse = array();
+        $arrOptsUse['key'] = $strKeyUse;
 
         //  Time to render the tag.
-        sp64inInjectTagForEmail($optsUse);
+        sp64inInjectTagForEmail($arrOptsUse);
     }
 ?>
