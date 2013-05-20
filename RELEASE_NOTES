@@ -1,3 +1,10 @@
+2013-05-19  Version 0.2.1
+
+    Added support for CAPTCHA-protecting statically-configured URLs.
+
+    Fixed a number of obscure bugs / edge-case issues.
+
+
 2013-03-31  Version 0.2
 
     Configuration file 'sp@in.conf.php' now has a new format to avoid global
